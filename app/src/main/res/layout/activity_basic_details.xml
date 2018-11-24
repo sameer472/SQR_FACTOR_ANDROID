@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/White">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark" >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/basic_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/sqr"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Basic Details"
+        android:textSize="20sp"
+        android:fontFamily="@font/roboto_medium"
+        android:padding="10sp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/line"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:focusableInTouchMode="true">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/fName"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:padding="10sp"
+                android:background="@drawable/shapes"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/fNametext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="First Name*"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/lName"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:padding="10sp"
+                android:background="@drawable/shapes"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/lNametext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Last Name*"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:padding="10sp"
+                android:background="@drawable/shapes"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/Emailtext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Email"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="textEmailAddress"
+                    android:padding="5sp" />
+
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/email1"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:visibility="gone"
+                android:padding="10sp"
+                android:background="@drawable/shapes"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/Emailtext1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Email"
+                    android:textColor="#000"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="textEmailAddress"
+                    android:padding="5sp" />
+
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/email2"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:visibility="gone"
+                android:padding="10sp"
+                android:background="@drawable/shapes"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/Emailtext2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Email"
+                    android:textColor="#000"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="textEmailAddress"
+                    android:padding="5sp" />
+
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/email3"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:visibility="gone"
+                android:padding="10sp"
+                android:background="@drawable/shapes"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/Emailtext3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Email"
+                    android:textColor="#000"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="textEmailAddress"
+                    android:padding="5sp" />
+
+
+            </android.support.design.widget.TextInputLayout>
+
+
+            <Button
+                android:id="@+id/AddEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/email"
+                android:layout_margin="10dp"
+                android:layout_marginTop="14dp"
+                android:fontFamily="@font/roboto"
+                android:background="@drawable/image_background"
+                android:text="Add Email" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/mobile"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:padding="10sp"
+                android:background="@drawable/shapes"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/mobileText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Mobile Number"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="number"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/dateOfBirth"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/dateOfBirthText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Date Of Birth"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="date"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:id="@+id/linerGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select Gender*"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/roboto"
+                    android:layout_marginEnd="20sp"
+                    android:layout_marginRight="20sp"/>
+
+                <Spinner
+                    android:id="@+id/gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/dateOfBirth"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/roboto"
+                    android:foreground="@drawable/gray_border"/>
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/UID"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/UIDtext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="UID"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/UID"
+                android:fontFamily="@font/roboto"
+                android:layout_margin="10dp"
+                android:id="@+id/selectOccupation"
+                android:text="Select Occupation*"
+                android:textSize="18sp"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Architect"
+                android:fontFamily="@font/roboto"
+                android:layout_marginStart="5dp"
+                android:layout_below="@+id/selectOccupation"
+                android:id="@+id/checkbox1"
+                android:checked="false"
+                android:layout_marginLeft="5dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Design Student"
+                android:fontFamily="@font/roboto"
+                android:layout_marginStart="5dp"
+                android:layout_below="@+id/checkbox1"
+                android:id="@+id/checkbox2"
+                android:checked="false"
+                android:layout_marginLeft="5dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Acadmeciane"
+                android:fontFamily="@font/roboto"
+                android:layout_marginStart="5dp"
+                android:layout_below="@+id/checkbox2"
+                android:id="@+id/checkbox3"
+                android:checked="false"
+                android:layout_marginLeft="5dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interior Design"
+                android:fontFamily="@font/roboto"
+                android:layout_marginStart="5dp"
+                android:layout_below="@+id/checkbox3"
+                android:id="@+id/checkbox4"
+                android:checked="false"
+                android:layout_marginLeft="5dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Landscape Architect"
+                android:fontFamily="@font/roboto"
+                android:layout_marginStart="5dp"
+                android:layout_below="@+id/checkbox4"
+                android:id="@+id/checkbox5"
+                android:checked="false"
+                android:layout_marginLeft="5dp" />
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other"
+                android:fontFamily="@font/roboto"
+                android:layout_marginStart="5dp"
+                android:layout_below="@+id/checkbox5"
+                android:id="@+id/checkbox6"
+                android:checked="false"
+                android:layout_marginLeft="5dp" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="370dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/checkbox6"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/otherOccupation"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/otherOccupationtext"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Other Name*"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="text"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:id="@+id/AddOccupation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/backgroundbutton"
+                    android:text="Add"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/roboto"
+                    android:layout_marginLeft="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linerCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Select Country*"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/roboto"
+                    android:layout_marginRight="5sp"
+                    android:layout_marginEnd="5sp"/>
+
+                <Spinner
+                    android:id="@+id/Country"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:foreground="@drawable/gray_border"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linerState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Select State*"
+                    android:fontFamily="@font/roboto"
+                    android:textSize="18sp"
+                    android:layout_marginRight="5sp"
+                    android:layout_marginEnd="5sp"/>
+
+                <Spinner
+                    android:id="@+id/State"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:foreground="@drawable/gray_border"
+                    android:entries="@array/countries"
+                    android:padding="5dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linerCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="140dp"
+                    android:layout_height="wrap_content"
+                    android:text="Select City*"
+                    android:fontFamily="@font/roboto"
+                    android:textSize="18sp"
+                    android:layout_marginRight="5sp"
+                    android:layout_marginEnd="5sp"/>
+
+                <Spinner
+                    android:id="@+id/City"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24sp"
+                    android:foreground="@drawable/gray_border"
+                    android:entries="@array/countries"
+                    android:padding="5dp"/>
+
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/shortBio"
+                android:layout_width="match_parent"
+                android:layout_height="181dp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/shortBioTecxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Short Bio (150 words)"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/facebookLink"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/facebookLinktext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Facebook Link"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/TwitterLink"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/TwitterLinktext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Twitter Link"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/LinkedinLink"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/LinkedinLinktext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Linkedin Link"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/InstagramLink"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/InstagramLinktext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Linkedin Link"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/SaveandNext"
+                android:text="@string/save_next"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:fontFamily="@font/roboto"
+                android:layout_margin="5dp"
+                android:background="@drawable/sqr_factor_btn_color"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
+    android:id="@+id/clickableCard"
+    android:layout_marginLeft="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/event_title"
+                android:layout_marginTop="20sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginStart="10sp"
+                android:text="STROLLING DOWN THE VIHARAS"
+                android:textColor="#000"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/event_startTimeAgo"
+                android:layout_marginTop="2sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginStart="10sp"
+                android:text="6 months ago"/>
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/event_cover"
+                android:src="@drawable/designimg2"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10sp"
+                android:scaleType="fitStart"
+                android:adjustViewBounds="true"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_margin="10sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="@string/location"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/cardVenue"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="5sp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="Type: "
+                        android:textColor="@color/black"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:id="@+id/cardType"
+                        android:textColor="@color/black"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/event_desc"
+                android:text="@string/Event"
+                android:textColor="#000000"
+                android:layout_marginTop="2sp"
+                android:layout_marginBottom="4sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginStart="10sp"/>
+
+            <!--<Button-->
+                <!--android:id="@+id/event_read_more"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginLeft="20sp"-->
+                <!--android:layout_marginStart="20sp"-->
+                <!--android:layout_marginTop="50sp"-->
+                <!--android:paddingLeft="10sp"-->
+                <!--android:paddingStart="10sp"-->
+                <!--android:paddingRight="10sp"-->
+                <!--android:paddingEnd="10sp"-->
+                <!--android:background="@drawable/sqr_factor_btn_color"-->
+                <!--android:text="Read More"-->
+                <!--android:textColor="#fff"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:layout_marginBottom="20sp"/>-->
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/event_3_dots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:visibility="gone"
+            android:src="@drawable/ic_menu_3_dots"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"/>
+
+    </RelativeLayout>
+
+
+
+</android.support.v7.widget.CardView>

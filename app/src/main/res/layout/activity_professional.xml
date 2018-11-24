@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/White">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark" >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/professional_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Professional Details"
+        android:textSize="20sp"
+        android:fontFamily="@font/roboto_medium"
+        android:padding="10dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/line"/>
+
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:focusableInTouchMode="true">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/COA"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/COARgistration"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="COA/Registeration"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:padding="5sp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/YearsSinceService"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/YearsSinceServiceText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Years Since Service"
+                    android:inputType="text"
+                    android:fontFamily="@font/roboto"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/Role"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/RoleText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Role*"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/Company"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/CompanyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Company/Firm Or College/University*"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/StartDate"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/StartDateText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Start Date*"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="date"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/EndDate"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/EndDateText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="End Date of Working Currently*"
+                    android:inputType="date"
+                    android:fontFamily="@font/roboto"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/Salary"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/SalaryText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Salary/Stipend*"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="numberDecimal"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <Button
+                    android:id="@+id/Add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="Add +"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/White"
+                    android:textAllCaps="false"
+                    android:background="@drawable/sqr_factor_btn_color" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/linear">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/Role1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/RoleText1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Role*"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="text"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/Company1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/CompanyText1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Company/Firm Or College/University*"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="text"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/StartDate1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/StartDateText1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Start Date*"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="date"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/EndDate1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/EndDateText1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/roboto"
+                        android:hint="End Date of Working Currently*"
+                        android:inputType="date"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/Salary1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/SalaryText1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Salary/Stipend*"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="number"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    android:padding="10dp">
+
+                    <Button
+                        android:id="@+id/Add1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:background="@drawable/sqr_factor_btn_color"
+                        android:text="Add +"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textAllCaps="false"
+                        android:textColor="@color/White" />
+
+                    <Button
+                        android:id="@+id/Remove"
+                        android:layout_marginStart="5sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:text="Remove"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/White"
+                        android:textAllCaps="false"
+                        android:background="@drawable/gray_buttons"
+                        android:layout_marginLeft="5sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/linear2">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/Role2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/RoleText2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Role*"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="text"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/Company2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/CompanyText2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Company/Firm Or College/University*"
+                        android:inputType="text"
+                        android:fontFamily="@font/roboto"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/StartDate2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/StartDateText2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Start Date*"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="date"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/EndDate2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/EndDateText2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="End Date of Working Currently*"
+                        android:inputType="date"
+                        android:fontFamily="@font/roboto"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/Salary2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/SalaryText2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Salary/Stipend*"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="numberDecimal"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    android:padding="10dp">
+
+                    <Button
+                        android:id="@+id/Add2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:background="@drawable/sqr_factor_btn_color"
+                        android:text="Add +"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textAllCaps="false"
+                        android:textColor="@color/White" />
+
+                    <Button
+                        android:id="@+id/Remove2"
+                        android:layout_marginStart="5sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:text="Remove"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/White"
+                        android:textAllCaps="false"
+                        android:background="@drawable/gray_buttons"
+                        android:layout_marginLeft="10sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <Button
+                    android:id="@+id/save_professinal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Save"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/White"
+                    android:textAllCaps="false"
+                    android:background="@drawable/sqr_factor_btn_color"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

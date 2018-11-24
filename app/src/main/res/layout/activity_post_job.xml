@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activities.PostEventActivity">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/activity_toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical"
+                android:padding="15sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5sp"
+                    android:text="Job Title/Position"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10sp"
+                    android:background="@drawable/gray_border"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorAccent">
+
+                    <EditText
+                        android:id="@+id/job_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Job Title"
+                        android:inputType="text"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5sp"
+                    android:text="Description"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100sp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10sp"
+                    android:background="@drawable/gray_border"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorAccent">
+
+                    <EditText
+                        android:id="@+id/job_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent"
+                        android:gravity="top"
+                        android:hint="@string/describe_the_responsibilities_of_this_position"
+                        android:inputType="text"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5sp"
+                    android:text="Job category"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/job_category_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_marginBottom="10sp"
+                    android:entries="@array/category"
+                    android:foreground="@drawable/gray_border"
+                    android:padding="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5sp"
+                    android:text="Position type"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/job_position_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_marginBottom="10sp"
+                    android:entries="@array/positions"
+                    android:foreground="@drawable/gray_border"
+                    android:padding="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5sp"
+                    android:text="Work experience"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/job_work_exp_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_marginBottom="10sp"
+                    android:entries="@array/workex"
+                    android:foreground="@drawable/gray_border"
+                    android:padding="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5sp"
+                    android:text="Salary"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <EditText
+                        android:id="@+id/min_salary"
+                        android:layout_width="0sp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="5sp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gray_border"
+                        android:hint="Minimum"
+                        android:inputType="number"
+                        android:padding="5sp" />
+
+                    <EditText
+                        android:id="@+id/max_salary"
+                        android:layout_width="0sp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_margin="5sp"
+                        android:layout_weight="1"
+                        android:background="@drawable/gray_border"
+                        android:hint="Maximum"
+                        android:inputType="number"
+                        android:padding="5sp" />
+
+                    <Spinner
+                        android:id="@+id/job_currency_unit"
+                        android:layout_width="0sp"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="10sp"
+                        android:layout_weight="1"
+                        android:entries="@array/currency"
+                        android:foreground="@drawable/gray_border"
+                        android:padding="10sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5sp"
+                    android:text="Skills"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/job_skills"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="5sp"
+                    android:background="@drawable/gray_border"
+                    android:hint="Add skills you are looking for"
+                    android:inputType="text"
+                    android:padding="15sp" />
+
+                <TextView
+                    android:id="@+id/skills_add_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:text="Add more+"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/parentView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5sp"
+                    android:text="Educational Qualification"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/job_qual"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="5sp"
+                    android:background="@drawable/gray_border"
+                    android:hint="Add qualification"
+                    android:inputType="text"
+                    android:padding="15sp" />
+
+
+
+                <TextView
+                    android:id="@+id/qual_add_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:text="Add more+"
+                    android:textStyle="bold" />
+
+
+                <LinearLayout
+                    android:id="@+id/parentView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5sp"
+                    android:text="Firm"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/job_firm"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10sp"
+                    android:background="@drawable/gray_border"
+                    android:hint="Firm - Sqr Factor India PVT LTD"
+                    android:inputType="text"
+                    android:padding="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5sp"
+                    android:text="Location"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/job_country_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_marginBottom="10sp"
+                    android:foreground="@drawable/gray_border"
+                    android:padding="10sp" />
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/job_state_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_marginBottom="10sp"
+                    android:foreground="@drawable/gray_border"
+                    android:padding="10sp" />
+
+                <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+                    android:id="@+id/job_city_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_marginBottom="10sp"
+                    android:foreground="@drawable/gray_border"
+                    android:padding="10sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5sp"
+                    android:text="Job offer expires on"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/job_expirydate"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_marginBottom="10sp"
+                    android:background="@drawable/gray_border"
+                    android:focusable="false"
+                    android:gravity="center_vertical"
+                    android:hint="Choose Date"
+                    android:inputType="date"
+                    android:padding="15sp" />
+
+                <Button
+                    android:id="@+id/job_post"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15sp"
+                    android:background="@drawable/sqr_factor_btn_color"
+                    android:paddingEnd="10sp"
+                    android:paddingLeft="10sp"
+                    android:paddingRight="10sp"
+                    android:paddingStart="10sp"
+                    android:text="Post Job"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

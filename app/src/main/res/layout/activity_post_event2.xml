@@ -1,0 +1,805 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.PostEventActivity">
+
+    <include layout="@layout/activity_toolbar"
+        android:id="@+id/toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15sp"
+                android:focusableInTouchMode="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Event Type"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="#000"
+                    android:layout_marginBottom="5sp"/>
+
+                <Spinner
+                    android:id="@+id/event_add2_type"
+                    android:entries="@array/event_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:foreground="@drawable/gray_border"
+                    android:padding="10sp"
+                    android:layout_marginBottom="10sp"/>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/paid_layout"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Registration submission"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="#000"
+                        android:layout_marginBottom="5sp"/>
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/reg_from">
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/radio_reg1"
+                            android:checked="false"
+                            android:text="@string/registration_from_sqrfactor" />
+
+                        <TextView
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"
+                            android:text="@string/sqrfactor_charge_5_on_every_transaction"
+                            android:paddingLeft="5sp"
+                            android:textColor="@color/colorAccent"
+                            android:id="@+id/condition_tv"
+                            android:visibility="gone">
+                        </TextView>
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/radio_reg2"
+                            android:text="@string/registration_from_your_own_site" />
+
+                    </RadioGroup>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/enter_url_layout"
+                        android:visibility="gone">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/enter_url"
+                            android:textStyle="bold"
+                            android:textSize="15sp"
+                            android:layout_marginTop="8dp"
+                            android:textColor="#000"
+                            android:layout_marginBottom="5sp"/>
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/enter_the_url"
+                            android:id="@+id/enter_url"
+                            android:background="@drawable/gray_border"
+                            android:inputType="text"
+                            android:padding="8sp"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/early_bird_registration"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#000"
+                        android:layout_marginBottom="5sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="56sp"
+                            android:layout_weight="1"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="4sp"
+                            android:layout_marginBottom="4sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/reg_early_start_date"
+                                android:focusable="false"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:hint="@string/start_date"
+                                android:padding="5sp"
+                                android:inputType="text"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="56sp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginStart="4dp"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="4sp"
+                            android:layout_marginBottom="4sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/reg_early_end_date"
+                                android:focusable="false"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:hint="End Date"
+                                android:padding="5sp"
+                                android:inputType="text"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout> <!--early date part-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="60sp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="4sp"
+                            android:layout_marginBottom="4sp"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:id="@+id/early_reg_type"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:hint="Registration Type"
+                                android:inputType="text"
+                                android:padding="5sp"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <TextView
+                            android:id="@+id/early_add_more"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10sp"
+                            android:layout_marginRight="10sp"
+                            android:layout_width="50sp"
+                            android:layout_height="50sp"
+                            android:background="@drawable/ic_add_more"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/early_amount"
+                            android:layout_width="0dp"
+                            android:layout_height="56dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_border"
+                            android:gravity="center_vertical"
+                            android:hint="@string/award_amount"
+                            android:inputType="number"
+                            android:padding="15sp"/>
+
+                        <Spinner
+                            android:id="@+id/early_currency_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:entries="@array/currency"
+                            android:foreground="@drawable/gray_border"
+                            android:padding="10sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="8sp"
+                        android:id="@+id/early_add_layout" /> <!--early reg part-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Advance Registration"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#000"
+                        android:layout_marginBottom="5sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="56sp"
+                            android:layout_weight="1"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="4sp"
+                            android:layout_marginBottom="4sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/adv_reg_start_date"
+                                android:focusable="false"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:hint="Start Date"
+                                android:padding="5sp"
+                                android:inputType="text"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="56sp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginStart="4dp"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="4sp"
+                            android:layout_marginBottom="4sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/adv_reg_end_date"
+                                android:focusable="false"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:hint="End Date"
+                                android:padding="5sp"
+                                android:inputType="text"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout> <!--advance date part-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="60sp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="4sp"
+                            android:layout_marginBottom="4sp"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:id="@+id/adv_reg_type"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:hint="Registration Type"
+                                android:inputType="text"
+                                android:padding="5sp"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <TextView
+                            android:id="@+id/adv_add_more"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10sp"
+                            android:layout_marginRight="10sp"
+                            android:layout_width="50sp"
+                            android:layout_height="50sp"
+                            android:background="@drawable/ic_add_more"/>
+
+                    </LinearLayout>
+                    <!--<android.support.design.widget.TextInputLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="60sp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:layout_marginBottom="10sp"-->
+                        <!--android:background="@drawable/gray_border"-->
+                        <!--android:padding="10sp"-->
+                        <!--app:hintTextAppearance="@color/colorAccent">-->
+
+                        <!--<EditText-->
+                            <!--android:id="@+id/adv_reg_type"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_gravity="center_horizontal"-->
+                            <!--android:background="@android:color/transparent"-->
+                            <!--android:hint="Registration Type"-->
+                            <!--android:inputType="text"-->
+                            <!--android:padding="5sp"/>-->
+
+                    <!--</android.support.design.widget.TextInputLayout>-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/adv_amount"
+                            android:layout_width="0dp"
+                            android:layout_height="56dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_border"
+                            android:gravity="center_vertical"
+                            android:hint="@string/award_amount"
+                            android:inputType="number"
+                            android:padding="15sp"/>
+
+                        <Spinner
+                            android:id="@+id/adv_currency_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:entries="@array/currency"
+                            android:foreground="@drawable/gray_border"
+                            android:padding="10sp"/>
+
+                    </LinearLayout>
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/adv_add_more"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:textStyle="bold"-->
+                        <!--android:layout_marginBottom="10sp"-->
+                        <!--android:text="@string/add_more"/>-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="8sp"
+                        android:id="@+id/adv_add_layout" /> <!--advance reg part-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Last Minute Registration"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#000"
+                        android:layout_marginBottom="5sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="56sp"
+                            android:layout_weight="1"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="4sp"
+                            android:layout_marginBottom="4sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/last_reg_start_date"
+                                android:focusable="false"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:hint="Start Date"
+                                android:padding="5sp"
+                                android:inputType="text"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="56sp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginStart="4dp"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="4sp"
+                            android:layout_marginBottom="4sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/last_reg_end_date"
+                                android:focusable="false"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:hint="End Date"
+                                android:padding="5sp"
+                                android:inputType="text"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout> <!--last date part-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="60sp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="4sp"
+                            android:layout_marginBottom="4sp"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:id="@+id/last_reg_type"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:hint="Registration Type"
+                                android:inputType="text"
+                                android:padding="5sp"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <TextView
+                            android:id="@+id/last_add_more"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="10sp"
+                            android:layout_marginRight="10sp"
+                            android:layout_width="50sp"
+                            android:layout_height="50sp"
+                            android:background="@drawable/ic_add_more"/>
+
+                    </LinearLayout>
+                    <!--<android.support.design.widget.TextInputLayout-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="60sp"-->
+                        <!--android:layout_gravity="center"-->
+                        <!--android:layout_marginBottom="10sp"-->
+                        <!--android:background="@drawable/gray_border"-->
+                        <!--android:padding="10sp"-->
+                        <!--app:hintTextAppearance="@color/colorAccent">-->
+
+                        <!--<EditText-->
+                            <!--android:id="@+id/last_reg_type"-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_gravity="center_horizontal"-->
+                            <!--android:background="@android:color/transparent"-->
+                            <!--android:hint="Registration Type"-->
+                            <!--android:inputType="text"-->
+                            <!--android:padding="5sp"/>-->
+
+                    <!--</android.support.design.widget.TextInputLayout>-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/last_amount"
+                            android:layout_width="0dp"
+                            android:layout_height="56dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_border"
+                            android:gravity="center_vertical"
+                            android:hint="@string/award_amount"
+                            android:inputType="number"
+                            android:padding="15sp"/>
+
+                        <Spinner
+                            android:id="@+id/last_currency_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="50dp"
+                            android:entries="@array/currency"
+                            android:foreground="@drawable/gray_border"
+                            android:padding="10sp"/>
+
+                    </LinearLayout>
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/last_add_more"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_marginBottom="10sp"-->
+                        <!--android:textStyle="bold"-->
+                        <!--android:text="@string/add_more"/>-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="8sp"
+                        android:id="@+id/last_add_layout" /> <!--last reg part-->
+
+                </LinearLayout> <!--paid layout-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/datetime_layout">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/date_time"
+                        android:textStyle="bold"
+                        android:textSize="15sp"
+                        android:textColor="#000"
+                        android:layout_marginBottom="5sp"/> <!--Date & Time-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="Start"
+                        android:textSize="15sp"
+                        android:textColor="#000"/> <!--Start-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="56sp"
+                            android:layout_weight="1"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="4sp"
+                            android:layout_marginBottom="4sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/event_add2_start_date"
+                                android:focusable="false"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:hint="Date"
+                                android:padding="5sp"
+                                android:inputType="text"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="56sp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginStart="4dp"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="4sp"
+                            android:layout_marginBottom="4sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/event_add2_start_time"
+                                android:focusable="false"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:hint="Time"
+                                android:padding="5sp"
+                                android:inputType="text"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout> <!--Date Time-->
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="End"
+                        android:textSize="15sp"
+                        android:textColor="#000"/> <!--End-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="56sp"
+                            android:layout_weight="1"
+                            android:layout_marginRight="4dp"
+                            android:layout_marginEnd="4dp"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="4sp"
+                            android:layout_marginBottom="4sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:id="@+id/event_add2_end_date"
+                                android:focusable="false"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:hint="Date"
+                                android:padding="5sp"
+                                android:inputType="text"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="56sp"
+                            android:layout_weight="1"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginStart="4dp"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="4sp"
+                            android:layout_marginBottom="4sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:id="@+id/event_add2_end_time"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:focusable="false"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:hint="Time"
+                                android:padding="5sp"
+                                android:inputType="text"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout> <!--Date Time-->
+
+                </LinearLayout> <!--always date time layout-->
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:paddingLeft="15sp"
+                    android:text="Event Organizer"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="#000"
+                    android:layout_marginBottom="5sp"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:background="@drawable/gray_border"
+                    android:padding="10sp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10sp"
+                    app:hintTextAppearance="@color/colorAccent">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/event_add2_organizer"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Organizer"
+                        android:padding="5sp"
+                        android:inputType="text" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/event_add2_post_event"
+                    android:layout_marginTop="15sp"
+                    android:background="@drawable/sqr_factor_btn_color"
+                    android:text="@string/post_event"
+                    android:textAllCaps="false"
+                    android:textSize="20sp"
+                    android:textColor="#ffffff"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

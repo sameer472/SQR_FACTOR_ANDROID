@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.hackerkernel.user.sqrfactor">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <application
+        android:name=".Application.MyApplication"
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@drawable/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+
+        tools:ignore="GoogleAppIndexingWarning">
+        <meta-data android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher_round"/>
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".LoginScreen">
+        </activity>
+
+        <service
+            android:name="com.paypal.android.sdk.payments.PayPalService"
+            android:exported="false" />
+
+        <activity android:name="com.paypal.android.sdk.payments.PaymentActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.LoginActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.PaymentMethodActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.PaymentConfirmActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.PayPalFuturePaymentActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.FuturePaymentConsentActivity" />
+        <activity android:name="com.paypal.android.sdk.payments.FuturePaymentInfoActivity" />
+        <activity android:name="io.card.payment.DataEntryActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyASLTnvh_YOPT_icOuy7KOR0sOU9uLE0ok"/>
+        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat"/>
+
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".HomeScreen"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
+        <activity android:name=".Index" />
+        <activity
+            android:name=".RedActivity"
+            android:label="What&apos;s Red?"
+            android:launchMode="singleTop"
+            android:parentActivityName=".HomeScreen" />
+        <activity android:name=".ToolbarActivity" />
+        <activity android:name=".Credits" />
+        <activity android:name=".Settings" />
+        <activity android:name=".ProfessionalActivity" />
+        <activity android:name=".OtherDetailsActivity" />
+        <activity android:name=".EducationDetailsActivity" />
+        <activity android:name=".BasicDetails" />
+        <activity android:name=".ContributorsActivity"></activity>
+        <activity
+            android:name=".DesignActivity"
+            android:label="Post Design"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".HomeScreen"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name=".ArticleActivity"
+            android:hardwareAccelerated="true"
+            android:label="Post Article"
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".HomeScreen" />
+        <activity
+            android:name=".ResetPassword"
+            android:label="Reset Password"
+            android:parentActivityName=".LoginScreen" />
+        <activity
+            android:name=".ProfileActivity"
+            android:label="Profile"
+            android:parentActivityName=".HomeScreen" />
+        <activity
+            android:name=".CommentsPage"
+            android:label="Comments"
+            android:parentActivityName=".HomeScreen" />
+        <activity
+            android:name=".Activities.CompetitionsActivity"
+            android:label="Competitions"
+            android:parentActivityName=".HomeScreen" />
+        <activity
+            android:name=".Activities.jobs.JobActivity"
+            android:label="Jobs/Internships"
+            android:parentActivityName=".HomeScreen" />
+        <activity
+            android:name=".Activities.EventsActivity"
+            android:label="Events"
+            android:parentActivityName=".HomeScreen" />
+        <activity
+            android:name=".Activities.PostEventActivity"
+            android:label="Post Event"
+            android:parentActivityName=".Activities.EventsActivity" />
+        <activity
+            android:name=".Activities.PostJobActivity"
+            android:label="Post Job"
+            android:parentActivityName=".Activities.jobs.JobActivity" />
+        <activity
+            android:name=".Activities.LaunchCompetitionActivity"
+            android:label="Launch a Competition"
+            android:parentActivityName=".Activities.CompetitionsActivity" />
+        <activity
+            android:name=".Activities.Launch2Activity"
+            android:label="Launch a Competition"
+            android:parentActivityName=".Activities.LaunchCompetitionActivity" />
+        <activity
+            android:name=".Activities.CompetitionDetailActivity"
+            android:hardwareAccelerated="true"
+            android:label="Post Article"
+            android:windowSoftInputMode="adjustPan"
+            android:parentActivityName=".Activities.CompetitionsActivity" />
+        <activity
+            android:name=".Activities.SubmitActivity"
+            android:label="Submit"
+            android:parentActivityName=".Activities.CompetitionDetailActivity" />
+        <activity
+            android:name=".Activities.JobDetailsActivity"
+            android:label="Job Details"
+            android:parentActivityName=".Activities.jobs.JobActivity" />
+        <activity
+            android:name=".Activities.EventDetailsActivity"
+            android:parentActivityName=".Activities.EventsActivity" />
+        <activity android:name=".Activities.QuestionDetailActivity" />
+        <activity
+            android:name=".Activities.W"
+            android:label="W" />
+        <activity
+            android:name=".Activities.BrowserActivity"
+            android:label="BrowserActivity"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.ParticipateActivity"
+            android:label="Participate in Competition" />
+        <activity
+            android:name=".Activities.PostEvent2Activity"
+            android:label="Post Event"
+            tools:ignore="DuplicateActivity" />
+
+        <activity android:name=".Activities.SubmissionDetailActivity" />
+        <activity android:name=".Activities.CompetitionEditActivity" />
+        <activity android:name=".Activities.JuryEditActivity" />
+        <activity android:name=".Activities.PartnerEditActivity" />
+        <activity
+            android:name=".Activities.ApplicantListActivity"
+            android:label="Applicants" />
+        <activity
+            android:name=".Activities.JuryEditActivity"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name=".Activities.PartnerEditActivity"
+            tools:ignore="DuplicateActivity" />
+        <activity
+            android:name=".Activities.PaymentConfirmActivity"
+            android:label="Payment Confirmation"></activity>
+        <activity android:name=".Activities.ConfirmationActivity"></activity>
+        <activity
+            android:name=".Submit"
+            android:label="Submit"
+            android:parentActivityName=".Participate" />
+        <activity
+            android:name=".About"
+            android:label="About"
+            android:parentActivityName=".ProfileActivity" />
+        <activity android:name=".EditProfile" />
+        <activity
+            android:name=".FollowersActivity"
+            android:label="Followers" />
+        <activity
+            android:name=".BlueprintActivity"
+            android:label="Blueprints" />
+        <activity
+            android:name=".PortfolioActivity"
+            android:label="Portfolios" />
+        <activity
+            android:name=".FollowingActivity"
+            android:label="Following" />
+        <activity android:name=".ChatWithAFriendActivity" />
+        <activity android:name=".UserProfileActivity" />
+        <activity android:name=".TopContributors" />
+        <activity android:name=".CompanyFirmDetails" />
+        <activity android:name=".EmployeeMemberDetails" />
+        <activity android:name=".ChangePassword" />
+        <activity android:name=".BasicFirmDetails" />
+        <activity android:name=".CollegeBasicDetails" />
+        <activity android:name=".CollegeDetails" />
+        <activity android:name=".PostActivity" />
+        <activity android:name=".Design2Activity" />
+        <activity android:name=".FullPostActivity"
+            android:label="Full Post"
+            android:parentActivityName=".HomeScreen">
+
+        </activity>
+
+        <activity android:name=".LikeListActivity" />
+        <activity android:name=".StatusPostActivity" />
+
+        <service android:name=".MyFirebaseMessagingService">
+
+
+        </service>
+
+        <activity android:name=".OTP_Verify">
+        </activity>
+        <activity android:name=".SocialFormActivity">
+
+        </activity>
+    </application>
+
+</manifest>

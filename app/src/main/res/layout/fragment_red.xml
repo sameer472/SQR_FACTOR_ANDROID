@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/White"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/red_whatsRedbtn"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="What's Red?"
+            android:textAllCaps="false"
+            android:textColor="#888da8"
+            android:fontFamily="@font/roboto_medium"
+            android:background="@drawable/gray_border"/>
+        <Button
+            android:id="@+id/red_Topbtn"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Top Contributors"
+            android:textAllCaps="false"
+            android:textColor="#888da8"
+            android:fontFamily="@font/roboto_medium"
+            android:background="@drawable/gray_border"/>
+    </LinearLayout>
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/red_pullToRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/red_recycler">
+        </android.support.v7.widget.RecyclerView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progress_bar_red"
+        android:layout_gravity="center_horizontal"
+        android:elevation="4dp"
+        android:padding="5dp" />
+
+</LinearLayout>

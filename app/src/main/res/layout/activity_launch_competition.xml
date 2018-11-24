@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical"
+    tools:context=".Activities.LaunchCompetitionActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/app_bar_layout"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:padding="15sp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
+                android:text="@string/cover_image"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:background="@drawable/gray_border"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorAccent">
+
+                <EditText
+                    android:id="@+id/launch_comp_cover_attach"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    tools:text="dkdlsf/sdlfkjals/0/sdiljfasfjdsklfj324/23l424.2kj"
+                    android:background="@android:color/transparent"
+                    android:drawableEnd="@drawable/ic_attach_file_black_24dp"
+                    android:drawableRight="@drawable/ic_attach_file_black_24dp"
+                    android:focusable="false"
+                    android:hint="@string/attachment"
+                    android:inputType="text"
+                    android:padding="5sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:id="@+id/launch_comp_remove_cover"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remove-"
+                android:visibility="gone"
+                android:src="@drawable/ic_close_black_24dp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="4dp"
+                android:text="@string/competition_title"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/gray_border"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorAccent">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/launch_comp_title"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/competition_title"
+                    android:inputType="text"
+                    android:padding="5sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
+                android:text="@string/brief"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="200sp"
+                android:id="@+id/launch_comp_brief"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/gray_border"
+                android:gravity="top"
+                android:hint="@string/write_a_description_of_competition_nyou_want_to_launch"
+                android:inputType="text"
+                android:padding="15sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
+                android:text="@string/eligibility_criteria"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/gray_border"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorAccent">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/launch_comp_eligibility"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/eligibility_criteria"
+                    android:inputType="text"
+                    android:padding="5sp"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
+                android:text="@string/jury"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/radio_group"
+                android:weightSum="3">
+
+                <RadioButton
+                    android:id="@+id/rb1"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5sp"
+                    android:layout_marginRight="5sp"
+                    android:text="@string/no_jury"/>
+
+                <RadioButton
+                    android:layout_weight="1"
+                    android:id="@+id/rb2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/will_update_later" />
+
+                <RadioButton
+                    android:layout_weight="1"
+                    android:id="@+id/rb3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/add_jury"/>
+            </RadioGroup>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/launch_comp_jury_layout"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.AppCompatAutoCompleteTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="60sp"
+                        android:id="@+id/launch_comp_jury_name"
+                        android:layout_marginBottom="10sp"
+                        android:background="@drawable/gray_border"
+                        android:gravity="center_vertical"
+                        android:hint="@string/full_name"
+                        android:inputType="text"
+                        android:completionThreshold="1"
+                        android:padding="15sp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="60sp"
+                        android:id="@+id/launch_comp_jury_company"
+                        android:layout_marginBottom="10sp"
+                        android:background="@drawable/gray_border"
+                        android:gravity="center_vertical"
+                        android:hint="@string/firm_company_college_name"
+                        android:inputType="text"
+                        android:padding="15sp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="60sp"
+                        android:id="@+id/launch_comp_jury_email"
+                        android:layout_marginBottom="10sp"
+                        android:background="@drawable/gray_border"
+                        android:gravity="center_vertical"
+                        android:hint="@string/email_address"
+                        android:inputType="textEmailAddress"
+                        android:padding="15sp"/>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="60sp"
+                        android:id="@+id/launch_comp_jury_contact"
+                        android:layout_marginBottom="10sp"
+                        android:background="@drawable/gray_border"
+                        android:gravity="center_vertical"
+                        android:hint="@string/contact_no"
+                        android:inputType="number"
+                        android:padding="15sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/gray_border"
+                        android:padding="5dp"
+                        android:layout_marginBottom="5sp">
+
+                        <Button
+                            android:id="@+id/launch_comp_jury_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="    Choose File    "
+                            android:background="@color/colorPrimary"
+                            android:textColor="@color/white"
+                            android:textAllCaps="false"/>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:id="@+id/launch_comp_jury_image_path"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_attach_file_black_24dp"
+                            android:layout_gravity="end|center_vertical"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/launch_comp_jury_add_more"
+                        android:textStyle="bold"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="@string/add_more"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
+                android:text="@string/awards"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/launch_comp_award_layout">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <Spinner
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:id="@+id/launch_comp_awards"
+                        android:layout_marginBottom="10sp"
+                        android:entries="@array/attachments"
+                        android:foreground="@drawable/gray_border"
+                        android:padding="10sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:layout_weight="1"
+                            android:id="@+id/launch_comp_award_amount"
+                            android:layout_marginBottom="10sp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/gray_border"
+                            android:gravity="center_vertical"
+                            android:hint="@string/award_amount"
+                            android:inputType="text"
+                            android:padding="15sp"/>
+
+                        <Spinner
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:id="@+id/launch_comp_currency_unit"
+                            android:layout_marginBottom="10sp"
+                            android:entries="@array/currency"
+                            android:foreground="@drawable/gray_border"
+                            android:padding="10sp"/>
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="100sp"
+                        android:id="@+id/launch_comp_award_more_details"
+                        android:layout_marginBottom="10sp"
+                        android:background="@drawable/gray_border"
+                        android:gravity="top"
+                        android:hint="@string/add_more_details_of_the_award_prize_nfor_the_competition"
+                        android:inputType="text"
+                        android:padding="15sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/launch_comp_award_add_more"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:textStyle="bold"
+                        android:text="@string/add_more"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
+                android:text="@string/awards_other_details"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="100sp"
+                android:id="@+id/launch_comp_award_other_details"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/gray_border"
+                android:gravity="top"
+                android:inputType="text"
+                android:padding="15sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
+                android:text="@string/schedule"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
+                android:text="@string/start_date_of_registration"
+                android:textColor="#000"
+                android:textSize="12sp"/>
+
+            <EditText
+                android:id="@+id/launch_comp_startdate"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/gray_border"
+                android:focusable="false"
+                android:gravity="center_vertical"
+                android:hint="@string/enter_date"
+                android:inputType="date"
+                android:padding="15sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
+                android:text="@string/closing_date_of_registration"
+                android:textColor="#000"
+                android:textSize="12sp"/>
+
+            <EditText
+                android:id="@+id/launch_comp_close_date_reg"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/gray_border"
+                android:focusable="false"
+                android:gravity="center_vertical"
+                android:hint="@string/enter_date"
+                android:inputType="date"
+                android:padding="15sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
+                android:text="@string/closing_date_of_project_submission"
+                android:textColor="#000"
+                android:textSize="12sp"/>
+
+            <EditText
+                android:id="@+id/launch_comp_close_date_submission"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/gray_border"
+                android:focusable="false"
+                android:gravity="center_vertical"
+                android:hint="@string/enter_date"
+                android:inputType="date"
+                android:padding="15sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5sp"
+                android:text="@string/announcement_of_the_winners"
+                android:textColor="#000"
+                android:textSize="12sp"/>
+
+            <EditText
+                android:id="@+id/launch_comp_announcedate"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/gray_border"
+                android:focusable="false"
+                android:gravity="center_vertical"
+                android:hint="@string/enter_date"
+                android:inputType="date"
+                android:padding="15sp"/>
+
+            <Button
+                android:id="@+id/launch_comp_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/sqr_factor_btn_color"
+                android:text="@string/next"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>

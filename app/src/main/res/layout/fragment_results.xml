@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/results_rv"/>
+
+
+
+    <!--Button
+        android:id="@+id/submitbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SubmitActivity design in Competition"
+        android:background="@drawable/sqr_factor_btn_color"
+        android:textAllCaps="false"
+        android:paddingLeft="5sp"
+        android:paddingRight="5sp"
+        android:paddingStart="5sp"
+        android:paddingEnd="5sp"
+        android:textColor="#fff"
+        android:layout_marginBottom="20sp"
+        android:layout_gravity="center"/-->
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pb"
+        android:visibility="gone"
+        android:layout_centerInParent="true"/>
+
+
+</RelativeLayout>

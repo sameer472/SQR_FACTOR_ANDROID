@@ -1,0 +1,446 @@
+<resources>
+    <string name="app_name">SqrFactor</string>
+    <string name="hometext">This space has been created for you to learn and explore. A platform designed thoughtfully for architects by a team of architects and developers.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Open">Open</string>
+    <string name="Close">Closed</string>
+    <string name="noti_string"><![CDATA[<b>Henry</b>]]> commented on your status.</string>
+    <string name="comp_brief"><![CDATA[<h1>Brief</h1>]]>\n\n
+<!--Young Designers is a design contest for architects and designers in the first 5 formative years of their firm. It is an initiative by Indian Architect &amp; Builder that offers a platform to emerging designers to showcase not only their work but also a chance to communicate their ideas, values and design principles through the publication.-->
+<![CDATA[<br>]]><![CDATA[<br>]]>
+An initiative of IA&amp;B since last 19 year which provides a platform for young architects &amp; designer to publish their project and get themselves recognized.
+<![CDATA[<br>]]><![CDATA[<br>]]>
+<![CDATA[<b>Categories</b>]]>:<![CDATA[<br>]]>
+
+Architecture, Residential Interior Design, Commercial Interior Design, Product Design, Public Installations.
+<![CDATA[<br>]]><![CDATA[<br>]]>
+<![CDATA[<b>Project Submission</b>]]>:<![CDATA[<br>]]>
+
+Architects/ Firms have to submit the Project brief in 300 words along with low-resolution drawings, sectional plan, and images of the project in PDF format.
+<![CDATA[<br>]]><![CDATA[<br>]]>
+<![CDATA[<b>Eligibility Criteria</b>]]>:<![CDATA[<br>]]>
+
+Only architects and firms that have not been published in any national/international journal are eligible.<![CDATA[<br>]]><![CDATA[<br>]]>
+
+The project should be less than 3 years old from date of execution/handover.<![CDATA[<br>]]><![CDATA[<br>]]>
+
+Conceptual designs and projects under construction are not eligible.<![CDATA[<br>]]><![CDATA[<br>]]>
+
+Architects can participate in any number of categories. Maximum entries per category are 3.<![CDATA[<br>]]><![CDATA[<br>]]>
+
+<![CDATA[<b>About</b>]]>:<![CDATA[<br>]]>
+
+Indian Architect &amp; Builder is India\'s oldest and premier Architecture &amp; Design publication which has completed 31 years of publication reaching to over 40,000+ AEC professionals. The magazine explores the latest in the field of Architecture, Engineering &amp; Construction. </string>
+    <string name="comp_brief2"><![CDATA[<h1>Brief</h1>]]>\n\nAll designed objects, whether conceived by an architect,artist, graphic designer, industrial designer, or landscape architect, tell a story.
+<![CDATA[<br>]]><![CDATA[<br>]]>
+Their stories can sometimes be discerned easily, and at other times need to be discovered through thoughtful consideration. The story can be as simple as a metaphor or as complex as a novel.
+<![CDATA[<br>]]><![CDATA[<br>]]>
+Just as the adage goes, you can\'t judge the object (book) by its exterior (cover). The richness of the object is in its content.
+<![CDATA[<br>]]><![CDATA[<br>]]>
+Architects are natural storytellers – it’s a process that is inherently built into our creative process and when used properly, it’s one of the very best tools in our tool bag. </string>
+    <string name="comp_brief3"><![CDATA[<h1>The Challenge</h1>]]>\n\n
+Every story or narrative is a series of events tied together into a plot. The key is to display your concept in the most appropriate visual form for the project in question
+<![CDATA[<br>]]><![CDATA[<br>]]>
+The Archcember challenge is about telling your story through illustrations (sketches/doodles/paintings or computer generated illustrations and graphics) related to architecture.
+<![CDATA[<br>]]><![CDATA[<br>]]>
+• We will give you 1 word every two days and you have to tell us a story through your illustration and an article of 200 words which justifies your concept.
+<![CDATA[<br>]]><![CDATA[<br>]]>
+• Not necessarily, but if the illustrations respond to the theme of the contest i.e. Architecture, it would be much more meaningful.
+<![CDATA[<br>]]><![CDATA[<br>]]>
+• Your Sketches can narrate stories through functional or explanatory , social, investigative and sarcastic approaches or comic strips</string>
+    <string name="comp_brief4"><![CDATA[<h1>Judging Criteria</h1>]]>\n\n
+We know you are an amazing story-teller and all the stories are good in their own way. But we will have to choose the best to announce winners and here are few criteria’s that the jury has framed:
+\n\n
+• How well the word has been understood by the participant?
+\n\n
+• Originality and creativity – Is the work fundamentally different from existing ideas, sketches or stories
+\n\n
+• Interactivity and engagement – Is the story interactive enough to engage the jury and grab their attention
+\n\n
+• 60% marks will be given to the illustration and 40% will be awarded for the story considering the points above.</string>
+    <string name="heading1"><![CDATA[<h1>Jury Panel</h1>]]>\n\n</string>
+    <string name="heading2"><![CDATA[<h1>Prizes \& Awards</h1>]]>\n\n</string>
+    <string name="sponsor"><![CDATA[<h1>In Association with</h1>]]>\n\n</string>
+    <string name="eligible"><![CDATA[<h1>Eligibility Criteria</h1>]]>\n\n
+Everyone who loves to put their ideas into visual stories</string>
+    <string name="note"><![CDATA[<b>Note</b>]]>: It will not be possible to amend or update any information relating to your registration including the names of team members once validated.</string>
+    <string name="comp_brief5"><![CDATA[<h1>Important Dates</h1>]]>\n\n
+4 Dec’17 – Start of Competition |29 Dec’17 – End of Competition.\n\n
+
+Important dates of every week - 4, 6, 8 | 11, 13, 15 | 18, 20, 22 | 25, 27, 29 Dec’17.
+\n\n
+Submissions of entries before 6 PM and Day Winners will be announced at 11PM on every next day respectively. Ex : On 5 Dec before 6 PM, the participants will have to submit their illustrations and at 11 PM, the winners of 4 Dec will be announced and so on.
+\n\n
+Week Winners and 3 words for a week will be announced at 11 PM on dates – 10, 17, 24 and 31Dec’17.
+\n\n
+15 Jan’18 – Final Result announcements and dispatching of gifts/goodies and Certificates.
+
+</string>
+    <string name="prizes1"><![CDATA[<h1>1st Prize - INR 5000</h1>]]>\n\n
+    Featured stories + illustrations in magazines - IA&amp;B and Design Detail | 361 degree free event passes | Goodies worth INR 5000 from SqrFactor, Leewardists and 1989 | Certificate of achievement | Internship Opportunity with SqrFactor and partner firm | 20% waiver for upcoming ratLab Winter School 2017-18</string>
+    <string name="prizes2"><![CDATA[<h1>2nd Prize - INR 3000</h1>]]>\n\n
+    Featured stories + illustrations in magazines - IA&amp;B and Design Detail | 361 degree free event passes | Goodies worth INR 3000 from SqrFactor, Leewardists and 1989 | Certificate of achievement | Internship Opportunity with SqrFactor and partner firm | 20% waiver for upcoming ratLab Winter School 2017-18</string>
+    <string name="prizes3"><![CDATA[<h1>3rd Prize - INR 2000</h1>]]>\n\n
+    Featured stories + illustrations in magazines - IA&amp;B and Design Detail | 361 degree free event passes | Goodies worth INR 2000 from SqrFactor, Leewardists and 1989 | Certificate of achievement | Internship Opportunity with SqrFactor and partner firm | 20% waiver for upcoming ratLab Winter School 2017-18</string>
+    <string name="prizes4"><![CDATA[<h1>4th Prize - INR 1500</h1>]]>\n\n
+    Featured stories + illustrations in magazines - IA&amp;B and Design Detail and social media pages of SqrFactor and other partner organizations | Goodies worth INR 1500 from SqrFactor, Leewardists and 1989 | Certificate of achievement.</string>
+    <string name="prizes5"><![CDATA[<h1>5th Prize - INR 1500</h1>]]>\n\n
+    Featured stories + illustrations in magazines - IA&amp;B and Design Detail and social media pages of SqrFactor and other partner organizations | Goodies worth INR 1500 from SqrFactor, Leewardists and 1989 | Certificate of achievement</string>
+    <string name="prizes6"><![CDATA[<h1>Week Winner - 1 - INR 1000</h1>]]>\n\n
+    Goodies worth INR 1000 from SqrFactor and Leewardists | Winner\'s Illustrations on social media pages of SqrFactor and other partner organizations.</string>
+    <string name="prizes7"><![CDATA[<h1>Week Winner - 2 - INR 800</h1>]]>\n\n
+    Goodies worth INR 800 from SqrFactor and Leewardists | Winner\'s Illustrations on social media pages of SqrFactor and other partner organizations.</string>
+    <string name="prizes8"><![CDATA[<h1>Week Winner - 3 - INR 700</h1>]]>\n\n
+    Goodies worth INR 600 from SqrFactor and Leewardists | Winner\'s Illustrations on social media pages of SqrFactor and other partner organizations.</string>
+    <string name="prizes9"><![CDATA[<h1>Day Winner - 1 - INR 500</h1>]]>\n\n
+    Goodies worth INR 500 from Leewardists | Winner\'s Illustrations on social media pages of SqrFactor and other partner organizations.</string>
+    <string name="prizes10"><![CDATA[<h1>Day Winner - 2 - INR 400</h1>]]>\n\n
+    Goodies worth INR 400 from Leewardists | Winner\'s Illustrations on social media pages of SqrFactor and other partner organizations.</string>
+    <string name="Event">We all have visited our ever so captivating Sanjay Gandhi National Park; the beautiful historic caves and it’s remnants are a living experience of the era that once existed there. We @Architails love discovering art and architecture of our own city and around the country! So join us on one of such events on Sunday 3rd June in collaboration with Tutelage For All, at 8:30am sharp. See you there! Please register soon, only limited spots available. No Refunds or Cancellations. Event Timing: SUNDAY, 3rd june 2018, 8:30 AM onwards. Event Address: Kanheri Caves, Mumbai, Maharashtra- 400101. https://bit.ly/2ItokFy Contact us at: Amey Dalvi 9833976340 or email us at: archdetail3@gmail.com. FURTHER INFORMATION 1) Assemble at kanheri caves entrance sharp at 8.30 am. 2) HOW TO REACH: -Borivali Station East: Bus No, 188 LTD -Local Rickshaw 3) From SGNP Gate to Kanheri Caves Gate: -Shuttle Bus Available of SGNP. 4) THINGS TO CARRY: - Sufficient Water - Cap and Glares - Camera/ Sketchbook/ Other equipments at your own risk. - Any form of ID Proof 5) Expenses to be beared by participants: i) Entrance fee At SGNP Gate: INR 45 ii) Entrance fee at Kanheri Gate: INR 15 iii) Photography/ Videography charges : INR 25 iv) Shuttle Vehicle Services to Kanheri as per park norms INR 14 ONE WAY</string>
+    <string name="event_desc">Tell everyone about your event, don\'t \nforget to include your event contact \ninfo like email address and phone no.</string>
+    <string name="jobdetails"><![CDATA[<h1>Experienced Project Manager</h1>]]>
+                    <![CDATA[<h4>]]>Job Title/Position\t\tTest Job<![CDATA[<br>]]>
+                    Category\t\tSenior Architect<![CDATA[<br>]]>
+                    Type of Position\t\tFull Time<![CDATA[<br>]]>
+                    Skills\t\tAutoCAD, Sketchup<![CDATA[<br>]]>
+                    Educational Qualification\t\tB. Arch., M. Arch.<![CDATA[<br>]]>
+                    Firm\t\tSqrFactor India Pvt. Ltd.<![CDATA[<br>]]>
+                    Location\t\tIndore, Bhopal<![CDATA[<br>]]>
+                    Job expires on\t\t11/08/2018<![CDATA[<br>]]>
+        Expect Salary\t\t20000 to 30000<![CDATA[<br>]]><![CDATA[</h4>]]>
+    </string>
+    <string-array name="countries">
+        <item>Choose country</item>
+    </string-array>
+    <string-array name="INR">
+        <item>INR</item>
+        <item>USD</item>
+    </string-array>
+
+    <string-array name="Status">
+        <item>Select Status</item>
+        <item>Idea</item>
+        <item>In Progress</item>
+        <item>Under Construction</item>
+        <item>Complete</item>
+    </string-array>
+
+    <string-array name="Design">
+        <item>Select Design Type</item>
+        <item>Architecture Design</item>
+        <item>Interior Design</item>
+        <item>Landscape Design</item>
+        <item>Product Design</item>
+        <item>Art Installation</item>
+        <item>Decoration</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="Building">
+        <item>Select Building Program</item>
+        <item>Commercial</item>
+        <item>Urbanism</item>
+        <item>Public Space</item>
+        <item>Culture</item>
+        <item>Body Culture</item>
+        <item>Health</item>
+        <item>Education</item>
+        <item>Housing</item>
+        <item>Hotel</item>
+        <item>Corprate</item>
+        <item>Office</item>
+        <item>Startup</item>
+        <item>Residental</item>
+        <item>Media</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="Company">
+        <item>Select Firm/Company</item>
+        <item>Sole Propritorship</item>
+        <item>Partnership</item>
+        <item>Limited Liability Partnership(LLP)</item>
+        <item>Limited Liability Companies(LLC)</item>
+        <item>Private Limited Company</item>
+        <item>Public Limited Company</item>
+        <item>Registered Outside India</item>
+        <item>Not Registered</item>
+        <item>None Profit Organization</item>
+        <item>Registered Society</item>
+        <item>Other</item>
+    </string-array>
+
+    <string name="oops">Oops!</string>
+    <string name="data_not_found">Data Not Found</string>
+    <string name="report_issue">Report Issue</string>
+    <string name="try_again">Try Again</string>
+    <string name="accept">Accept</string>
+    <string name="application_json">application/json</string>
+    <string name="authorization">Authorization</string>
+    <string name="prizes_n_awards"><![CDATA[Prizes & Awards]]></string>
+    <string name="jury">Jury</string>
+    <string name="in_association_with">In Association With</string>
+    <string name="attachments">Attachments</string>
+    <string name="final_winners">Final Winners</string>
+    <string name="fourth_week_winners">Fourth Week Winners</string>
+    <string name="online_marketplace_for_architectural_services">Online Marketplace for Architectural services</string>
+    <string name="architecture_plus_technology">Architecture + Technology</string>
+
+
+    <string name="search">Search here...</string>
+    <string name="save_next"><![CDATA[Save & Next]]></string>
+    <string name="blockProfile">Block Profile</string>
+    <string name="reportProfile">Report Profile</string>
+    <string name="turnOfNotification">Turn Off Notifications</string>
+    <string name="editPost">Edit Post</string>
+    <string name="removeFromFeatures">Remove From Featured</string>
+
+    <string-array name="index">
+        <item>Splash</item>
+        <item>Register Page</item>
+        <item>Home Page</item>
+        <item>Profile</item>
+        <item>What\'s Red?</item>
+        <item>Design</item>
+        <item>Article</item>
+        <item>Competitions</item>
+        <item>Job/Internship</item>
+        <item>Events</item>
+    </string-array>
+
+    <string-array name="currency">
+        <item>USD</item>
+        <item>INR</item>
+    </string-array>
+    <string-array name="positions">
+        <item>Select a Position</item>
+        <item>Full Time</item>
+        <item>Part Time</item>
+        <item>Internship</item>
+    </string-array>
+    <string-array name="category">
+        <item>Select the category</item>
+        <item>Senior Architect</item>
+        <item>Junior Architect</item>
+        <item>Intern Architect</item>
+        <item>Landscape Architect</item>
+        <item>Urban Designer</item>
+        <item>Interior Designer</item>
+        <item>BIM Architect</item>
+        <item>Architectural 3D Visualizer</item>
+        <item>Draftsman</item>
+        <item>Project Manager</item>
+        <item>Professor, Guest faculty</item>
+    </string-array>
+    <string-array name="prizes">
+        <item>1st prize</item>
+        <item>2nd prize</item>
+        <item>3nd prize</item>
+    </string-array>
+    <string-array name="competitions">
+        <item>Select Competition Type</item>
+        <item>Free Competition</item>
+        <item>Paid Competition</item>
+    </string-array>
+
+    <string-array name="attachments">
+        <item>1st prize</item>
+        <item>2nd prize</item>
+        <item>3nd prize</item>
+    </string-array>
+    <string-array name="events">
+        <item>Select Competition Type</item>
+        <item>Free Competition</item>
+        <item>Paid Competition</item>
+    </string-array>
+
+    <string-array name="workex">
+        <item>Select Work experience</item>
+        <item>1 Year</item>
+        <item>2 Years</item>
+        <item>3 Years</item>
+        <item>4 Years</item>
+        <item>5 Years</item>
+        <item>6 Years</item>
+        <item>7 Years</item>
+        <item>8 Years</item>
+        <item>9 Years</item>
+        <item>10 Years</item>
+        <item>11 Years</item>
+        <item>12 Years</item>
+        <item>13 Years</item>
+        <item>14 Years</item>
+        <item>15 Years</item>
+    </string-array>
+    <string-array name="sort_by">
+        <item>Newest</item>
+        <item>Oldest</item>
+    </string-array>
+
+    <string name="title_activity_w">W</string>
+    <string name="title_activity_browser">BrowserActivity</string>
+    <string name="date_time"><![CDATA[Date & Time]]></string>
+    <string name="eligibility_criteria">Eligibility Criteria</string>
+    <string name="choose_state">Choose State</string>
+    <string name="choose_country">Choose Country</string>
+    <string name="choose_city">Choose City</string>
+    <string name="enter_date">Enter Date</string>
+    <string name="next">Next</string>
+    <string name="announcement_of_the_winners">Announcement of the Winners</string>
+    <string name="closing_date_of_project_submission">Closing Date of Project Submission</string>
+    <string name="closing_date_of_registration">Closing Date of Registration</string>
+    <string name="start_date_of_registration">Start Date of Registration</string>
+    <string name="schedule">Schedule</string>
+    <string name="awards_other_details">Awards other details</string>
+    <string name="add_more">Add more+</string>
+    <string name="add_more_details_of_the_award_prize_nfor_the_competition">Add more details of the award/prize  for the competition.</string>
+    <string name="award_amount">Award Amount</string>
+    <string name="awards">Awards</string>
+    <string name="no_file_chosen">No file chosen</string>
+    <string name="choose_file">Choose File</string>
+    <string name="contact_no">Contact No.</string>
+    <string name="email_address">Email address</string>
+    <string name="firm_company_college_name">Firm/Company/College Name</string>
+    <string name="full_name">Full Name</string>
+    <string name="will_update_later">Will update later</string>
+    <string name="add_jury">Add Jury</string>
+    <string name="no_jury">No Jury</string>
+    <string name="write_a_description_of_competition_nyou_want_to_launch">Write a description of competition  you want to launch.</string>
+    <string name="brief">Brief</string>
+    <string name="competition_title">Competition Title</string>
+    <string name="attachment">Attachment</string>
+    <string name="cover_image">Cover Image</string>
+    <string name="confirm_n_participate"><![CDATA[Confirm & Participate]]></string>
+    <string name="post_event">Post Event</string>
+    <string name="registration_type">Registration Type</string>
+    <string name="registration_from_sqrfactor">Registration from Sqrfactor</string>
+    <string name="sqrfactor_charge_5_on_every_transaction">Sqrfactor charge 5% on every transaction</string>
+    <string name="registration_from_your_own_site">Registration from your own site</string>
+    <string name="enter_url">Enter URL</string>
+    <string name="enter_the_url">Enter the URL</string>
+    <string name="early_bird_registration">Early Bird Registration</string>
+    <string name="start_date">Start Date</string>
+    <string name="describe_the_responsibilities_of_this_position">Describe the responsibilities of this position.</string>
+    <string name="location">Location:</string>
+    <string name="cancel">CANCEL</string>
+    <string name="registered_users">Registered Users</string>
+    <string-array name="event_type">
+        <item>Select Event Type</item>
+        <item>Free Event</item>
+        <item>Paid Event</item>
+    </string-array>
+
+    <string-array name="comp_type">
+        <item>Select Competition Type</item>
+        <item>Free</item>
+        <item>Paid</item>
+    </string-array>
+
+
+    <string name="title_activity_job">Jobs</string>
+    <string name="title_activity_user_profile">User Profile</string>
+    <string name="title_activity_applicant_list">Applicants</string>
+
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+
+    <string name="large_text">
+        "Material is the metaphor.\n\n"
+
+        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
+        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
+        "technologically advanced and open to imagination and magic.\n"
+        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
+        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
+        "flexibility of the material creates new affordances that supercede those in the physical "
+        "world, without breaking the rules of physics.\n"
+        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
+        "interact, and exist in space and in relation to each other. Realistic lighting shows "
+        "seams, divides space, and indicates moving parts.\n\n"
+
+        "Bold, graphic, intentional.\n\n"
+
+        "The foundational elements of print based design typography, grids, space, scale, color, "
+        "and use of imagery guide visual treatments. These elements do far more than please the "
+        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
+        "imagery, large scale typography, and intentional white space create a bold and graphic "
+        "interface that immerse the user in the experience.\n"
+        "An emphasis on user actions makes core functionality immediately apparent and provides "
+        "waypoints for the user.\n\n"
+
+        "Motion provides meaning.\n\n"
+
+        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
+        "inflection points that initiate motion, transforming the whole design.\n"
+        "All action takes place in a single environment. Objects are presented to the user without "
+        "breaking the continuity of experience even as they transform and reorganize.\n"
+        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
+        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
+
+        "3D world.\n\n"
+
+        "The material environment is a 3D space, which means all objects have x, y, and z "
+        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
+        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
+        "position along the z-axis and has a standard 1dp thickness.\n"
+        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
+        "emulated by manipulating the y-axis.\n\n"
+
+        "Light and shadow.\n\n"
+
+        "Within the material environment, virtual lights illuminate the scene. Key lights create "
+        "directional shadows, while ambient light creates soft shadows from all angles.\n"
+        "Shadows in the material environment are cast by these two light sources. In Android "
+        "development, shadows occur when light sources are blocked by sheets of material at "
+        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
+        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
+
+        "Resting elevation.\n\n"
+
+        "All material objects, regardless of size, have a resting elevation, or default elevation "
+        "that does not change. If an object changes elevation, it should return to its resting "
+        "elevation as soon as possible.\n\n"
+
+        "Component elevations.\n\n"
+
+        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
+        "does not vary from 6dp in one app to 16dp in another app).\n"
+        "Components may have different resting elevations across platforms, depending on the depth "
+        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
+
+        "Responsive elevation and dynamic elevation offsets.\n\n"
+
+        "Some component types have responsive elevation, meaning they change elevation in response "
+        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
+        "changes are consistently implemented using dynamic elevation offsets.\n"
+        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
+        "to the component’s resting state. They ensure that elevation changes are consistent "
+        "across actions and component types. For example, all components that lift on press have "
+        "the same elevation change relative to their resting elevation.\n"
+        "Once the input event is completed or cancelled, the component will return to its resting "
+        "elevation.\n\n"
+
+        "Avoiding elevation interference.\n\n"
+
+        "Components with responsive elevations may encounter other components as they move between "
+        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
+        "through other material, components avoid interfering with one another any number of ways, "
+        "whether on a per component basis or using the entire app layout.\n"
+        "On a component level, components can move or be removed before they cause interference. "
+        "For example, a floating action button (FAB) can disappear or move off screen before a "
+        "user picks up a card, or it can move if a snackbar appears.\n"
+        "On the layout level, design your app layout to minimize opportunities for interference. "
+        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
+        "when a user tries to pick up one of cards.\n\n"
+    </string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_event_details2">EventDetailsActivity2</string>
+    <string name="delete">Delete</string>
+    <string name="design_title">Design Title</string>
+
+
+    <string name="facebook_app_id">679516465505129</string>
+    <string name="fb_login_protocol_scheme">fb679516465505129</string>
+
+</resources>

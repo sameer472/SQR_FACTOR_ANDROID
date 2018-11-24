@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+
+                                    xmlns:fab="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools"
+                                    android:layout_marginLeft="8dp"
+                                    android:layout_marginStart="8dp"
+                                    android:layout_marginRight="8dp"
+                                    android:layout_marginEnd="8dp"
+                                    android:layout_marginTop="4dp"
+                                    android:layout_marginBottom="4dp"
+                                    android:padding="8dp">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10sp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/comp_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        tools:text="Young Designers' Award'18"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/comp_start_time_ago"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto"
+                        tools:text="0 months ago"/>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/comp_menu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ellipsis"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/comp_image"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_gravity="center"
+                android:layout_marginVertical="10sp"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/home_banner"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10sp"
+                android:layout_marginTop="2sp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/comp_last_submission_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:text="Last Date of Submission: 30/12/18"
+                    android:textColor="@color/gray"
+                    android:fontFamily="@font/roboto"/>
+
+                <TextView
+                    android:id="@+id/comp_last_reg_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2sp"
+                    tools:text="Last Date of Registration: 30/12/18"
+                    android:textColor="@color/gray"
+                    android:fontFamily="@font/roboto"/>
+
+                <TextView
+                    android:id="@+id/comp_prize"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2sp"
+                    tools:text="Prizes: Not applicable"
+                    android:textColor="@color/gray"
+                    android:fontFamily="@font/roboto"/>
+
+                <TextView
+                    android:id="@+id/comp_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2sp"
+                    tools:text="Type: free"
+                    android:textColor="@color/gray"
+                    android:fontFamily="@font/roboto"/>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:id="@+id/participate"
+                    android:layout_width="150dp"
+                    android:layout_height="35dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/sqr_factor_btn_color"
+                    android:text="Participate"
+                    android:fontFamily="@font/roboto"
+                    android:textAllCaps="false"
+                    android:textColor="#fff"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/competition_share"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_share_white"
+            android:layout_gravity="bottom|end"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!--<com.github.clans.fab.FloatingActionMenu-->
+            <!--android:id="@+id/competition_share"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="bottom|end"-->
+            <!--android:layout_marginRight="8dp"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--fab:fab_size="mini"-->
+            <!--fab:menu_fab_size="mini"-->
+            <!--fab:menu_animationDelayPerItem="0"-->
+            <!--fab:menu_colorNormal="@color/colorPrimary"-->
+            <!--fab:menu_colorPressed="@color/colorPrimary"-->
+            <!--fab:menu_colorRipple="@color/colorPrimary"-->
+            <!--fab:menu_icon="@drawable/ic_share_white"-->
+            <!--fab:menu_labels_ellipsize="end"-->
+            <!--fab:menu_labels_maxLines="2">-->
+
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                <!--android:id="@+id/comp_fb"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--fab:fab_size="mini"-->
+                <!--android:src="@drawable/ic_facebook"/>-->
+
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                <!--android:id="@+id/comp_twitter"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/ic_twitter"-->
+                <!--fab:fab_size="mini"/>-->
+
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                <!--android:id="@+id/comp_linkedin"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/ic_linkedin"-->
+                <!--fab:fab_size="mini"/>-->
+
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                <!--android:id="@+id/comp_google_plus"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:src="@drawable/ic_google_plus"-->
+                <!--fab:fab_size="mini"/>-->
+
+
+        <!--</com.github.clans.fab.FloatingActionMenu>-->
+
+    </FrameLayout>
+
+</android.support.v7.widget.CardView>

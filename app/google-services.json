@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "214603573329",
+    "firebase_url": "https://sqrfactorchatandnotiandroid.firebaseio.com",
+    "project_id": "sqrfactorchatandnotiandroid",
+    "storage_bucket": "sqrfactorchatandnotiandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:214603573329:android:c6c5cddca22aa0da",
+        "android_client_info": {
+          "package_name": "com.hackerkernel.user.sqrfactor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "214603573329-p8de50r6i53avubhegv89dbmvasppujm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hackerkernel.user.sqrfactor",
+            "certificate_hash": "d827b4ea52e01e66380f85f84e7ba56e45750dec"
+          }
+        },
+        {
+          "client_id": "214603573329-e4luh7j8qmkqj5v90ajlga4jcr3l1hc9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByFuizbvn-hs6OaxrUJ5OJyBv89OQtojM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "214603573329-e4luh7j8qmkqj5v90ajlga4jcr3l1hc9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

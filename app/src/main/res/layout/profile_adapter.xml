@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20sp"
+    android:layout_marginLeft="10sp"
+    android:layout_marginRight="10sp"
+    android:layout_marginStart="10sp"
+    android:layout_marginEnd="10sp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="4">
+
+            <ImageView
+                android:id="@+id/profile_post_userimage"
+                android:layout_width="0sp"
+                android:layout_height="60sp"
+                android:src="@drawable/henry"
+                android:layout_weight="1"
+                android:layout_marginTop="10sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginStart="10sp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="3"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10sp"
+                android:layout_marginStart="10sp">
+
+                <TextView
+                    android:id="@+id/profile_post_userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Henry Cavill"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:textColor="#000"/>
+
+                <TextView
+                    android:id="@+id/profile_post_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5 minutes ago"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/profile_post_menu"
+                android:layout_width="20sp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:src="@drawable/ellipsis"
+                android:layout_marginRight="5sp"
+                android:layout_marginLeft="5sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:paddingLeft="10sp"
+            android:paddingStart="10sp"
+            android:paddingRight="10sp"
+            android:paddingEnd="10sp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/profile_post_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Check out this new design, by me."
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/profile_post_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Check out this new design, by me."
+                android:textStyle="bold"/>
+
+            <ImageView
+                android:id="@+id/profile_post_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/designimg"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50sp"
+            android:orientation="horizontal"
+            android:layout_marginTop="10sp"
+            android:weightSum="3">
+            <LinearLayout
+                android:layout_width="0sp"
+                android:layout_height="50sp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/profile_post_like"
+                    android:layout_width="30dp"
+                    android:layout_height="50sp"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/like_xml"
+                    android:textAllCaps="false"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/profile_post_likeList"
+                    android:layout_width="60dp"
+                    android:layout_height="50sp"
+                    android:background="@android:color/transparent"
+                    android:text="2 Like"
+                    android:textColor="@color/gray"
+                    android:textAllCaps="false"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/profile_post_comment"
+                android:layout_width="0sp"
+                android:layout_height="50sp"
+                android:layout_weight="1"
+                android:text="Comment"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:drawableLeft="@drawable/comment_xml"
+                android:drawableStart="@drawable/comment_xml"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/tertiary_text_dark"
+                android:gravity="start|center_vertical"
+                android:drawablePadding="10sp"/>
+
+            <Button
+                android:id="@+id/profile_post_share"
+                android:layout_width="0sp"
+                android:layout_height="50sp"
+                android:layout_weight="1"
+                android:text="Share"
+                android:textAllCaps="false"
+                android:textStyle="bold"
+                android:drawableLeft="@drawable/share_xml"
+                android:drawableStart="@drawable/share_xml"
+                android:background="@android:color/transparent"
+                android:textColor="@android:color/tertiary_text_dark"
+                android:gravity="start|center_vertical"
+                android:drawablePadding="10sp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
+
+<android.support.v7.widget.CardView
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:padding="20sp"
+app:cardElevation="1sp"
+app:cardBackgroundColor="#e6ecf5"
+android:layout_marginBottom="2sp"
+android:layout_marginLeft="10sp"
+android:layout_marginStart="10sp"
+android:layout_marginRight="10sp"
+android:layout_marginEnd="10sp">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <ImageView
+            android:id="@+id/profile_comment_image"
+            android:layout_width="0sp"
+            android:layout_height="60sp"
+            android:src="@drawable/henry"
+            android:layout_weight="1"
+            android:layout_marginTop="10sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginStart="10sp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="4"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10sp"
+            android:layout_marginStart="10sp">
+
+            <TextView
+                android:id="@+id/profile_comment_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Henry Cavill"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="#000"/>
+
+            <TextView
+                android:id="@+id/profile_comment_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 minutes ago"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/profile_comment_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nice work there!"
+        android:textStyle="bold"
+        android:layout_marginLeft="20sp"
+        android:layout_marginStart="20sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50sp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/profile_comment_like"
+            android:layout_width="30dp"
+            android:layout_height="50sp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/like_xml"
+            android:textAllCaps="false"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/profile_comment_likeList"
+            android:layout_width="60dp"
+            android:layout_height="50sp"
+            android:background="@android:color/transparent"
+            android:text="2 Like"
+            android:textColor="@color/gray"
+            android:textAllCaps="false"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>
+
+</android.support.v7.widget.CardView>
+
+<android.support.v7.widget.CardView
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_marginLeft="10sp"
+android:layout_marginStart="10sp"
+android:layout_marginRight="10sp"
+android:layout_marginEnd="10sp"
+android:layout_marginBottom="10sp">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20sp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/profile_comment_userImage"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:src="@drawable/profilepic"
+            android:layout_marginTop="10sp" />
+
+        <EditText
+            android:id="@+id/profile_comment_write"
+            android:layout_width="match_parent"
+            android:layout_height="60sp"
+            android:layout_marginStart="10sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginEnd="10sp"
+            android:layout_marginTop="10sp"
+            android:hint="Write comment..."
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:background="@drawable/gray_border"
+            android:padding="10sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10sp"
+        android:layout_marginEnd="10sp"
+        android:layout_marginBottom="10sp"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/profile_comment_postBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10sp"
+            android:text="Post Reply"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:background="@drawable/sqr_factor_btn_color"
+            android:textStyle="bold"
+            android:paddingLeft="10sp"
+            android:paddingRight="10sp"
+            android:paddingStart="10sp"
+            android:paddingEnd="10sp"
+            android:layout_gravity="end|center_vertical"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+</android.support.v7.widget.CardView>
+
+</LinearLayout>
+</ScrollView>

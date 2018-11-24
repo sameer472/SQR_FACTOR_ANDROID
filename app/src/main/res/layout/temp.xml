@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                            xmlns:tools="http://schemas.android.com/tools"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                                            tools:context=".Fragments.InfoFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="10sp"
+            android:background="@drawable/gray_border"
+            android:padding="10sp">
+
+            <TextView
+                android:id="@+id/brief1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/comp_brief2"
+                android:layout_marginBottom="5sp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/comp_image"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:layout_marginBottom="5sp"/>
+
+            <TextView
+                android:id="@+id/brief2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/comp_brief3"
+                android:layout_marginBottom="5sp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/comp_image2"
+                android:adjustViewBounds="true"
+                android:layout_marginBottom="5sp"/>
+
+            <TextView
+                android:id="@+id/brief3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/comp_brief4"
+                android:layout_marginBottom="5sp"/>
+
+            <TextView
+                android:id="@+id/heading1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/heading1"
+                android:layout_marginBottom="5sp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/jury"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"/>
+
+            <TextView
+                android:id="@+id/brief4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/comp_brief5"
+                android:layout_marginBottom="5sp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sponsors"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:layout_marginBottom="10sp"/>
+
+            <TextView
+                android:id="@+id/heading2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/heading2"/>
+
+            <TextView
+                android:id="@+id/prizes1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/prizes1"
+                android:layout_marginBottom="5sp"
+                android:padding="5sp"
+                android:background="@drawable/gray_border"/>
+
+            <TextView
+                android:id="@+id/prizes2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/prizes2"
+                android:layout_marginBottom="5sp"
+                android:padding="5sp"
+                android:background="@drawable/gray_border"/>
+
+            <TextView
+                android:id="@+id/prizes3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/prizes3"
+                android:layout_marginBottom="5sp"
+                android:padding="5sp"
+                android:background="@drawable/gray_border"/>
+
+            <TextView
+                android:id="@+id/prizes4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/prizes4"
+                android:layout_marginBottom="5sp"
+                android:padding="5sp"
+                android:background="@drawable/gray_border"/>
+
+            <TextView
+                android:id="@+id/prizes5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/prizes5"
+                android:layout_marginBottom="5sp"
+                android:padding="5sp"
+                android:background="@drawable/gray_border"/>
+
+            <TextView
+                android:id="@+id/prizes6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/prizes6"
+                android:layout_marginBottom="5sp"
+                android:padding="5sp"
+                android:background="@drawable/gray_border"/>
+
+            <TextView
+                android:id="@+id/prizes7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/prizes7"
+                android:layout_marginBottom="5sp"
+                android:padding="5sp"
+                android:background="@drawable/gray_border"/>
+
+            <TextView
+                android:id="@+id/prizes8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/prizes8"
+                android:layout_marginBottom="5sp"
+                android:padding="5sp"
+                android:background="@drawable/gray_border"/>
+
+            <TextView
+                android:id="@+id/prizes9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/prizes9"
+                android:layout_marginBottom="5sp"
+                android:padding="5sp"
+                android:background="@drawable/gray_border"/>
+
+            <TextView
+                android:id="@+id/prizes10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/prizes10"
+                android:layout_marginBottom="5sp"
+                android:padding="5sp"
+                android:background="@drawable/gray_border"/>
+
+            <TextView
+                android:id="@+id/sponsor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/heading1"
+                android:layout_marginBottom="5sp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:scaleType="centerCrop"
+                android:adjustViewBounds="true"
+                android:layout_marginBottom="5sp"
+                android:src="@drawable/sponsor1"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="10sp"
+            android:background="@drawable/gray_border"
+            android:padding="10sp">
+
+            <TextView
+                android:id="@+id/note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="10sp"
+            android:background="@drawable/gray_border"
+            android:padding="10sp">
+
+            <TextView
+                android:id="@+id/eligibility"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/register_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register for Competition"
+            android:background="@drawable/loginbtn"
+            android:textAllCaps="false"
+            android:textColor="#fff"
+            android:layout_margin="10sp"/>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

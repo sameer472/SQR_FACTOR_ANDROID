@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/pay_confirm_proceed">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/content_layout"
+            android:orientation="vertical"
+            android:padding="8dp"
+            tools:context="com.hackerkernel.user.sqrfactor.Activities.PaymentConfirmActivity">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="16dp"
+                android:layout_marginTop="16dp"
+                android:text="Confirm Payment Details"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Competition Title"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pay_confirm_comp_title"
+                tools:text="Testing Competition On 27th"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Amount to be paid"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pay_confirm_amount"
+                tools:text="Testing Competition On 27th jfdksgl lvjljdcl jgedsj asjfljfsl ajsfljfljflj alsjf jsdljflsdj aj s jlsjflsjadl jdljlsajflas lkdsj lsj lajdfl jsldj fldsj lsaj lksajdl fsj flasjadf lsj lfsj jsl l lks jlj flksj lsj lsj lksdjflkzjdfljfds sklvj lsd jvsldd jslcj slk jflskjf dlkjsdl;dfjsldjgdfj gljd dlfjgldjlgdjslgjsdflgjldfjgorejtopqeuorijwfljdsljfljglkdsjsgj dflkgjdlkgj dlfsjg lksdfjgl dfgljd flgk djflkgj dljg ldfk jglkdfj glkjdf gljd flgj dlkgj lkfdj gdlfkjg ds;lg jdslfg jdslg jdlskjfg lkj dlgjdlkgj ldfj gldsk jglksd jglk slkgj lfdskj gslkgjfdslkgj flsdj glskj glksdglksd jglksdj glifj lskdjgdl "/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Organizer Name"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pay_confirm_organizer"
+                tools:text="Testing Competition On 27th"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Competition Participant Names"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pay_confirm_participants"
+                tools:text="Testing Competition On 27th"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Mentor"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pay_confirm_mentor"
+                android:layout_marginBottom="8dp"
+                tools:text="Testing Competition On 27th"/>
+
+            <Button
+                android:id="@+id/edit_team"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/backgroundbutton"
+                android:text="Edit Team"
+                android:textColor="@color/white"
+                android:textAllCaps="false"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Payment Method"
+                android:textColor="#000"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/payment_method">
+
+                <RadioButton
+                    android:id="@+id/pay_pal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="PayPal" />
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/payUmoney"
+                    android:text="PayUmoney"/>
+            </RadioGroup>
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/pay_confirm_proceed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/sqr_factor_btn_color"
+        android:paddingEnd="10sp"
+        android:paddingLeft="10sp"
+        android:paddingRight="10sp"
+        android:paddingStart="10sp"
+        android:text="Payment Proceed"
+        android:textAllCaps="false"
+        android:textColor="#fff"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pb"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>

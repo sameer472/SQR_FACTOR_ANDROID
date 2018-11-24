@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">#cf0202</item>
+        <item name="colorAccent">@color/sqr</item>
+    </style>
+
+    <style name="FloatText" parent="TextAppearance.AppCompat.Inverse">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">#888da8</item>
+    </style>
+
+    <style name="EditText" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">#888da8</item>
+    </style>
+    <style name="TabLayoutTextStyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">#888da8</item>
+    </style>
+
+
+
+</resources>

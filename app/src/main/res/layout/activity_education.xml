@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/White">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark" >
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/edu_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/sqr"/>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Education Details"
+        android:textSize="20sp"
+        android:fontFamily="@font/roboto_medium"
+        android:padding="10dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/line"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:focusableInTouchMode="true">
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/course"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/courseText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Course"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/college"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/collegeText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="College/University"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/admission"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/admissionText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Year Of Admission"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/graduation"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/graduationText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Year Of Graduation*"
+                    android:fontFamily="@font/roboto"
+                    android:inputType="text"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="10dp">
+
+                <Button
+                    android:id="@+id/Add_eduDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="Add"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/White"
+                    android:textAllCaps="false"
+                    android:background="@drawable/sqr_factor_btn_color" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/linear_edu">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/course1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/courseText1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Course"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="text"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/college1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/collegeText1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="College/University"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="text"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/admission1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/admissionText1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Year Of Admission"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="text"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/graduation1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/graduationText1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Year Of Graduation*"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="text"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <Button
+                        android:id="@+id/Remove_eduother"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:text="Remove"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/White"
+                        android:textAllCaps="false"
+                        android:background="@drawable/gray_buttons"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <Button
+                    android:id="@+id/save_eduDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/save_next"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/White"
+                    android:textAllCaps="false"
+                    android:background="@drawable/sqr_factor_btn_color"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

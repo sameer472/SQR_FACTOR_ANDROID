@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="60sp"
+            android:layout_weight="1"
+            android:background="@drawable/gray_border"
+            android:padding="10sp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="4sp"
+            android:layout_marginBottom="4sp"
+            app:hintTextAppearance="@color/colorAccent">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/add_more_reg_type"
+                android:layout_gravity="center_horizontal"
+                android:background="@android:color/transparent"
+                android:hint="Registration Type"
+                android:padding="5sp"
+                android:inputType="text" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/add_more_remove"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
+            android:background="@drawable/ic_remove_added"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:id="@+id/add_more_award_amount"
+            android:layout_marginBottom="10sp"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/gray_border"
+            android:gravity="center_vertical"
+            android:hint="@string/award_amount"
+            android:inputType="number"
+            android:padding="15sp"/>
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:id="@+id/add_more_currency_unit"
+            android:layout_marginBottom="10sp"
+            android:entries="@array/currency"
+            android:foreground="@drawable/gray_border"
+            android:padding="10sp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

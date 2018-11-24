@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/text1"
+        android:textColor="#0b0b0b"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add More Email : "
+        android:textSize="24sp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/view"
+                android:background="#0b0b0b"/>
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter Email : "
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/view"
+                android:textSize="18sp" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/nextEmail1"
+                android:layout_width="match_parent"
+                android:layout_height="60sp"
+                android:layout_gravity="center"
+                android:layout_margin="10sp"
+                android:background="@drawable/shapes"
+                android:padding="10sp"
+                app:hintTextAppearance="@color/colorPrimary">
+
+                <EditText
+                    android:id="@+id/nextEmailText1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@android:color/transparent"
+                    android:hint="Enter Email"
+                    android:inputType="textEmailAddress"
+                    android:padding="5sp" />
+
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/AddPromptButton"
+                android:text="Add"
+                android:textColor="@color/White"
+                android:textAllCaps="false"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/sqr_factor_btn_color"
+                android:layout_below="@+id/nextEmail1" />
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/editTextContainer"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_marginBottom="10dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/AddPromptButton"-->
+            <!--android:orientation="vertical">-->
+        <!--</LinearLayout>-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:id="@+id/linearLayoutprompt1"
+                android:layout_below="@+id/AddPromptButton"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/nextEmail2"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/nextEmailText2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Enter Email"
+                        android:inputType="textEmailAddress"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/removeEmailButton1"
+                    android:text="Remove"
+                    android:textAllCaps="false"
+                    android:textColor="@color/White"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/gray_buttons"
+                    android:layout_below="@+id/nextEmail2" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:id="@+id/linearLayoutprompt2">
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/nextEmail3"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/nextEmailText3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Enter Email"
+                        android:inputType="text"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/removeEmailButton2"
+                    android:text="Remove"
+                    android:textAllCaps="false"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/White"
+                    android:background="@drawable/gray_buttons"
+                    android:layout_below="@+id/nextEmail3" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="25dp"
+                android:id="@+id/view1"
+                android:background="#0b0b0b"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="end">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/CancelButton"
+                    android:text="Cancel"
+                    android:textColor="@color/White"
+                    android:textAllCaps="false"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/sqr_factor_btn_color" />
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/SaveButton"
+                    android:text="Save"
+                    android:textColor="@color/White"
+                    android:layout_marginStart="5dp"
+                    android:textAllCaps="false"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/sqr_factor_btn_color"
+                    android:layout_marginLeft="5dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:id="@+id/Save"-->
+        <!--android:text="@string/Save"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_alignParentEnd="true"-->
+        <!--android:background="@drawable/backgroundbutton"-->
+        <!--android:layout_below="@+id/view1"-->
+        <!--android:layout_alignParentRight="true" />-->
+
+

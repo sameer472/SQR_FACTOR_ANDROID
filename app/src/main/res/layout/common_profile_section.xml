@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/home_banner"
+            android:scaleType="centerCrop"
+            android:layout_alignParentLeft="true"
+            android:adjustViewBounds="true"/>
+
+        <ImageView
+            android:id="@+id/userProfilePic"
+            android:layout_width="80sp"
+            android:layout_height="80sp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:src="@drawable/profilepic"
+            android:background="@drawable/image_background"
+            android:padding="5dp"/>
+
+        <TextView
+            android:id="@+id/userProfileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="SqrFactor"
+            android:textAllCaps="false"
+            android:textColor="#000"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="15sp"
+            android:layout_marginTop="190sp"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:layout_marginTop="5dp">
+
+        <TextView
+            android:id="@+id/blueprint1"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="0"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/sqr"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/portfolio1"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:fontFamily="@font/roboto"
+            android:text="0"
+            android:textColor="@color/sqr"/>
+
+        <TextView
+            android:id="@+id/followers1"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="0"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/sqr"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/following1"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="0"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/sqr"
+            android:gravity="center"/>
+
+        <TextView
+            android:layout_width="40sp"
+            android:layout_height="20sp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <TextView
+            android:id="@+id/blueprint"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Blueprint"
+            android:fontFamily="@font/roboto"
+            android:gravity="center"
+            android:textColor="@drawable/selector_follow"/>
+
+        <TextView
+            android:id="@+id/portfolio"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Portfolio"
+            android:fontFamily="@font/roboto"
+            android:textColor="@drawable/selector_follow"/>
+
+        <TextView
+            android:id="@+id/followers"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Followers"
+            android:fontFamily="@font/roboto"
+            android:gravity="center"
+            android:textColor="@drawable/selector_follow"/>
+
+        <TextView
+            android:id="@+id/following"
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Following"
+            android:fontFamily="@font/roboto"
+            android:gravity="center"
+            android:textColor="@drawable/selector_follow"/>
+
+        <ImageView
+            android:id="@+id/morebtn"
+            android:layout_width="40sp"
+            android:layout_height="20sp"
+            android:src="@drawable/ellipsis"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10sp"
+        android:layout_marginBottom="10sp"
+        android:background="@drawable/edit_profile"
+        android:textColor="#000"
+        android:text="Edit Profile"
+        android:textAllCaps="false"
+        android:fontFamily="@font/roboto_medium"
+        android:paddingLeft="10sp"
+        android:paddingStart="10sp"
+        android:paddingRight="10sp"
+        android:paddingEnd="10sp"/>
+
+</LinearLayout>

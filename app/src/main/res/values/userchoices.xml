@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="user_choices">
+        <item>Individual</item>
+        <item>Firm/Companies (Design Service Providers)</item>
+        <item>Organisations, Companies, NGOs, Media</item>
+        <item>College/University</item>
+    </string-array>
+</resources>

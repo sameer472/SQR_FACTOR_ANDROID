@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/select_linerstatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status*"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/roboto"
+                    android:layout_marginRight="5sp"
+                    android:layout_marginEnd="5sp"/>
+
+                <Spinner
+                    android:id="@+id/select_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/Status"
+                    android:foreground="@drawable/gray_border"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/select_linerDesignType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Type*"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/roboto"
+                    android:layout_marginRight="5sp"
+                    android:layout_marginEnd="5sp"/>
+
+                <Spinner
+                    android:id="@+id/select_design_type"
+                    android:layout_marginStart="13sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/Design"
+                    android:foreground="@drawable/gray_border"
+                    android:textSize="24sp"
+                    android:layout_marginLeft="13sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/select_linerBuilding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Building Program"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/roboto"
+                    android:layout_marginRight="5sp"
+                    android:layout_marginEnd="5sp"/>
+
+                <Spinner
+                    android:id="@+id/select_building"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/Building"
+                    android:foreground="@drawable/gray_border"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginStart="10sp"
+                android:weightSum="3"
+                android:layout_marginLeft="10sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Years"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/roboto"
+                    android:layout_marginRight="5sp"
+                    android:layout_marginEnd="5sp"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/status_Start_year"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/status_Start_year_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/roboto"
+                        android:hint="Start Year"
+                        android:inputType="text"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/status_End_year"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:padding="10sp"
+                    android:background="@drawable/shapes"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/status_End_year_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="End Year"
+                        android:inputType="text"
+                        android:fontFamily="@font/roboto"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:weightSum="3"
+                android:layout_marginLeft="10sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="5sp"
+                    android:layout_marginRight="5sp"
+                    android:fontFamily="@font/roboto"
+                    android:text="Total Budget"
+                    android:textSize="18sp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/status_budget"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/status_budget_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/roboto"
+                        android:hint="Write budget..."
+                        android:inputType="text"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <Spinner
+                    android:id="@+id/select_INR"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:entries="@array/INR"
+                    android:foreground="@drawable/gray_border"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginStart="10sp"
+                android:layout_marginLeft="10sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Is/was project part of competition"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/roboto"
+                        android:layout_marginRight="5sp"
+                        android:layout_marginEnd="5sp"/>
+
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:id="@+id/RadioCompetetion"
+                        android:layout_height="wrap_content">
+                        <RadioButton
+                            android:id="@+id/competition_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Yes"/>
+                        <RadioButton
+                            android:id="@+id/competition_no"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="No"/>
+                    </RadioGroup>
+                </LinearLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/competition_link"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:visibility="gone"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/competition_link_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/roboto"
+                        android:hint="Enter Competition Link"
+                        android:inputType="text"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginStart="10sp"
+                android:layout_marginLeft="10sp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Is/was part of college project"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/roboto"
+                        android:layout_marginRight="5sp"
+                        android:layout_marginEnd="5sp"/>
+
+                    <RadioGroup
+                        android:layout_width="wrap_content"
+                        android:id="@+id/RadioCollegeProject"
+                        android:layout_height="wrap_content"
+
+                        >
+                        <RadioButton
+                            android:id="@+id/college_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Yes"/>
+                        <RadioButton
+                            android:id="@+id/college_no"
+                            android:checked="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="No"/>
+                    </RadioGroup>
+                </LinearLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/semester"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:background="@drawable/shapes"
+                    android:padding="10sp"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/semester_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/roboto"
+                        android:hint="Semester/Thesis"
+                        android:inputType="text"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginStart="10sp"
+                android:layout_marginLeft="10sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tags"
+                    android:layout_gravity="center"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/roboto"
+                    android:layout_marginRight="5sp"
+                    android:layout_marginEnd="5sp"/>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/status_tags"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_gravity="center"
+                    android:layout_margin="10sp"
+                    android:padding="10sp"
+                    android:background="@drawable/shapes"
+                    app:hintTextAppearance="@color/colorPrimary">
+
+                    <EditText
+                        android:id="@+id/status_tags_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:hint="Tags | Seperate tags with commas"
+                        android:inputType="text"
+                        android:fontFamily="@font/roboto"
+                        android:padding="5sp" />
+
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="60sp"
+                android:background="@drawable/gray_border"
+                android:layout_margin="10sp"
+                android:weightSum="10"
+                android:padding="10sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Banner Image"
+                    android:layout_gravity="center"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/roboto"
+                    android:layout_marginRight="5sp"
+                    android:layout_marginEnd="5sp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:background="@drawable/gray_border"
+                    android:weightSum="10">
+                    <TextView
+                        android:layout_marginStart="5sp"
+                        android:id="@+id/status_banner_image1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
+                        android:hint="Attachment"
+                        android:layout_weight="8"
+                        android:inputType="text"
+                        android:textSize="18dp"
+                        android:layout_marginLeft="5sp" />
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/profilepic"
+                        android:visibility="gone"
+                        android:layout_weight="1"
+                        android:id="@+id/banner_attachment_image1"/>
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_attach_file_black_24dp"
+                        android:id="@+id/banner_attachment_icon1"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+                <Button
+                    android:id="@+id/publish_news"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Publish News"
+                    android:fontFamily="@font/roboto"
+                    android:textColor="@color/White"
+                    android:textAllCaps="false"
+                    android:background="@drawable/sqr_factor_btn_color"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

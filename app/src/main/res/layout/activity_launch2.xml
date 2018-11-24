@@ -1,0 +1,731 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_layout"/>
+
+    <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".Activities.Launch2Activity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="true"
+                android:orientation="vertical"
+                android:padding="15sp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5sp"
+                    android:text="Competition Type"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <Spinner
+                    android:id="@+id/launch_comp2_comp_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="60sp"
+                    android:layout_marginBottom="10sp"
+                    android:entries="@array/comp_type"
+                    android:foreground="@drawable/gray_border"
+                    android:padding="10sp"/>
+
+                <LinearLayout
+                    android:id="@+id/launch_comp2_paid_comp_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5sp"
+                            android:text="Registration Submission"
+                            android:textColor="#000"
+                            android:textSize="15sp"
+                            android:textStyle="bold"/>
+
+                        <RadioGroup
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/paid_comp_from"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/paid_comp_from_sqrFactor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="5sp"
+                                android:layout_marginRight="5sp"
+                                android:text="From SqrFactor"/>
+
+                            <RadioButton
+                                android:id="@+id/paid_comp_from_own_site"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:text="From Your Own Website"/>
+
+                        </RadioGroup>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/paid_comp_commission"
+                            android:visibility="gone"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginStart="8dp"
+                            android:text="Sqrfactor charges 5% on every transaction"
+                            android:textColor="@color/colorPrimary"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/paid_comp_url_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5sp"
+                            android:text="Enter URL"
+                            android:textColor="#000"
+                            android:textSize="15sp"
+                            android:textStyle="bold"/>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="60sp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10sp"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:id="@+id/paid_comp_url"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:hint="Enter the URL"
+                                android:inputType="textUri"
+                                android:padding="5sp"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Early Bird Registration"
+                        android:textColor="#000"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10sp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:id="@+id/paid_comp_ebr_start_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:focusable="false"
+                                android:hint="Start Date"
+                                android:inputType="date"
+                                android:padding="5sp"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10sp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:id="@+id/paid_comp_ebr_end_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:focusable="false"
+                                android:hint="End Date"
+                                android:inputType="date"
+                                android:padding="5sp"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60sp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10sp"
+                        android:background="@drawable/gray_border"
+                        android:padding="10sp"
+                        app:hintTextAppearance="@color/colorAccent">
+
+                        <EditText
+                            android:id="@+id/paid_comp_ebr_reg_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@android:color/transparent"
+                            android:hint="Registration Type"
+                            android:inputType="text"
+                            android:padding="5sp"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/paid_comp_ebr_amount"
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_border"
+                            android:gravity="center_vertical"
+                            android:hint="@string/award_amount"
+                            android:inputType="text"
+                            android:padding="15sp"/>
+
+                        <Spinner
+                            android:id="@+id/paid_comp_ebr_currency_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:entries="@array/currency"
+                            android:foreground="@drawable/gray_border"
+                            android:padding="10sp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/paid_comp_ebr_add_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:text="@string/add_more"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/paid_comp_ebr_layout" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Advanced Registration"
+                        android:textColor="#000"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="60sp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10sp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:id="@+id/paid_comp_ar_start_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:focusable="false"
+                                android:hint="Start Date"
+                                android:inputType="text"
+                                android:padding="5sp"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="60sp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10sp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:id="@+id/paid_comp_ar_end_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:focusable="false"
+                                android:hint="End Date"
+                                android:inputType="text"
+                                android:padding="5sp"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60sp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10sp"
+                        android:background="@drawable/gray_border"
+                        android:padding="10sp"
+                        app:hintTextAppearance="@color/colorAccent">
+
+                        <EditText
+                            android:id="@+id/paid_comp_ar_reg_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@android:color/transparent"
+                            android:hint="Registration Type"
+                            android:inputType="text"
+                            android:padding="5sp"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/paid_comp_ar_amount"
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:layout_marginBottom="10sp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_border"
+                            android:gravity="center_vertical"
+                            android:hint="@string/award_amount"
+                            android:inputType="text"
+                            android:padding="15sp"/>
+
+                        <Spinner
+                            android:id="@+id/paid_comp_ar_currency_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:layout_marginBottom="10sp"
+                            android:entries="@array/currency"
+                            android:foreground="@drawable/gray_border"
+                            android:padding="10sp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/paid_comp_ar_add_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10sp"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:text="@string/add_more"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/paid_comp_ar_layout" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginTop="8dp"
+                        android:text="Last Minute Registration"
+                        android:textColor="#000"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="60sp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10sp"
+                            android:layout_marginEnd="4dp"
+                            android:layout_marginRight="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:id="@+id/paid_comp_lmr_start_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:focusable="false"
+                                android:hint="Start Date"
+                                android:inputType="date"
+                                android:padding="5sp"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="0dp"
+                            android:layout_height="60sp"
+                            android:layout_gravity="center"
+                            android:layout_marginBottom="10sp"
+                            android:layout_marginLeft="4dp"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_border"
+                            android:padding="10sp"
+                            app:hintTextAppearance="@color/colorAccent">
+
+                            <EditText
+                                android:id="@+id/paid_comp_lmr_end_date"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="center_horizontal"
+                                android:background="@android:color/transparent"
+                                android:focusable="false"
+                                android:hint="End Date"
+                                android:inputType="text"
+                                android:padding="5sp"/>
+
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60sp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10sp"
+                        android:background="@drawable/gray_border"
+                        android:padding="10sp"
+                        app:hintTextAppearance="@color/colorAccent">
+
+                        <EditText
+                            android:id="@+id/paid_comp_lmr_reg_type"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@android:color/transparent"
+                            android:hint="Registration Type"
+                            android:inputType="text"
+                            android:padding="5sp"/>
+
+                    </android.support.design.widget.TextInputLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <EditText
+                            android:id="@+id/paid_comp_lmr_amount"
+                            android:layout_width="0dp"
+                            android:layout_height="60dp"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/gray_border"
+                            android:gravity="center_vertical"
+                            android:hint="@string/award_amount"
+                            android:inputType="text"
+                            android:padding="15sp"/>
+
+                        <Spinner
+                            android:id="@+id/paid_comp_lmr_currency_unit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="60dp"
+                            android:entries="@array/currency"
+                            android:foreground="@drawable/gray_border"
+                            android:padding="10sp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/paid_comp_lmr_add_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:text="@string/add_more"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/paid_comp_lmr_layout" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Partners"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10sp"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5sp"
+                        android:layout_marginRight="5sp"
+                        android:text="No Partner"/>
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Will update later"/>
+
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/launch_comp2_partner_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="60sp"
+                        android:layout_marginBottom="10sp"
+                        android:background="@drawable/gray_border"
+                        android:gravity="center_vertical"
+                        android:hint="Name"
+                        android:inputType="text"
+                        android:padding="15sp"/>
+
+                    <EditText
+                        android:id="@+id/launch_comp2_partner_website"
+                        android:layout_width="match_parent"
+                        android:layout_height="60sp"
+                        android:layout_marginBottom="10sp"
+                        android:background="@drawable/gray_border"
+                        android:gravity="center_vertical"
+                        android:hint="Website"
+                        android:inputType="text"
+                        android:padding="15sp"/>
+
+                    <EditText
+                        android:id="@+id/launch_comp2_partner_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="60sp"
+                        android:layout_marginBottom="10sp"
+                        android:background="@drawable/gray_border"
+                        android:gravity="center_vertical"
+                        android:hint="Email address"
+                        android:inputType="textEmailAddress"
+                        android:padding="15sp"/>
+
+                    <EditText
+                        android:id="@+id/launch_comp2_partner_contact"
+                        android:layout_width="match_parent"
+                        android:layout_height="60sp"
+                        android:layout_marginBottom="10sp"
+                        android:background="@drawable/gray_border"
+                        android:gravity="center_vertical"
+                        android:hint="Contact No."
+                        android:inputType="number"
+                        android:padding="15sp"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5sp"
+                        android:background="@drawable/gray_border"
+                        android:padding="5dp">
+
+                        <Button
+                            android:id="@+id/launch_comp2_partner_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@color/colorPrimary"
+                            android:text="    Choose File    "
+                            android:textColor="@color/white"
+                            android:textAllCaps="false"/>
+
+                        <TextView
+                            android:id="@+id/launch_comp2_partner_image_path"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="end|center_vertical"
+                            android:src="@drawable/ic_attach_file_black_24dp"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/launch_comp2_partner_add_more"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="10sp"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:text="@string/add_more"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/launch_comp2_partner_layout" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Attach documents"
+                    android:textColor="#000"
+                    android:textSize="15sp"
+                    android:textStyle="bold"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5sp"
+                    android:background="@drawable/gray_border"
+                    android:padding="5dp">
+
+                    <Button
+                        android:id="@+id/launch_comp2_attach_choose_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorPrimary"
+                        android:text="    Choose File    "
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="end|center_vertical"
+                        android:src="@drawable/ic_attach_file_black_24dp"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/launch_comp2_doc_paths"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/launch_comp2_submit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/sqr_factor_btn_color"
+                    android:text="Submit"
+                    android:textAllCaps="false"
+                    android:textColor="#ffffff"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

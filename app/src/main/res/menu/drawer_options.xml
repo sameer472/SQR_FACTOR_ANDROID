@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/avatar"
+        android:title="Profile"
+        android:icon="@drawable/avatar"/>
+
+    <item android:id="@+id/news"
+        android:title="What's Red"
+        android:icon="@drawable/status"/>
+
+    <item
+        android:id="@+id/credit"
+        android:title="Credit"
+        android:icon="@drawable/coins"/>
+
+    <item
+        android:id="@+id/settings"
+        android:title="Settings"
+        android:icon="@drawable/settings"/>
+
+    <item
+        android:id="@+id/invite"
+        android:title="Share/Invite"
+        android:icon="@drawable/invite"/>
+
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/logout"/>
+
+</menu>

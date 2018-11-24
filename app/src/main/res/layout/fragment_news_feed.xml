@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".NewsFeedFragment"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/White"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/newsFeedbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="News Feed"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_medium"
+            android:textColor="@color/sqr"
+            android:textAllCaps="false"
+            android:background="@drawable/line_color"/>
+        <Button
+            android:id="@+id/whatsRedbtn"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="What's Red?"
+            android:padding="10sp"
+            android:textAllCaps="false"
+            android:textColor="#888da8"
+            android:fontFamily="@font/roboto_medium"
+            android:background="@drawable/line_color"/>
+    </LinearLayout>
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment"
+        android:orientation="vertical">
+    </LinearLayout>
+
+</FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="4"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="0sp"
+            android:layout_height="wrap_content"
+            android:text="Architecture is no less than an art"
+            android:maxLines="4"
+            android:minLines="1"
+            android:id="@+id/articleName"
+            android:textSize="13sp"
+            android:fontFamily="@font/roboto"
+            android:gravity="center_vertical"
+            android:layout_weight="1"
+            android:padding="5dp"/>
+        <TextView
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:text="30"
+            android:maxLines="1"
+            android:minLines="1"
+            android:id="@+id/totalView"
+            android:textSize="13sp"
+            android:gravity="center"
+            android:fontFamily="@font/roboto"
+            android:layout_weight="1"
+            android:padding="5dp"/>
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="21"-->
+            <!--android:textSize="18sp"-->
+            <!--android:maxLines="1"-->
+            <!--android:minLines="1"-->
+            <!--android:id="@+id/uniqueView"-->
+            <!--android:gravity="center"-->
+            <!--android:textColor="#2b2a2a"-->
+            <!--android:layout_weight="1"/>-->
+        <TextView
+            android:layout_width="20sp"
+            android:layout_height="match_parent"
+            android:text="30"
+            android:textSize="13sp"
+            android:maxLines="1"
+            android:minLines="1"
+            android:gravity="center"
+            android:id="@+id/firstWeekViews"
+            android:fontFamily="@font/roboto"
+            android:layout_weight="1"
+            android:padding="5dp"/>
+        <TextView
+            android:layout_width="0sp"
+            android:layout_height="match_parent"
+            android:maxLines="2"
+            android:minLines="1"
+            android:textSize="13sp"
+            android:id="@+id/credits"
+            android:gravity="center"
+            android:text="10$ Redeemes"
+            android:fontFamily="@font/roboto"
+            android:textColor="@color/sqr"
+            android:layout_weight="1"
+            android:padding="5dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
