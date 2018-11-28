@@ -124,7 +124,7 @@ public class SubmissionsAdapter extends RecyclerView.Adapter<SubmissionsAdapter.
                     JSONObject respObject = responseObject.getJSONObject("Response");
 
                     String message = respObject.getString("message");
-                    Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
 
 
                 } catch (JSONException e) {
@@ -176,11 +176,11 @@ public class SubmissionsAdapter extends RecyclerView.Adapter<SubmissionsAdapter.
     }
 
     @Override
-    public SubmissionsAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.submission_item, parent, false);
 
-        return new SubmissionsAdapter.MyViewHolder(itemView);
+        return new MyViewHolder(itemView);
     }
 
     @Override

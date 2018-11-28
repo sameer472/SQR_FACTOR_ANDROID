@@ -747,6 +747,12 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.MyView
                 int flag = 0;
                 @Override
                 public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    NewsFeedStatus newsFeedStatus= newsFeedStatuses.get(pos);
+                    String slug = newsFeedStatus.getSlug();
+
+                    String link = UtilsClass.baseurl1+"/post/post-detail/"+newsFeedStatus.getSlug();
+
                     if (flag == 0) {
                         share.setTextColor(context.getResources().getColor(R.color.sqr));
                         flag = 1;
@@ -754,19 +760,19 @@ public class NewsFeedAdapter extends RecyclerView.Adapter<NewsFeedAdapter.MyView
                         share.setTextColor(context.getResources().getColor(R.color.gray));
                         flag = 0;
                     }
-                    shareIt();
+                    shareIt(link);
                 }
             });
 
         }
 
 
-        private void shareIt() {
+        private void shareIt(String link) {
             //sharing implementation here
             Intent sharingIntent = new Intent(Intent.ACTION_SEND);
             sharingIntent.setType("text/plain");
             sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "SqrFactor");
-            sharingIntent.putExtra(Intent.EXTRA_TEXT, "professional network for the architecture community visit https://sqrfactor.com");
+            sharingIntent.putExtra(Intent.EXTRA_TEXT, link);
             context.startActivity(Intent.createChooser(sharingIntent, "Share via"));
 
 

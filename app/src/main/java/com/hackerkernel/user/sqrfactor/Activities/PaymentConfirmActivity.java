@@ -1,5 +1,6 @@
 package com.hackerkernel.user.sqrfactor.Activities;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -25,6 +27,7 @@ import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
+import com.google.gson.JsonArray;
 import com.hackerkernel.user.sqrfactor.Constants.BundleConstants;
 import com.hackerkernel.user.sqrfactor.Constants.Constants;
 import com.hackerkernel.user.sqrfactor.Constants.SPConstants;
@@ -43,6 +46,7 @@ import com.paypal.android.sdk.payments.PaymentConfirmation;
 import com.sasidhar.smaps.payumoney.MakePaymentActivity;
 import com.sasidhar.smaps.payumoney.PayUMoney_Constants;
 import com.sasidhar.smaps.payumoney.Utils;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -60,10 +64,11 @@ public class PaymentConfirmActivity extends AppCompatActivity {
     private Toolbar mToolbar;
 
     private TextView mCompTitleTV;
-    private TextView mAmountTextView;
+    private TextView mAmountTextView,mAmountTextView1;
     private TextView mOrganizerTV;
     private TextView mParticipantsTV;
-    private TextView mMentorTV;
+    private TextView mentorText,mMentorTV;
+    private ImageView Organizer_image;
 
     private Button mProceedButton;
 
@@ -89,6 +94,13 @@ public class PaymentConfirmActivity extends AppCompatActivity {
 
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        mToolbar.setNavigationIcon(R.drawable.back_arrow);
+        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         mSp = MySharedPreferences.getInstance(this);
         mPb = findViewById(R.id.pb);
@@ -96,9 +108,12 @@ public class PaymentConfirmActivity extends AppCompatActivity {
 
         mCompTitleTV = findViewById(R.id.pay_confirm_comp_title);
         mAmountTextView = findViewById(R.id.pay_confirm_amount);
+        mAmountTextView1 = findViewById(R.id.pay_confirm_amount1);
         mOrganizerTV = findViewById(R.id.pay_confirm_organizer);
+        Organizer_image = findViewById(R.id.organizer_image);
         mParticipantsTV = findViewById(R.id.pay_confirm_participants);
         mMentorTV = findViewById(R.id.pay_confirm_mentor);
+        mentorText = findViewById(R.id.mentor_text);
 
         payment_method = findViewById(R.id.payment_method);
         payPal = findViewById(R.id.pay_pal);
@@ -191,7 +206,7 @@ public class PaymentConfirmActivity extends AppCompatActivity {
 
     private void getPayment() {
         //Getting the amount from editText
-        String amount = mAmountTextView.getText().toString();
+        String amount = mAmountTextView1.getText().toString();
 
         //Creating a paypalpayment
         PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(amount)), "USD", "Competition Fee",
@@ -226,6 +241,7 @@ public class PaymentConfirmActivity extends AppCompatActivity {
         mRequestQueue = MyVolley.getInstance().getRequestQueue();
 
         StringRequest request = new StringRequest(Request.Method.GET, ServerConstants.PAYMENT_CONFIRM + mCompetitionId, new Response.Listener<String>() {
+            @SuppressLint("ResourceType")
             @Override
             public void onResponse(String response) {
 
@@ -233,11 +249,14 @@ public class PaymentConfirmActivity extends AppCompatActivity {
                 mContentLayout.setVisibility(View.VISIBLE);
 
                 Log.d(TAG, "onResponse: payment confirm response = " + response);
+                Toast.makeText(PaymentConfirmActivity.this, "Participation Successful"+response, Toast.LENGTH_SHORT).show();
 
                 try {
-//                    Toast.makeText(PaymentConfirmActivity.this, "Participation Successful", Toast.LENGTH_SHORT).show();
+//
                     JSONObject responseObject = new JSONObject(response);
+
                     JSONObject compIdObject = responseObject.getJSONObject("CompetitionID");
+
                     JSONObject userObject = compIdObject.getJSONObject("user");
 
                     mUserName = userObject.getString("name");
@@ -254,22 +273,33 @@ public class PaymentConfirmActivity extends AppCompatActivity {
                     String organizer = responseObject.getString("competitionOrganizer");
                     mOrganizerTV.setText(organizer);
 
+                    String orgnizerImage = responseObject.getString("competitionOrganizerImage");
+                    Picasso.get().load(ServerConstants.IMAGE_BASE_URL + orgnizerImage).into(Organizer_image);
+
                     JSONArray mentorArray = responseObject.getJSONArray("mentor");
                     String mentor = mentorArray.getString(0);
 
                     if (!mentor.equals("null")) {
+                        mentorText.setVisibility(View.GONE);
                         mMentorTV.setText(mentor);
+
                     }
 
                     JSONArray amountArray = responseObject.getJSONArray("amount");
                     Log.d(TAG, "onResponse: amount array = " + amountArray.toString());
+                    JSONArray amountarray1 = amountArray.getJSONArray(1);
+                    if (amountarray1.length() > 0) {
+                        JSONObject INRObj = amountarray1.getJSONObject(0);
+                        JSONObject USDObj = amountarray1.getJSONObject(1);
 
-                    if (amountArray.length() > 0) {
-                        JSONObject amountObj = amountArray.getJSONObject(0);
+                        String amount = INRObj.getString("amount");
+                        String amountUSD = USDObj.getString("amount");
 
-                        String amount = amountObj.getString("amount");
                         mAmountTextView.setText(amount);
+                        mAmountTextView1.setText(amountUSD);
+
                     }
+
 
                     JSONArray participantsArray = responseObject.getJSONArray("users");
 

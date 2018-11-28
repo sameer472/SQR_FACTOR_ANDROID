@@ -154,7 +154,7 @@ public class SubmissionCommentsAdapter extends RecyclerView.Adapter<SubmissionCo
                     JSONObject responseObject = new JSONObject(response);
 
                     String message = responseObject.getString("message");
-                    Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
 
                     mComments.remove(pos);
                     notifyDataSetChanged();
@@ -250,7 +250,7 @@ public class SubmissionCommentsAdapter extends RecyclerView.Adapter<SubmissionCo
                     JSONObject respObject = responseObject.getJSONObject("Response");
 
                     String message = respObject.getString("message");
-                    Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
 
                     QuestionCommentClass commentObj = mComments.get(position);
                     commentObj.setDescription(comment);
@@ -306,10 +306,10 @@ public class SubmissionCommentsAdapter extends RecyclerView.Adapter<SubmissionCo
     }
 
     @Override
-    public SubmissionCommentsAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.question_comment_item, parent, false);
-        return new SubmissionCommentsAdapter.MyViewHolder(itemView);
+        return new MyViewHolder(itemView);
     }
 
     @Override

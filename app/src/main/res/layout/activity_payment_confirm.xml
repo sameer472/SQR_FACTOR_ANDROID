@@ -25,109 +25,190 @@
             android:padding="8dp"
             tools:context="com.hackerkernel.user.sqrfactor.Activities.PaymentConfirmActivity">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="16dp"
-                android:layout_marginTop="16dp"
-                android:text="Confirm Payment Details"
-                android:textSize="24sp"
-                android:textStyle="bold"/>
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginBottom="16dp"-->
+                <!--android:layout_marginTop="16dp"-->
+                <!--android:text="Confirm Payment Details"-->
+                <!--android:textColor="@color/sqr"-->
+                <!--android:fontFamily="@font/roboto_medium"-->
+                <!--android:textSize="24sp"/>-->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center"
+    android:padding="2dp">
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Competition Title :"-->
+                <!--android:textColor="#000"-->
+                <!--android:textSize="15sp"-->
+                <!--android:fontFamily="@font/roboto_medium"/>-->
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Competition Title"
-                android:textColor="#000"
-                android:textSize="15sp"
-                android:textStyle="bold"/>
-
-            <TextView
+                android:layout_marginStart="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pay_confirm_comp_title"
-                tools:text="Testing Competition On 27th"/>
-
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="20dp"
+                android:textColor="@color/sqr"
+                tools:text="Testing Competition"/>
+</LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Amount to be paid"
+                android:fontFamily="@font/roboto_medium"
                 android:textColor="#000"
-                android:textSize="15sp"
-                android:textStyle="bold"/>
-
+                android:textSize="15sp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INR"/>
             <TextView
+                android:layout_marginStart="3sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pay_confirm_amount"
-                tools:text="Testing Competition On 27th jfdksgl lvjljdcl jgedsj asjfljfsl ajsfljfljflj alsjf jsdljflsdj aj s jlsjflsjadl jdljlsajflas lkdsj lsj lajdfl jsldj fldsj lsaj lksajdl fsj flasjadf lsj lfsj jsl l lks jlj flksj lsj lsj lksdjflkzjdfljfds sklvj lsd jvsldd jslcj slk jflskjf dlkjsdl;dfjsldjgdfj gljd dlfjgldjlgdjslgjsdflgjldfjgorejtopqeuorijwfljdsljfljglkdsjsgj dflkgjdlkgj dlfsjg lksdfjgl dfgljd flgk djflkgj dljg ldfk jglkdfj glkjdf gljd flgj dlkgj lkfdj gdlfkjg ds;lg jdslfg jdslg jdlskjfg lkj dlgjdlkgj ldfj gldsk jglksd jglk slkgj lfdskj gslkgjfdslkgj flsdj glskj glksdglksd jglksdj glifj lskdjgdl "/>
+                tools:text="0"
+                android:layout_marginLeft="2sp" />
 
+        <TextView
+            android:layout_marginStart="3sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(Indian Participants)"/>
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="USD"/>
+            <TextView
+                android:layout_marginStart="3dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pay_confirm_amount1"
+                tools:text="0"/>
+            <TextView
+                android:layout_marginStart="3sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(Foreign Participants)"/>
+        </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Organizer Name"
+                android:fontFamily="@font/roboto_medium"
                 android:textColor="#000"
-                android:textSize="15sp"
-                android:textStyle="bold"/>
-
+                android:textSize="15sp"/>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center">
+    <ImageView
+        android:id="@+id/organizer_image"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/avatar"/>
             <TextView
+                android:layout_marginStart="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pay_confirm_organizer"
+                android:fontFamily="@font/roboto"
                 tools:text="Testing Competition On 27th"/>
-
-            <TextView
-                android:layout_width="wrap_content"
+</LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Competition Participant Names"
-                android:textColor="#000"
-                android:textSize="15sp"
-                android:textStyle="bold"/>
-
+                android:orientation="horizontal"
+                android:weightSum="3">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="2">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/pay_confirm_participants"
-                tools:text="Testing Competition On 27th"/>
-
+                android:text="Participant Names"
+                android:textColor="#000"
+                android:textSize="15sp"
+               android:fontFamily="@font/roboto_medium"/>
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:drawableLeft="@drawable/ic_online"
+                android:id="@+id/pay_confirm_participants"
+                android:fontFamily="@font/roboto"
+                tools:text="Testing Competition On 27th"/>
+            </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_weight="1">
+                <Button
+                    android:id="@+id/edit_team"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:text="Edit Team"
+                    android:fontFamily="@font/roboto"
+                    android:textAllCaps="false"
+                    android:textColor="@color/sqr" />
+                </LinearLayout>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/mentor_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Mentor"
+                android:fontFamily="@font/roboto_medium"
                 android:textColor="#000"
-                android:textSize="15sp"
-                android:textStyle="bold"/>
+                android:textSize="15sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/pay_confirm_mentor"
+                android:gravity="center"
                 android:layout_marginBottom="8dp"
+                android:fontFamily="@font/roboto"
                 tools:text="Testing Competition On 27th"/>
 
-            <Button
-                android:id="@+id/edit_team"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/backgroundbutton"
-                android:text="Edit Team"
-                android:textColor="@color/white"
-                android:textAllCaps="false"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Payment Method"
+                android:fontFamily="@font/roboto_medium"
                 android:textColor="#000"
-                android:textSize="15sp"
-                android:textStyle="bold"/>
+                android:textSize="15sp"/>
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -137,13 +218,15 @@
                     android:id="@+id/pay_pal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="PayPal" />
+                    android:text="PayPal"
+                    android:fontFamily="@font/roboto"/>
 
                 <RadioButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/payUmoney"
-                    android:text="PayUmoney"/>
+                    android:text="PayUmoney"
+                    android:fontFamily="@font/roboto"/>
             </RadioGroup>
         </LinearLayout>
 
@@ -166,6 +249,7 @@
         android:paddingRight="10sp"
         android:paddingStart="10sp"
         android:text="Payment Proceed"
+        android:fontFamily="@font/roboto"
         android:textAllCaps="false"
         android:textColor="#fff"/>
 

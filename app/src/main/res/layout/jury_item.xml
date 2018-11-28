@@ -11,7 +11,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        tools:src="@drawable/no_image_placeholder"
+        tools:src="@drawable/avatar"
         android:id="@+id/jury_image"/>
 
     <TextView

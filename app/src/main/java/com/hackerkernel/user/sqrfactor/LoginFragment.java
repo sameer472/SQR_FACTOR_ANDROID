@@ -405,6 +405,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
                                     SharedPreferences.Editor prefsEditor = mPrefs.edit();
                                     TokenClass.Token=Token;
 
+                                    mSp.setKey(SPConstants.API_KEY, Token);
+                                    mSp.setKey(SPConstants.USER_ID, String.valueOf(userClass.getUserId()));
+                                    mSp.setKey(SPConstants.PROFILE_URL, userClass.getProfile());
+                                    mSp.setKey(SPConstants.EMAIL, userClass.getEmail());
+                                    mSp.setKey(SPConstants.USER_TYPE,userClass.getUserType());
+                                    mSp.setKey(SPConstants.NAME,UtilsClass.getName(userClass.getFirst_name(),userClass.getLast_name(),userClass.getName(),userClass.getUser_name()));
+
                                     Gson gson = new Gson();
                                     String json = gson.toJson(userClass);
                                     prefsEditor.putString("MyObject", json);
@@ -551,6 +558,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
 
                                                         editor.putString("TOKEN", Token);
                                                         TokenClass.Token=Token;
+
+                                                        mSp.setKey(SPConstants.API_KEY, Token);
+                                                        mSp.setKey(SPConstants.USER_ID, String.valueOf(userClass.getUserId()));
+                                                        mSp.setKey(SPConstants.PROFILE_URL, userClass.getProfile());
+                                                        mSp.setKey(SPConstants.EMAIL, userClass.getEmail());
+                                                        mSp.setKey(SPConstants.USER_TYPE,userClass.getUserType());
+                                                        mSp.setKey(SPConstants.NAME,UtilsClass.getName(userClass.getFirst_name(),userClass.getLast_name(),userClass.getName(),userClass.getUser_name()));
 
                                                         SharedPreferences.Editor prefsEditor = mPrefs.edit();
                                                         Gson gson = new Gson();

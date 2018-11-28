@@ -8,11 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
+import com.bumptech.glide.Glide;
 import com.hackerkernel.user.sqrfactor.Pojo.JuryClass;
 import com.hackerkernel.user.sqrfactor.R;
 import com.hackerkernel.user.sqrfactor.Storage.MySharedPreferences;
+import com.hackerkernel.user.sqrfactor.UtilsClass;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -67,7 +70,10 @@ public class JuryAdapter extends RecyclerView.Adapter<JuryAdapter.MyViewHolder> 
         JuryClass jury = mJuryList.get(position);
 
         holder.nameTV.setText(jury.getFullName());
-        Picasso.get().load(jury.getImageUrl()).into(holder.imageIV);
+
+        Glide.with(mContext).load(UtilsClass.getParsedImageUrl(jury.getImageUrl()))
+                .into(holder.imageIV);
+       // Picasso.get().load(UtilsClass.getParsedImageUrl(jury.getImageUrl())).into(holder.imageIV);
     }
 
     @Override

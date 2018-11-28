@@ -213,8 +213,7 @@
         <activity android:name=".Activities.ConfirmationActivity"></activity>
         <activity
             android:name=".Submit"
-            android:label="Submit"
-            android:parentActivityName=".Participate" />
+            android:label="Submit" />
         <activity
             android:name=".About"
             android:label="About"

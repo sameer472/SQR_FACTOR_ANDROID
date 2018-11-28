@@ -55,8 +55,9 @@ public class ServerConstants {
     public static final String PAST_COMPETITION = BASE_URL + "competition/pastcompetition";
     public static final String COMPETITION_DETAIL = COMPETITION + "/";
     public static final String SUBMISSION_ID_DETAILS = COMPETITION;
-//    public static final String PARTICIPATE_CHECK = BASE_URL_COMPETITION + "ParticipateCode/";
-    public static final String PARTICIPATE_CHECK = "https://archsqr.in/api/competition/participate-check-exist";
+   // public static final String PARTICIPATE_CHECK = BASE_URL_COMPETITION + "ParticipateCode/";
+    public static final String PARTICIPATE_CHECK = "https://sqrfactor.com/api/competition/participate-check-exist";
+    public static final String PARTICIPATE_JURRY = "https://sqrfactor.com/api/competition/get_jury_details";
 
 
 

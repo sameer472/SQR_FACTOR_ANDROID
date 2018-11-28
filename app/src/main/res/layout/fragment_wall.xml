@@ -41,7 +41,7 @@
                             android:layout_width="60dp"
                             android:layout_height="60dp"
                             android:layout_margin="4dp"
-                            android:src="@drawable/profilepic" />
+                            android:src="@drawable/avatar" />
 
                         <EditText
                             android:id="@+id/wall_question_title"

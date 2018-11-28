@@ -44,6 +44,8 @@ import com.hackerkernel.user.sqrfactor.PostContentHandlerParserForCompetition;
 import com.hackerkernel.user.sqrfactor.R;
 import com.hackerkernel.user.sqrfactor.Storage.MySharedPreferences;
 import com.hackerkernel.user.sqrfactor.Utils.NetworkUtil;
+import com.hackerkernel.user.sqrfactor.UtilsClass;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -59,6 +61,7 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class InfoFragment extends Fragment {
     private static final String TAG = "InfoFragment";
 
+    private int mCompetitionId;
     private Button mRegisterButton;
     private RecyclerView mPrizesRecyclerView;
     private RecyclerView mJuryRecyclerView;
@@ -196,9 +199,12 @@ public class InfoFragment extends Fragment {
                 try {
                     JSONObject responseObject = new JSONObject(response);
                     JSONObject competitionObj = responseObject.getJSONObject("competition");
+                    mCompetitionId=competitionObj.getInt("id");
+
 
                     String eligibilityCriteria = competitionObj.getString("eligibility_criteria");
                     mEligibilityCriteriaTV.setText(eligibilityCriteria);
+
 
                     String brief = competitionObj.getString("brief");
                     Log.d("brief: ", brief);
@@ -241,32 +247,36 @@ public class InfoFragment extends Fragment {
 
                     if (juryArray.length() != 0) {
 
-                        for (int i = 0; i < juryArray.length(); i++) {
-                            JSONObject singleObject = juryArray.getJSONObject(i);
-                            if (singleObject.has("user")) {
-                                Log.d(TAG, "singleObject.: " + singleObject.getString("user"));
-                                if (!singleObject.getString("user").toString().equals("null")) {
-                                    JSONObject userObject = singleObject.getJSONObject("user");
-                                    Log.d(TAG, "userObject: " + userObject.toString());
+//                        for (int i = 0; i < juryArray.length(); i++) {
+//                            JSONObject singleObject = juryArray.getJSONObject(i);
+//                            if (singleObject.has("user")) {
+//                                Log.d(TAG, "singleObject.: " + singleObject.getString("user"));
+//                                if (!singleObject.getString("user").toString().equals("null")) {
+//                                    JSONObject userObject = singleObject.getJSONObject("user");
+//                                    Log.d(TAG, "userObject: " + userObject.toString());
+//
+//
+//                                    String id = singleObject.getString("id");
+//                                    String fullName = singleObject.getString("jury_fullname");
+//                                    String imageUrl = userObject.getString("profile");
+//
+//
+//                                    JuryClass jury = new JuryClass(id, fullName, imageUrl);
+//                                    mJuryList.add(jury);
+//                                    mJuryAdapter.notifyDataSetChanged();
+//                                }
+//
+//
+//                            }
+//
+//
+//                        }
+
+                        getJurryFromServer(mCompetitionId);
 
 
-                                    String id = singleObject.getString("id");
-                                    String fullName = singleObject.getString("jury_fullname");
-                                    String imageUrl = userObject.getString("profile");
-
-
-                                    JuryClass jury = new JuryClass(id, fullName, imageUrl);
-                                    mJuryList.add(jury);
-                                    mJuryAdapter.notifyDataSetChanged();
-                                }
-
-
-                            }
-
-
-                        }
-
-                    } else {
+                    }
+                    else {
                         Toast.makeText(getActivity(), "No Jury", Toast.LENGTH_SHORT).show();
                     }
 
@@ -398,6 +408,78 @@ public class InfoFragment extends Fragment {
         mRequestQueue.add(request);
 
     }
+
+
+    private void getJurryFromServer(final int mCompetitionId)
+    {
+
+        if (!NetworkUtil.isNetworkAvailable()) {
+            Toast.makeText(getApplicationContext(), "No internet", Toast.LENGTH_SHORT).show();
+           // mParticipateFabMenu.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        mRequestQueue = MyVolley.getInstance().getRequestQueue();
+        // Log.d(TAG, "SHIVANI: url = " + ServerConstants.COMPETITION_DETAIL + slug);
+        StringRequest request = new StringRequest(Request.Method.POST, ServerConstants.PARTICIPATE_JURRY, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+//                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
+
+                try {
+                    JSONObject singleObject = new JSONObject(response);
+                    JSONArray jury_details=singleObject.getJSONArray("jury_details");
+
+                    for (int i=0;i<jury_details.length();i++)
+                    {
+                        JSONObject jurryObject = jury_details.getJSONObject(i);
+                        String id = jurryObject.getString("id");
+                        String fullName = UtilsClass.getName(jurryObject.getString("first_name"),jurryObject.getString("last_name"),jurryObject.getString("name"),jurryObject.getString("email"));
+                        String imageUrl = jurryObject.getString("profile");
+
+                        JuryClass jury = new JuryClass(id, fullName, imageUrl);
+                        mJuryList.add(jury);
+                    }
+                    mJuryAdapter.notifyDataSetChanged();
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                NetworkUtil.handleSimpleVolleyRequestError(error, getApplicationContext());
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                final Map<String, String> headers = new HashMap<>();
+                headers.put(getString(R.string.accept), getString(R.string.application_json));
+                headers.put(getString(R.string.authorization), Constants.AUTHORIZATION_HEADER + mSp.getKey(SPConstants.API_KEY));
+
+                return headers;
+            }
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+
+                params.put("competition_id", mCompetitionId+"");
+                return params;
+            }
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        mRequestQueue.add(request);
+
+    }
+
+
+
 
     private void initWebView(final String brief) {
 

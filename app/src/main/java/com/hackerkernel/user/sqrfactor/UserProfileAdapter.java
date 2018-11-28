@@ -590,10 +590,15 @@ public class UserProfileAdapter extends RecyclerView.Adapter<UserProfileAdapter.
             buttonShare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    int pos = getAdapterPosition();
+                    NewsFeedStatus newsFeedStatus= userProfileClassArrayList.get(pos);
+                    String slug = newsFeedStatus.getSlug();
+
+                    String link = UtilsClass.baseurl1+"/post/post-detail/"+newsFeedStatus.getSlug();
                     Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                     sharingIntent.setType("text/plain");
                     sharingIntent.putExtra(Intent.EXTRA_SUBJECT, "SqrFactor");
-                    sharingIntent.putExtra(Intent.EXTRA_TEXT, "professional network for the architecture community visit https://sqrfactor.com");
+                    sharingIntent.putExtra(Intent.EXTRA_TEXT, link);
                     context.startActivity(Intent.createChooser(sharingIntent, "Share via"));
                 }
             });

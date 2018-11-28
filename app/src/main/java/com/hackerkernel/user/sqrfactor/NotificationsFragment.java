@@ -162,6 +162,7 @@ public class NotificationsFragment extends Fragment {
                     @Override
                     public void onResponse(String response) {
                         Log.v("ReponseFeed", response);
+                        commentMsg.setVisibility(View.GONE);
 //                        Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
                         try {
                             JSONObject jsonObject = new JSONObject(response);

@@ -30,8 +30,10 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -70,6 +72,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
+import static android.content.Context.MODE_PRIVATE;
 import static com.hackerkernel.user.sqrfactor.Utility.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE;
 
 public class ProfileActivity extends ToolbarActivity {
@@ -165,33 +169,51 @@ public class ProfileActivity extends ToolbarActivity {
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ContextCompat.checkSelfPermission(ProfileActivity.this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE)
-                        != PackageManager.PERMISSION_GRANTED) {
+                        android.app.AlertDialog.Builder imageDialog = new android.app.AlertDialog.Builder(ProfileActivity.this);
+                        LayoutInflater inflater = (LayoutInflater) ProfileActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
 
-                    ActivityCompat.requestPermissions(ProfileActivity.this,
-                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                            MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-                }
+                        View layout = inflater.inflate(R.layout.custom_fullimage_dialog,
+                                (ViewGroup) findViewById(R.id.layout_root));
+                        ImageView image = (ImageView) layout.findViewById(R.id.fullimage);
+                        image.setImageDrawable(profileImage.getDrawable());
+                        imageDialog.setView(layout);
+                        TextView edittext = (TextView)layout.findViewById(R.id.custom_fullimage_placename);
+                        edittext.setVisibility(View.VISIBLE);
+                        imageDialog.setPositiveButton(getResources().getString(R.string.Edit), new DialogInterface.OnClickListener(){
 
-                if (ActivityCompat.shouldShowRequestPermissionRationale(ProfileActivity.this,
-                        Manifest.permission.CAMERA))
-                {
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (ContextCompat.checkSelfPermission(ProfileActivity.this,
+                                        Manifest.permission.READ_EXTERNAL_STORAGE)
+                                        != PackageManager.PERMISSION_GRANTED) {
+
+                                    ActivityCompat.requestPermissions(ProfileActivity.this,
+                                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                                            MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+                                }
+
+                                if (ActivityCompat.shouldShowRequestPermissionRationale(ProfileActivity.this,
+                                        Manifest.permission.CAMERA))
+                                {
 
 //                    Toast.makeText(ProfileActivity.this,"CAMERA permission allows us to Access CAMERA app", Toast.LENGTH_LONG).show();
 
-                } else {
+                                } else {
 
-                    ActivityCompat.requestPermissions(ProfileActivity.this,new String[]{
-                            Manifest.permission.CAMERA}, RequestPermissionCode);
+                                    ActivityCompat.requestPermissions(ProfileActivity.this,new String[]{
+                                            Manifest.permission.CAMERA}, RequestPermissionCode);
 
-                }
-                selectImage();
+                                }
+                                selectImage();
 
-            }
+                            }
 
+                        });
 
-        });
+                        imageDialog.create();
+                        imageDialog.show();
+                    }
+                });
+
         profileName =(TextView)findViewById(R.id.profile_profile_name);
 
 

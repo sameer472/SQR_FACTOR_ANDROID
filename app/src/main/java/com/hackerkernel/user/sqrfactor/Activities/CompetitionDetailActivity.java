@@ -25,6 +25,8 @@ import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.hackerkernel.user.sqrfactor.Constants.BundleConstants;
@@ -74,7 +76,7 @@ public class CompetitionDetailActivity extends AppCompatActivity {
     private String mCompUserId;
 
     String slug;
-
+    private FloatingActionButton participateButton;
     public boolean mIsParticipateBtnSelected;
     private FloatingActionMenu mParticipateFabMenu;
 
@@ -115,7 +117,7 @@ public class CompetitionDetailActivity extends AppCompatActivity {
         UtilsClass.slug = slug;
 
         mParticipateFabMenu = findViewById(R.id.participate_fab_menu);
-        final FloatingActionButton participateButton = findViewById(R.id.participate_participate);
+        participateButton = findViewById(R.id.participate_participate);
         FloatingActionButton submitDesignButton = findViewById(R.id.participate_submit);
 
         mParticipateFabMenu.setOnMenuButtonClickListener(new View.OnClickListener() {
@@ -166,8 +168,9 @@ public class CompetitionDetailActivity extends AppCompatActivity {
             Toast.makeText(this, "No internet", Toast.LENGTH_SHORT).show();
             return;
         }
-//        Toast.makeText(getApplicationContext(),"calling",Toast.LENGTH_LONG).show();
-        mRequestQueue = MyVolley.getInstance().getRequestQueue();
+        Toast.makeText(getApplicationContext(),"calling",Toast.LENGTH_LONG).show();
+        //mRequestQueue = MyVolley.getInstance().getRequestQueue();
+        mRequestQueue = Volley.newRequestQueue(this);
 
         StringRequest request = new StringRequest(Request.Method.POST, ServerConstants.PARTICIPATE_CHECK, new Response.Listener<String>() {
             @Override
@@ -175,10 +178,11 @@ public class CompetitionDetailActivity extends AppCompatActivity {
                 Log.d(TAG, "onResponse: called");
 
                 Log.d("participate_check",  response);
-//                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
                 if (mIsParticipateBtnSelected) {
                     try {
-                        JSONObject responseObject = new JSONObject(response);
+                        JSONObject response1 = new JSONObject(response);
+                        JSONObject responseObject=response1.getJSONObject("response");
 
                         if (responseObject.getInt("code")==4) { // user hasn't participated yet
 //                            Toast.makeText(getApplicationContext(),"code4",Toast.LENGTH_LONG).show();
@@ -273,15 +277,15 @@ public class CompetitionDetailActivity extends AppCompatActivity {
                         String res = new String(response.data,
                                 HttpHeaderParser.parseCharset(response.headers, "utf-8"));
                         Log.v("chat",res);
-//                                Toast.makeText(getApplicationContext(),res,Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),res,Toast.LENGTH_LONG).show();
                         // Now you can use any deserializer to make sense of data
                         JSONObject obj = new JSONObject(res);
                     } catch (UnsupportedEncodingException e1) {
-//                                Toast.makeText(getApplicationContext(),e1.toString(),Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),e1.toString(),Toast.LENGTH_LONG).show();
                         // Couldn't properly decode data to string
                         e1.printStackTrace();
                     } catch (JSONException e2) {
-//                                Toast.makeText(getApplicationContext(),e2.toString(),Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(),e2.toString(),Toast.LENGTH_LONG).show();
                         // returned data is not JSONObject?
                         e2.printStackTrace();
                     }
@@ -303,7 +307,6 @@ public class CompetitionDetailActivity extends AppCompatActivity {
 
                 params.put("competition_id", mCompetitionId);
                 params.put("PaymentStatus", paymentstatus);
-
                 return params;
             }
 
@@ -401,20 +404,23 @@ public class CompetitionDetailActivity extends AppCompatActivity {
             public void onResponse(String response) {
                 mParticipateFabMenu.setVisibility(View.VISIBLE);
 
-                Log.d(TAG, "onResponse: competition detail response = " + response);
+                //Log.d(TAG, "onResponse: competition detail response = " + response);
                 //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
 
                 try {
                     JSONObject responseObject = new JSONObject(response);
                     if(responseObject.has("first_paymentstatus"))
                     {
+
                         paymentstatus=responseObject.getString("first_paymentstatus");
-//                        Toast.makeText(getApplicationContext(),paymentstatus,Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),paymentstatus,Toast.LENGTH_LONG).show();
+
                     }
                     else {
-                        JSONObject paymentstatusObject=responseObject.getJSONObject("paymentstatus");
-                        paymentstatus=paymentstatusObject.getString("Payment_Status");
-//                        Toast.makeText(getApplicationContext(),paymentstatus,Toast.LENGTH_LONG).show();
+
+                        //JSONObject paymentstatusObject=responseObject.getJSONObject("paymentstatus");
+                        paymentstatus=responseObject.getString("paymentstatus");
+                        Toast.makeText(getApplicationContext(),paymentstatus,Toast.LENGTH_LONG).show();
 
                     }
 
@@ -433,9 +439,12 @@ public class CompetitionDetailActivity extends AppCompatActivity {
                     mCollapsingToolbarLayout.setTitle(competitionTitle);
 
                     String coverImageUrl = competitionObj.getString("cover_image");
-                    Log.d(TAG, "onResponse: cover image url = " + coverImageUrl);
+                    Toast.makeText(getApplicationContext(),coverImageUrl,Toast.LENGTH_LONG).show();
+//                    Log.d(TAG, "onResponse: cover image url = " + coverImageUrl);
 
-                    Picasso.get().load(ServerConstants.IMAGE_BASE_URL + coverImageUrl).into(mCoverImageView);
+                    Glide.with(getApplicationContext()).load(UtilsClass.getParsedImageUrl(coverImageUrl))
+                            .into(mCoverImageView);
+                   // Picasso.get().load(ServerConstants.IMAGE_BASE_URL + coverImageUrl).into(mCoverImageView);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

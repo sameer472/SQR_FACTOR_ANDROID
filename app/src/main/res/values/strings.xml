@@ -442,5 +442,6 @@ Week Winners and 3 words for a week will be announced at 11 PM on dates – 10, 
 
     <string name="facebook_app_id">679516465505129</string>
     <string name="fb_login_protocol_scheme">fb679516465505129</string>
+    <string name="Edit">Edit</string>
 
 </resources>

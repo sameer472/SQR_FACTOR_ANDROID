@@ -1,7 +1,9 @@
 package com.hackerkernel.user.sqrfactor;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -17,8 +19,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
@@ -122,12 +126,27 @@ public class UserProfileActivity extends AppCompatActivity {
 
         messagebtn = (Button) findViewById(R.id.user_messagebtn);
         coverImage = (ImageView) findViewById(R.id.user_coverImage);
-        userProfileImage = (ImageView) findViewById(R.id.user_image);
         userName = (TextView) findViewById(R.id.user_name);
         followCnt = (TextView) findViewById(R.id.user_followers);
         followingCnt = (TextView) findViewById(R.id.user_following);
         portfolioCnt = (TextView) findViewById(R.id.user_portfolio);
         bluePrintCnt = (TextView) findViewById(R.id.user_blueprint);
+        userProfileImage = (ImageView) findViewById(R.id.user_image);
+        userProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder imageDialog = new AlertDialog.Builder(UserProfileActivity.this);
+                LayoutInflater inflater = (LayoutInflater) UserProfileActivity.this.getSystemService(LAYOUT_INFLATER_SERVICE);
+
+                View layout = inflater.inflate(R.layout.custom_fullimage_dialog,
+                        (ViewGroup) findViewById(R.id.layout_root));
+                ImageView image = (ImageView) layout.findViewById(R.id.fullimage);
+                image.setImageDrawable(userProfileImage.getDrawable());
+                imageDialog.setView(layout);
+                imageDialog.create();
+                imageDialog.show();
+            }
+        });
 
         recyclerView = findViewById(R.id.user_profile_recycler);
 //        progressBar = rootView.findViewById(R.id.progress_bar_status);
