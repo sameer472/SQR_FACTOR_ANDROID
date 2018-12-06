@@ -209,25 +209,32 @@ public class UserArrayAdapter extends ArrayAdapter<UserClass> implements Filtera
         }
         mRequestQueue = MyVolley.getInstance().getRequestQueue();
 
-        StringRequest request = new StringRequest(Request.Method.POST, ServerConstants.USER_SEARCH, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Request.Method.POST, ServerConstants.USER_SEARCH_COMPETITION, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, "onResponse: user search response = " + response);
                 List<UserClass> mUsers = new ArrayList<>();
+                //Toast.makeText(mContext, response, Toast.LENGTH_SHORT).show();
 
                 try {
                     JSONObject responseObject = new JSONObject(response);
 
-                    JSONArray usersArray = responseObject.getJSONArray("users");
+                    JSONObject usersObject=responseObject.getJSONObject("users");
+
+                    JSONArray usersArray = usersObject.getJSONArray("data");
+
 
                     for (int i = 0; i < usersArray.length(); i++) {
                         JSONObject singleObj = usersArray.getJSONObject(i);
 
                         String id = singleObj.getString("id");
                         String name;
-                        if(singleObj.getString("first_name")!=null && singleObj.getString("first_name").equals("null") && singleObj.getString("first_name")!=null && singleObj.getString("last_name").equals("null") ){
+
+                        if(singleObj.getString("first_name")==null || singleObj.getString("first_name").equals("null")){
+
                             name = singleObj.getString("name");
                         }else {
+
                             name = singleObj.getString("first_name") + " " + singleObj.getString("last_name");
                         }
                         String profileUrl = singleObj.getString("profile");

@@ -1,6 +1,7 @@
 package com.hackerkernel.user.sqrfactor.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.hackerkernel.user.sqrfactor.Pojo.JuryClass;
 import com.hackerkernel.user.sqrfactor.R;
 import com.hackerkernel.user.sqrfactor.Storage.MySharedPreferences;
+import com.hackerkernel.user.sqrfactor.UserProfileActivity;
 import com.hackerkernel.user.sqrfactor.UtilsClass;
 import com.squareup.picasso.Picasso;
 
@@ -67,9 +69,25 @@ public class JuryAdapter extends RecyclerView.Adapter<JuryAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        JuryClass jury = mJuryList.get(position);
+        final JuryClass jury = mJuryList.get(position);
 
         holder.nameTV.setText(jury.getFullName());
+
+        holder.nameTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(mContext,UserProfileActivity.class);
+                intent.putExtra("User_id",jury.getId());
+                intent.putExtra("ProfileUserName",jury.getUser_name());
+                intent.putExtra("ProfileUrl",jury.getImageUrl());
+                intent.putExtra("UserType",jury.getUser_type());
+                mContext.startActivity(intent);
+
+
+            }
+        });
+
+
 
         Glide.with(mContext).load(UtilsClass.getParsedImageUrl(jury.getImageUrl()))
                 .into(holder.imageIV);

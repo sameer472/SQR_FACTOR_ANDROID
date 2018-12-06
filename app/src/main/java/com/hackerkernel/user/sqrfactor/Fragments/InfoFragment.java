@@ -163,10 +163,20 @@ public class InfoFragment extends Fragment {
         mSp = MySharedPreferences.getInstance(getActivity());
         mRequestQueue = MyVolley.getInstance().getRequestQueue();
 
-        Intent i = getActivity().getIntent();
-        String slug = i.getStringExtra(BundleConstants.SLUG);
 
-        competitionDetailApi(slug);
+
+        if(getActivity().getIntent()!=null && getActivity().getIntent().hasExtra(BundleConstants.SLUG))
+        {
+            String slug = getActivity().getIntent().getStringExtra(BundleConstants.SLUG);
+            UtilsClass.slug = slug;
+            competitionDetailApi(slug);
+        }
+        else {
+            String slug=UtilsClass.slug;
+            competitionDetailApi(slug);
+        }
+
+
 
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -434,11 +444,13 @@ public class InfoFragment extends Fragment {
                     for (int i=0;i<jury_details.length();i++)
                     {
                         JSONObject jurryObject = jury_details.getJSONObject(i);
-                        String id = jurryObject.getString("id");
+                        int id = jurryObject.getInt("id");
                         String fullName = UtilsClass.getName(jurryObject.getString("first_name"),jurryObject.getString("last_name"),jurryObject.getString("name"),jurryObject.getString("email"));
                         String imageUrl = jurryObject.getString("profile");
+                        String user_type = jurryObject.getString("user_type");
+                        String user_name = jurryObject.getString("user_name");
 
-                        JuryClass jury = new JuryClass(id, fullName, imageUrl);
+                        JuryClass jury = new JuryClass(id, fullName, imageUrl,user_type,user_name);
                         mJuryList.add(jury);
                     }
                     mJuryAdapter.notifyDataSetChanged();
@@ -497,7 +509,7 @@ public class InfoFragment extends Fragment {
         Thread thread = new Thread() {
             @Override
             public void run() {
-                try { Thread.sleep(100); }
+                try { Thread.sleep(10); }
                 catch (InterruptedException e) {}
 
                 getActivity().runOnUiThread(new Runnable() {

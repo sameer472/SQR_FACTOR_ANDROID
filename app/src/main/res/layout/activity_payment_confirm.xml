@@ -160,7 +160,6 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:gravity="center_vertical"
-                android:drawableLeft="@drawable/ic_online"
                 android:id="@+id/pay_confirm_participants"
                 android:fontFamily="@font/roboto"
                 tools:text="Testing Competition On 27th"/>
@@ -198,7 +197,7 @@
                 android:gravity="center"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/roboto"
-                tools:text="Testing Competition On 27th"/>
+                tools:text=""/>
 
 
             <TextView
@@ -225,7 +224,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/payUmoney"
-                    android:text="PayUmoney"
+                    android:text="Cards/NetBanking/Wallet/UPI"
                     android:fontFamily="@font/roboto"/>
             </RadioGroup>
         </LinearLayout>

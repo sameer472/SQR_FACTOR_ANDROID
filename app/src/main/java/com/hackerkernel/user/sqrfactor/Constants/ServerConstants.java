@@ -16,6 +16,7 @@ public class ServerConstants {
     public static final String LOGIN = BASE_URL + "login";
 
     public static final String USER_SEARCH = BASE_URL + "usersearch";
+    public static final String USER_SEARCH_COMPETITION = BASE_URL_COMPETITION + "search/participate";
 
     // COMPETITIONS
     //Post
@@ -33,7 +34,7 @@ public class ServerConstants {
     public static final String SUBMISSION_DESIGN_SAVE = BASE_URL_COMPETITION + "submission/design-save";
     public static final String POST_JOB = BASE_URL + "job/save";
 
-    public static final String PARTICIPATE_DATA = BASE_URL_COMPETITION + "post/participate-data";
+    public static final String PARTICIPATE_DATA = BASE_URL_COMPETITION + "post/participate-data/";
     public static final String COMPETITION_SAVE = BASE_URL_COMPETITION + "competition-save";  // Using multipart
 
     public static final String ELIGIBILITY_CRITERIA_UPDATE = BASE_URL_COMPETITION + "eligibilityCriteria-awardstherDetails-update";

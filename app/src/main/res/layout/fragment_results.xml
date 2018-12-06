@@ -4,10 +4,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center">
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Result will be announced on 25-02-2019"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@color/sqr"
+        android:textSize="18dp"
+        android:fontFamily="@font/roboto"/>
+</LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         android:id="@+id/results_rv"/>
 
 

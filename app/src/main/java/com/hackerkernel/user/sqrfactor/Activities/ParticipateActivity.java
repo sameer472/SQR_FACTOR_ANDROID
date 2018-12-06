@@ -183,9 +183,14 @@ public class ParticipateActivity extends AppCompatActivity {
 
         mParticipant1Layout.setVisibility(View.VISIBLE);
 
-        String profileUrlFull = ServerConstants.IMAGE_BASE_URL + profileImagePath;
+       // String profileUrlFull = ServerConstants.IMAGE_BASE_URL + profileImagePath;
 
-        Picasso.get().load(profileUrlFull).into(participant1ImageIV);
+        //Picasso.get().load(profileImagePath).into(participant1ImageIV);
+
+        Glide.with(getApplicationContext()).load(UtilsClass.getParsedImageUrl(profileImagePath))
+                .into(participant1ImageIV);
+
+
         participant1NameTV.setText(name);
         participant1EmailTV.setText(email);
 //        userClass=new UserClass(userId,name,profileImagePath,email,"9999999999");
@@ -216,7 +221,10 @@ public class ParticipateActivity extends AppCompatActivity {
 
                 Log.d(TAG, "onItemClick:  url = " + user2Tv.getProfilePicPath());
 
-                Picasso.get().load(UtilsClass.getParsedImageUrl(user2Tv.getProfilePicPath())).into(participant2ImageIV);
+               // Picasso.get().load(UtilsClass.getParsedImageUrl(user2Tv.getProfilePicPath())).into(participant2ImageIV);
+
+                Glide.with(getApplicationContext()).load(UtilsClass.getParsedImageUrl(user2Tv.getProfilePicPath()))
+                        .into(participant2ImageIV);
 
                 mTeamMembersTV.setVisibility(View.VISIBLE);
                 mParticipant2Layout.setVisibility(View.VISIBLE);
@@ -252,7 +260,10 @@ public class ParticipateActivity extends AppCompatActivity {
                 index2=true;
 
                 Log.d(TAG, "onItemClick:  url = " + user.getProfilePicPath());
-                Picasso.get().load(UtilsClass.getParsedImageUrl(user.getProfilePicPath())).into(participant3ImageIV);
+               // Picasso.get().load(UtilsClass.getParsedImageUrl(user.getProfilePicPath())).into(participant3ImageIV);
+
+                Glide.with(getApplicationContext()).load(UtilsClass.getParsedImageUrl(user.getProfilePicPath()))
+                        .into(participant3ImageIV);
 
                 mTeamMembersTV.setVisibility(View.VISIBLE);
                 mParticipant3Layout.setVisibility(View.VISIBLE);
@@ -295,7 +306,10 @@ public class ParticipateActivity extends AppCompatActivity {
                 mentorNameTV.setText(user.getName());
                 mentorEmailTV.setText(user.getEmail());
 
-                Picasso.get().load(UtilsClass.getParsedImageUrl(user.getProfilePicPath())).into(mentorImageIV);
+               // Picasso.get().load(UtilsClass.getParsedImageUrl(user.getProfilePicPath())).into(mentorImageIV);
+
+                Glide.with(getApplicationContext()).load(UtilsClass.getParsedImageUrl(user.getProfilePicPath()))
+                        .into(mentorImageIV);
 
                 mMentorTV.setVisibility(View.VISIBLE);
                 mMentorLayout.setVisibility(View.VISIBLE);
@@ -312,10 +326,13 @@ public class ParticipateActivity extends AppCompatActivity {
             }
         });
 
-//        Toast.makeText(this, "No internet@123"+mCompetitionId, Toast.LENGTH_SHORT).show();
-        if(i.hasExtra(BundleConstants.COMPETITION_EDIT_BTN))
+//
+        if(getIntent()!=null && getIntent().hasExtra(BundleConstants.COMPETITION_EDIT_BTN))
         {
+//            Toast.makeText(this, "No internet@123"+mCompetitionId, Toast.LENGTH_SHORT).show();
+            mCompetitionId=getIntent().getStringExtra(BundleConstants.COMPETITION_ID);
             GetParticipantDetailsAndBindToView();
+
         }
 
 
@@ -424,14 +441,15 @@ public class ParticipateActivity extends AppCompatActivity {
 
 
 
-        if (!NetworkUtil.isNetworkAvailable()) {
-            Toast.makeText(this, "No internet", Toast.LENGTH_SHORT).show();
-            mPb.setVisibility(View.GONE);
-            mContentLayout.setVisibility(View.VISIBLE);
-            return;
-        }
+//        if (!NetworkUtil.isNetworkAvailable()) {
+//            Toast.makeText(this, "No internet", Toast.LENGTH_SHORT).show();
+//            mPb.setVisibility(View.GONE);
+//            mContentLayout.setVisibility(View.VISIBLE);
+//            return;
+//        }
 //
         mRequestQueue = MyVolley.getInstance().getRequestQueue();
+//        mRequestQueue=
         StringRequest request = new StringRequest(Request.Method.POST, ServerConstants.EXISTING_PARTICIPATE_DATA_FOR_EDIT+mCompetitionId, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -440,62 +458,102 @@ public class ParticipateActivity extends AppCompatActivity {
                 mContentLayout.setVisibility(View.VISIBLE);
 
 
+//                Toast.makeText(getApplicationContext(),"calling edit",Toast.LENGTH_LONG).show();
 //                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
-                Log.d(TAG, "onResponse: participate existingdata response = " + response);
+//                Log.d(TAG, "onResponse: participate existingdata response = " + response);
 
                 try {
 
-
                     JSONObject jsonObject=new JSONObject(response);
-                    if(jsonObject.getJSONObject("participate1")!=null)
+
+                    Object aObj = jsonObject.get("participate1");
+                    if(aObj instanceof String){
+                        //System.out.println(aObj);
+                    }
+//                    if(jsonObject.getJSONObject("participate1")!=null)
+                    else
                     {
 //                        Toast.makeText(getApplicationContext(),"Toast1",Toast.LENGTH_LONG).show();
                         AlreadyExistingParticipantsClass alreadyExistingParticipantsClass=new AlreadyExistingParticipantsClass(jsonObject.getJSONObject("participate1"));
                         //storedParticipantsMap.put("Key2",alreadyExistingParticipantsClass);
                     }
-                    if(jsonObject.getJSONObject("participate2")!=null && jsonObject.getJSONObject("participate2").length()!=0)
+                    aObj = jsonObject.get("participate2");
+
+                    if(aObj instanceof String){
+                        //System.out.println(aObj);
+                    }
+                    else
                     {
 //                        Toast.makeText(getApplicationContext(),"Toast2",Toast.LENGTH_LONG).show();
-                        AlreadyExistingParticipantsClass alreadyExistingParticipantsClass=new AlreadyExistingParticipantsClass(jsonObject.getJSONObject("participate2"));
-                        storedParticipantsMap.put("Key2",alreadyExistingParticipantsClass);
+                        if(jsonObject.getJSONObject("participate2")!=null && jsonObject.getJSONObject("participate2").length()!=0) {
+                            AlreadyExistingParticipantsClass alreadyExistingParticipantsClass = new AlreadyExistingParticipantsClass(jsonObject.getJSONObject("participate2"));
+                            storedParticipantsMap.put("Key2", alreadyExistingParticipantsClass);
+                        }
                     }
 
+                    aObj = jsonObject.get("participate3");
 
-                    if(jsonObject.getJSONObject("participate3")!=null&& jsonObject.getJSONObject("participate3").length()!=0)
-                    {
+                    if(aObj instanceof String){
+                        //System.out.println(aObj);
+                    }
+                    else {
+                        if (jsonObject.getJSONObject("participate3") != null && jsonObject.getJSONObject("participate3").length() != 0) {
 //                        Toast.makeText(getApplicationContext(),"Toast3",Toast.LENGTH_LONG).show();
-                        AlreadyExistingParticipantsClass alreadyExistingParticipantsClass=new AlreadyExistingParticipantsClass(jsonObject.getJSONObject("participate3"));
-                        storedParticipantsMap.put("Key3",alreadyExistingParticipantsClass);
+                            AlreadyExistingParticipantsClass alreadyExistingParticipantsClass = new AlreadyExistingParticipantsClass(jsonObject.getJSONObject("participate3"));
+                            storedParticipantsMap.put("Key3", alreadyExistingParticipantsClass);
+                        }
                     }
+                    aObj = jsonObject.get("participate4");
 
-                    if(jsonObject.getJSONObject("participate4")!=null&& jsonObject.getJSONObject("participate4").length()!=0)
-                    {
+                    if(aObj instanceof String){
+                        //System.out.println(aObj);
+                    }
+                    else {
+
+                        if (jsonObject.getJSONObject("participate4") != null && jsonObject.getJSONObject("participate4").length() != 0) {
 //                        Toast.makeText(getApplicationContext(),"Toast4",Toast.LENGTH_LONG).show();
-                        AlreadyExistingParticipantsClass alreadyExistingParticipantsClass=new AlreadyExistingParticipantsClass(jsonObject.getJSONObject("participate4"));
-                        storedParticipantsMap.put("Key4",alreadyExistingParticipantsClass);
+                            AlreadyExistingParticipantsClass alreadyExistingParticipantsClass = new AlreadyExistingParticipantsClass(jsonObject.getJSONObject("participate4"));
+                            storedParticipantsMap.put("Key4", alreadyExistingParticipantsClass);
+                        }
                     }
 
-                    if(jsonObject.getJSONObject("participate5")!=null&& jsonObject.getJSONObject("participate5").length()!=0)
-                    {
+                    aObj = jsonObject.get("participate5");
+                    if(aObj instanceof String){
+                        //System.out.println(aObj);
+                    }
+                    else {
+
+                        if (jsonObject.getJSONObject("participate5") != null && jsonObject.getJSONObject("participate5").length() != 0) {
 //                        Toast.makeText(getApplicationContext(),"Toast5",Toast.LENGTH_LONG).show();
-                        AlreadyExistingParticipantsClass alreadyExistingParticipantsClass=new AlreadyExistingParticipantsClass(jsonObject.getJSONObject("participate5"));
-                        storedParticipantsMap.put("Key5",alreadyExistingParticipantsClass);
+                            AlreadyExistingParticipantsClass alreadyExistingParticipantsClass = new AlreadyExistingParticipantsClass(jsonObject.getJSONObject("participate5"));
+                            storedParticipantsMap.put("Key5", alreadyExistingParticipantsClass);
+                        }
                     }
 
-                    if(jsonObject.getJSONObject("mentor1")!=null&& jsonObject.getJSONObject("mentor1").length()!=0)
-                    {
+                    aObj = jsonObject.get("mentor1");
+                    if(aObj instanceof String){
+                        //System.out.println(aObj);
+                    }
+                    else {
+
+                        if (jsonObject.getJSONObject("mentor1") != null && jsonObject.getJSONObject("mentor1").length() != 0) {
 //                        Toast.makeText(getApplicationContext(),"mentor1",Toast.LENGTH_LONG).show();
-                        AlreadyExistingParticipantsClass alreadyExistingParticipantsClass=new AlreadyExistingParticipantsClass(jsonObject.getJSONObject("mentor1"));
-                        storedParticipantsMap.put("Key6",alreadyExistingParticipantsClass);
+                            AlreadyExistingParticipantsClass alreadyExistingParticipantsClass = new AlreadyExistingParticipantsClass(jsonObject.getJSONObject("mentor1"));
+                            storedParticipantsMap.put("Key6", alreadyExistingParticipantsClass);
+                        }
                     }
+                    aObj = jsonObject.get("mentor2");
+                    if(aObj instanceof String){
+                        //System.out.println(aObj);
+                    }
+                    else {
 
-                    if(jsonObject.getJSONObject("mentor2")!=null && jsonObject.getJSONObject("mentor2").length()!=0)
-                    {
+                        if (jsonObject.getJSONObject("mentor2") != null && jsonObject.getJSONObject("mentor2").length() != 0) {
 //                        Toast.makeText(getApplicationContext(),"mentor2",Toast.LENGTH_LONG).show();
-                        AlreadyExistingParticipantsClass alreadyExistingParticipantsClass=new AlreadyExistingParticipantsClass(jsonObject.getJSONObject("mentor2"));
-                        storedParticipantsMap.put("Key7",alreadyExistingParticipantsClass);
+                            AlreadyExistingParticipantsClass alreadyExistingParticipantsClass = new AlreadyExistingParticipantsClass(jsonObject.getJSONObject("mentor2"));
+                            storedParticipantsMap.put("Key7", alreadyExistingParticipantsClass);
+                        }
                     }
-
 
 
                     BindAlreadyExistingParticipants(storedParticipantsMap);
@@ -724,21 +782,24 @@ public void BindAlreadyExistingParticipants(HashMap<String,AlreadyExistingPartic
             }
 //
             mRequestQueue = MyVolley.getInstance().getRequestQueue();
-            StringRequest request = new StringRequest(Request.Method.POST, ServerConstants.PARTICIPATE_DATA, new Response.Listener<String>() {
+//
+           // mRequestQueue= Volley.newRequestQueue(this);
+
+            StringRequest request = new StringRequest(Request.Method.POST, ServerConstants.PARTICIPATE_DATA+mCompetitionId, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
 
                     mPb.setVisibility(View.GONE);
                     mContentLayout.setVisibility(View.VISIBLE);
-//                    Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
                     Log.d(TAG, "onResponse: participate data response = " + response);
 
                     try {
-                        Toast.makeText(ParticipateActivity.this, "Participation Successful", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(ParticipateActivity.this, "Participation Successful", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(ParticipateActivity.this, PaymentConfirmActivity.class);
                         i.putExtra(BundleConstants.COMPETITION_ID, mCompetitionId);
                         startActivity(i);
-                        //finish();
+                        finish();
 
                     } catch (Error e) {
                         e.printStackTrace();
@@ -759,17 +820,17 @@ public void BindAlreadyExistingParticipants(HashMap<String,AlreadyExistingPartic
                             if (statusCode == 400 || statusCode == 401) {
                                 //server error
                                 String errorMsg = JsonParser.SimpleParser(body);
-//                                Toast.makeText(ParticipateActivity.this, errorMsg, Toast.LENGTH_LONG).show();
+                                Toast.makeText(ParticipateActivity.this, statusCode+errorMsg, Toast.LENGTH_LONG).show();
 
                             } else if (statusCode == 422) {
                                 JSONObject object = new JSONObject(body);
                                 JSONObject responseObj = object.getJSONObject("Response");
                                 String message = responseObj.getString("message");
 
-//                                Toast.makeText(ParticipateActivity.this, message, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ParticipateActivity.this, statusCode+message, Toast.LENGTH_SHORT).show();
                             } else {
                                 String errorString = MyVolley.handleVolleyError(error);
-//                                Toast.makeText(ParticipateActivity.this, errorString, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ParticipateActivity.this, statusCode+errorString, Toast.LENGTH_SHORT).show();
                             }
                         } catch (UnsupportedEncodingException | JSONException e) {
                             e.printStackTrace();
@@ -777,7 +838,7 @@ public void BindAlreadyExistingParticipants(HashMap<String,AlreadyExistingPartic
                         }
                     } else {
                         String errorString = MyVolley.handleVolleyError(error);
-//                        Toast.makeText(ParticipateActivity.this, errorString, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ParticipateActivity.this, errorString, Toast.LENGTH_SHORT).show();
                     }
                 }
             }) {
@@ -813,7 +874,7 @@ public void BindAlreadyExistingParticipants(HashMap<String,AlreadyExistingPartic
                     }
 
                     if (mMentorsACTV.getTag() != null) {
-
+                        //Toast.makeText(ParticipateActivity.this, "edititng", Toast.LENGTH_SHORT).show();
                         String mentorName = mMentorsACTV.getText().toString();
                         String mentorId = mMentorsACTV.getTag().toString();
                         params.put("mentor[0]", mentorName);
@@ -821,12 +882,10 @@ public void BindAlreadyExistingParticipants(HashMap<String,AlreadyExistingPartic
                         Log.d(TAG, "getParams: mentor name = " + mentorName);
                         Log.d(TAG, "getParams: mentor id = " + mentorId);
 
-
-
-                    }
+                        }
                     else {
-                        params.put("mentor[0]", "null");
-                        params.put("mentor_id[0]", "null");
+                        params.put("mentor[0]","");
+                        params.put("mentor_id[0]","");
                     }
 
                     return params;

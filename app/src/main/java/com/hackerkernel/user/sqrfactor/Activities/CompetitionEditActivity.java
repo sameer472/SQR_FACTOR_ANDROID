@@ -236,7 +236,7 @@ public class CompetitionEditActivity extends AppCompatActivity implements View.O
                                     JSONObject userObject = singleObject.getJSONObject("user");
                                     Log.d(TAG, "userObject: " + userObject.toString());
 
-                                    String id = singleObject.getString("id");
+                                    int id = singleObject.getInt("id");
                                     String fullName = singleObject.getString("jury_fullname");
                                     String imageUrl = userObject.getString("profile");
 

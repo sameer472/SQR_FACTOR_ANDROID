@@ -113,11 +113,12 @@ public class UserProfileActivity extends AppCompatActivity {
         progressBar=findViewById(R.id.progress_bar_user_profile);
         noData = findViewById(R.id.user_noData);
         Intent intent = getIntent();
+
         user_id = intent.getIntExtra("User_id", 0);
         profileNameOfUser = intent.getStringExtra("ProfileUserName");
         friendProfileUrl=intent.getStringExtra("ProfileUrl");
         userType=intent.getStringExtra("UserType");
-        //Toast.makeText(getApplicationContext(), user_id + " " + profileNameOfUser+" "+userType, Toast.LENGTH_LONG).show();
+       // Toast.makeText(getApplicationContext(), user_id + " " + profileNameOfUser+" "+userType, Toast.LENGTH_LONG).show();
 
         SharedPreferences sharedPreferences = getSharedPreferences("PREF_NAME", MODE_PRIVATE);
         String token = sharedPreferences.getString("TOKEN", "sqr");

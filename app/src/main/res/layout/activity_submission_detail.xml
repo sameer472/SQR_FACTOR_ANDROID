@@ -62,7 +62,7 @@
                     android:layout_height="60dp"
                     android:layout_marginStart="16dp"
                     android:layout_marginLeft="16dp"
-                    android:src="@drawable/profilepic" />
+                    android:src="@drawable/avatar" />
 
                 <LinearLayout
                     android:layout_width="0dp"

@@ -62,6 +62,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.hackerkernel.user.sqrfactor.Constants.SPConstants;
+import com.hackerkernel.user.sqrfactor.Storage.MySharedPreferences;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -108,6 +110,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
     private GoogleSignInClient mGoogleSignInClient;
     private Button fb_signup,google_signup;
     private Context context;
+    private MySharedPreferences mSp;
 
 
     @Override
@@ -117,7 +120,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
         callbackManager = CallbackManager.Factory.create();
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_signup, container, false);
-
+        mSp = MySharedPreferences.getInstance(getActivity());
         company_name = rootView.findViewById(R.id.architecture_company_name);
         college_name = rootView.findViewById(R.id.architecture_college_name);
         organization_name = rootView.findViewById(R.id.architecture_organizations_name);
@@ -203,7 +206,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
             }
         });
         facebookSignup = rootView.findViewById(R.id.facebook_signup);
-        facebookSignup.setLoginBehavior(LoginBehavior.WEB_VIEW_ONLY);
+        facebookSignup.setLoginBehavior(LoginBehavior.WEB_ONLY);
         facebookSignup.setReadPermissions(Arrays.asList(new String[]{"public_profile", "email", "user_birthday"}));
         facebookSignup.setFragment(this);
         facebookSignup.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -503,6 +506,14 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                                 JSONObject TokenObject = jsonObject.getJSONObject("success");
                                 String Token = TokenObject.getString("token");
 
+                                mSp.setKey(SPConstants.API_KEY, Token);
+                                mSp.setKey(SPConstants.USER_ID, String.valueOf(userClass.getUserId()));
+                                mSp.setKey(SPConstants.PROFILE_URL, userClass.getProfile());
+                                mSp.setKey(SPConstants.EMAIL, userClass.getEmail());
+                                mSp.setKey(SPConstants.USER_TYPE,userClass.getUserType());
+                                mSp.setKey(SPConstants.NAME,UtilsClass.getName(userClass.getFirst_name(),userClass.getLast_name(),userClass.getName(),userClass.getUser_name()));
+
+
                                 editor.putString("TOKEN", Token);
                                 SharedPreferences.Editor prefsEditor = mPrefs.edit();
                                 Gson gson = new Gson();
@@ -640,8 +651,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
 
                             }
 
-
-                            ArrayAdapter<String> spin_adapter1 = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, countryName);
+                            ArrayAdapter<String> spin_adapter1 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, countryName);
                             userCountrySpinner.setAdapter(spin_adapter1);
 
                         } catch (JSONException e) {
@@ -722,6 +732,14 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
 
                                                     JSONObject TokenObject = jsonObject.getJSONObject("success");
                                                     String Token = TokenObject.getString("token");
+
+
+                                                    mSp.setKey(SPConstants.API_KEY, Token);
+                                                    mSp.setKey(SPConstants.USER_ID, String.valueOf(userClass.getUserId()));
+                                                    mSp.setKey(SPConstants.PROFILE_URL, userClass.getProfile());
+                                                    mSp.setKey(SPConstants.EMAIL, userClass.getEmail());
+                                                    mSp.setKey(SPConstants.USER_TYPE,userClass.getUserType());
+                                                    mSp.setKey(SPConstants.NAME,UtilsClass.getName(userClass.getFirst_name(),userClass.getLast_name(),userClass.getName(),userClass.getUser_name()));
 
                                                     editor.putString("TOKEN", Token);
                                                     TokenClass.Token=Token;
@@ -847,6 +865,14 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
 
                                 JSONObject TokenObject = jsonObject.getJSONObject("success");
                                 String Token = TokenObject.getString("token");
+
+
+                                mSp.setKey(SPConstants.API_KEY, Token);
+                                mSp.setKey(SPConstants.USER_ID, String.valueOf(userClass.getUserId()));
+                                mSp.setKey(SPConstants.PROFILE_URL, userClass.getProfile());
+                                mSp.setKey(SPConstants.EMAIL, userClass.getEmail());
+                                mSp.setKey(SPConstants.USER_TYPE,userClass.getUserType());
+                                mSp.setKey(SPConstants.NAME,UtilsClass.getName(userClass.getFirst_name(),userClass.getLast_name(),userClass.getName(),userClass.getUser_name()));
 
                                 editor.putString("TOKEN", Token);
                                 SharedPreferences.Editor prefsEditor = mPrefs.edit();

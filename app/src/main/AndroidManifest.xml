@@ -59,6 +59,11 @@
         <activity android:name="com.paypal.android.sdk.payments.FuturePaymentInfoActivity" />
         <activity android:name="io.card.payment.DataEntryActivity" />
 
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_live_aOXJg165zL1wQQ"
+            />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

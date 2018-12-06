@@ -71,7 +71,15 @@ public class AttachmentsAdapter extends RecyclerView.Adapter<AttachmentsAdapter.
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         AttachmentClass attachment = mAttachments.get(position);
 
-        holder.nameTV.setText("Download Breif");
+        if(position==0)
+        {
+            holder.nameTV.setText("Download Site");
+        }
+
+        else {
+            holder.nameTV.setText("Download Brief");
+        }
+
         holder.nameTV.setTextColor(Color.RED);
         holder.download_link.setText(attachment.getAttachmentUrl());
         holder.nameTV.setOnClickListener(new View.OnClickListener() {

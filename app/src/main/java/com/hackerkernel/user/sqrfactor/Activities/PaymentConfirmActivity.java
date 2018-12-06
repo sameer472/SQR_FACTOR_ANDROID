@@ -43,9 +43,8 @@ import com.paypal.android.sdk.payments.PayPalPayment;
 import com.paypal.android.sdk.payments.PayPalService;
 import com.paypal.android.sdk.payments.PaymentActivity;
 import com.paypal.android.sdk.payments.PaymentConfirmation;
-import com.sasidhar.smaps.payumoney.MakePaymentActivity;
-import com.sasidhar.smaps.payumoney.PayUMoney_Constants;
-import com.sasidhar.smaps.payumoney.Utils;
+import com.razorpay.Checkout;
+import com.razorpay.PaymentResultListener;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -58,7 +57,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PaymentConfirmActivity extends AppCompatActivity {
+public class PaymentConfirmActivity extends AppCompatActivity implements PaymentResultListener {
     private static final String TAG = "PaymentConfirmActivity";
 
     private Toolbar mToolbar;
@@ -92,15 +91,18 @@ public class PaymentConfirmActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_confirm);
 
+        Checkout.preload(getApplicationContext());
+
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
-        mToolbar.setNavigationIcon(R.drawable.back_arrow);
-        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+
+//        mToolbar.setNavigationIcon(R.drawable.back_arrow);
+//        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                finish();
+//            }
+//        });
 
         mSp = MySharedPreferences.getInstance(this);
         mPb = findViewById(R.id.pb);
@@ -153,36 +155,36 @@ public class PaymentConfirmActivity extends AppCompatActivity {
                     amount = mAmountTextView.getText().toString();
 
                     if (amount.isEmpty()) {
-//                        Toast.makeText(PaymentConfirmActivity.this, "Amount not found.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PaymentConfirmActivity.this, "Amount not found.", Toast.LENGTH_SHORT).show();
 
                     } else {
                         Map<String, String> params = new HashMap<>();
-
-                        transactionId = "SQRFAC" + com.hackerkernel.user.sqrfactor.Utils.Utils.generateRandomStr(8);
-
-                        orderId = "SQRFAC" + com.hackerkernel.user.sqrfactor.Utils.Utils.generateRandomStr(8);
-                        params.put(PayUMoney_Constants.KEY, "xrrZdj");
-//        params.put(PayUMoney_Constants.KEY,"lESQjlQk"); //dev
-                        params.put(PayUMoney_Constants.UDF1,orderId);
-                        params.put(PayUMoney_Constants.TXN_ID, transactionId);
-                        params.put(PayUMoney_Constants.AMOUNT, amount);
-                        params.put(PayUMoney_Constants.PRODUCT_INFO, "Competition Participation");
-                        params.put(PayUMoney_Constants.FIRST_NAME, mUserName);
-                        params.put(PayUMoney_Constants.EMAIL, mUserEmail);
-                        params.put(PayUMoney_Constants.PHONE, mUserPhone);
-                        params.put(PayUMoney_Constants.SURL, "https://www.payumoney.com/mobileapp/payumoney/success.php");
-                        params.put(PayUMoney_Constants.FURL, "https://www.payumoney.com/mobileapp/payumoney/failure.php");
-
-                        String hash = Utils.generateHash((HashMap<String, String>) params, "FlVk5hXQ");
-
-                        params.put(PayUMoney_Constants.HASH, hash);
-                        params.put(PayUMoney_Constants.SERVICE_PROVIDER, "payu_paisa");
-
-                        Intent intent = new Intent(PaymentConfirmActivity.this, MakePaymentActivity.class);
-                        intent.putExtra(PayUMoney_Constants.ENVIRONMENT, PayUMoney_Constants.ENV_PRODUCTION);
-                        intent.putExtra(PayUMoney_Constants.PARAMS, (HashMap) params);
-
-                        startActivityForResult(intent, PayUMoney_Constants.PAYMENT_REQUEST);
+                        startPayment();
+//                        transactionId = "SQRFAC" + com.hackerkernel.user.sqrfactor.Utils.Utils.generateRandomStr(8);
+//
+//                        orderId = "SQRFAC" + com.hackerkernel.user.sqrfactor.Utils.Utils.generateRandomStr(8);
+//                        params.put(PayUMoney_Constants.KEY, "xrrZdj");
+////        params.put(PayUMoney_Constants.KEY,"lESQjlQk"); //dev
+//                        params.put(PayUMoney_Constants.UDF1,orderId);
+//                        params.put(PayUMoney_Constants.TXN_ID, transactionId);
+//                        params.put(PayUMoney_Constants.AMOUNT, amount);
+//                        params.put(PayUMoney_Constants.PRODUCT_INFO, "Competition Participation");
+//                        params.put(PayUMoney_Constants.FIRST_NAME, mUserName);
+//                        params.put(PayUMoney_Constants.EMAIL, mUserEmail);
+//                        params.put(PayUMoney_Constants.PHONE, mUserPhone);
+//                        params.put(PayUMoney_Constants.SURL, "https://www.payumoney.com/mobileapp/payumoney/success.php");
+//                        params.put(PayUMoney_Constants.FURL, "https://www.payumoney.com/mobileapp/payumoney/failure.php");
+//
+//                        String hash = Utils.generateHash((HashMap<String, String>) params, "FlVk5hXQ");
+//
+//                        params.put(PayUMoney_Constants.HASH, hash);
+//                        params.put(PayUMoney_Constants.SERVICE_PROVIDER, "payu_paisa");
+//
+//                        Intent intent = new Intent(PaymentConfirmActivity.this, MakePaymentActivity.class);
+//                        intent.putExtra(PayUMoney_Constants.ENVIRONMENT, PayUMoney_Constants.ENV_PRODUCTION);
+//                        intent.putExtra(PayUMoney_Constants.PARAMS, (HashMap) params);
+//
+//                        startActivityForResult(intent, PayUMoney_Constants.PAYMENT_REQUEST);
                     }
 
 
@@ -198,6 +200,39 @@ public class PaymentConfirmActivity extends AppCompatActivity {
         stopService(new Intent(this, PayPalService.class));
         super.onDestroy();
     }
+
+    public void startPayment() {
+        /*
+          You need to pass current activity in order to let Razorpay create CheckoutActivity
+         */
+        final Activity activity = this;
+
+        final Checkout co = new Checkout();
+
+        try {
+            JSONObject options = new JSONObject();
+            options.put("name", "SqrFactor India Pvt. Ltd.");
+            options.put("description", "Demoing Charges");
+            //You can omit the image option to fetch the image from dashboard
+            options.put("image", R.drawable.logofinal);
+            options.put("currency", "INR");
+            options.put("amount", Integer.parseInt(amount)*100);
+//            options.put("amount", Integer.parseInt("1")*100);
+
+            JSONObject preFill = new JSONObject();
+            preFill.put("email", mUserEmail);
+            preFill.put("contact", mUserPhone);
+
+            options.put("prefill", preFill);
+
+            co.open(activity, options);
+        } catch (Exception e) {
+            Toast.makeText(activity, "Error in payment: " + e.getMessage(), Toast.LENGTH_SHORT)
+                    .show();
+            e.printStackTrace();
+        }
+    }
+
     private static PayPalConfiguration config = new PayPalConfiguration()
             // Start with mock environment.  When ready, switch to sandbox (ENVIRONMENT_SANDBOX)
             // or live (ENVIRONMENT_PRODUCTION)
@@ -209,7 +244,7 @@ public class PaymentConfirmActivity extends AppCompatActivity {
         String amount = mAmountTextView1.getText().toString();
 
         //Creating a paypalpayment
-        PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(amount)), "USD", "Competition Fee",
+        PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(mAmountTextView1.getText().toString())), "USD", "Competition Fee",
                 PayPalPayment.PAYMENT_INTENT_SALE);
 
         //Creating Paypal Payment activity intent
@@ -249,14 +284,11 @@ public class PaymentConfirmActivity extends AppCompatActivity {
                 mContentLayout.setVisibility(View.VISIBLE);
 
                 Log.d(TAG, "onResponse: payment confirm response = " + response);
-                Toast.makeText(PaymentConfirmActivity.this, "Participation Successful"+response, Toast.LENGTH_SHORT).show();
 
                 try {
-//
+//                    Toast.makeText(PaymentConfirmActivity.this, "Participation Successful", Toast.LENGTH_SHORT).show();
                     JSONObject responseObject = new JSONObject(response);
-
                     JSONObject compIdObject = responseObject.getJSONObject("CompetitionID");
-
                     JSONObject userObject = compIdObject.getJSONObject("user");
 
                     mUserName = userObject.getString("name");
@@ -279,10 +311,17 @@ public class PaymentConfirmActivity extends AppCompatActivity {
                     JSONArray mentorArray = responseObject.getJSONArray("mentor");
                     String mentor = mentorArray.getString(0);
 
-                    if (!mentor.equals("null")) {
-                        mentorText.setVisibility(View.GONE);
+
+
+                    if (!mentor.equals("null"))
+                    {
+                        mentorText.setVisibility(View.VISIBLE);
                         mMentorTV.setText(mentor);
 
+                    }
+                    else {
+                        mentorText.setVisibility(View.GONE);
+                        mMentorTV.setText("");
                     }
 
                     JSONArray amountArray = responseObject.getJSONArray("amount");
@@ -295,11 +334,11 @@ public class PaymentConfirmActivity extends AppCompatActivity {
                         String amount = INRObj.getString("amount");
                         String amountUSD = USDObj.getString("amount");
 
+                        //amount=amount;
                         mAmountTextView.setText(amount);
                         mAmountTextView1.setText(amountUSD);
 
                     }
-
 
                     JSONArray participantsArray = responseObject.getJSONArray("users");
 
@@ -346,24 +385,24 @@ public class PaymentConfirmActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        if (resultCode == RESULT_OK && requestCode == PayUMoney_Constants.PAYMENT_REQUEST) {
-            Toast.makeText(this, "Payment Success,", Toast.LENGTH_SHORT).show();
-            Log.d(TAG, "payuResult" + data.toString());
-
-           // Log.d(TAG, "onActivityResult: payu response = " + data.getStringExtra("payu_response"));
-            String result = data.getStringExtra("result");
-            Log.d(TAG, "onActivityResult: payu result = " + data.getStringExtra("result")+" "+data.getStringExtra("paymentId") );
-
-            long orderId = Long.parseLong(result);
-            sendPayUmoneylData();
-
-
-        }
-        else if (resultCode == RESULT_CANCELED) {
-            Log.i(TAG, "failure");
-            Toast.makeText(this, "Payment Failed | Cancelled.", Toast.LENGTH_SHORT).show();
-        }
+//
+//        if (resultCode == RESULT_OK && requestCode == PayUMoney_Constants.PAYMENT_REQUEST) {
+//            Toast.makeText(this, "Payment Success,", Toast.LENGTH_SHORT).show();
+//            Log.d(TAG, "payuResult" + data.toString());
+//
+//            // Log.d(TAG, "onActivityResult: payu response = " + data.getStringExtra("payu_response"));
+//            String result = data.getStringExtra("result");
+//            Log.d(TAG, "onActivityResult: payu result = " + data.getStringExtra("result")+" "+data.getStringExtra("paymentId") );
+//
+//            long orderId = Long.parseLong(result);
+////            sendPayUmoneylData();
+//
+//
+//        }
+//        else if (resultCode == RESULT_CANCELED) {
+//            Log.i(TAG, "failure");
+//            Toast.makeText(this, "Payment Failed | Cancelled.", Toast.LENGTH_SHORT).show();
+//        }
 
         if (requestCode == PAYPAL_REQUEST_CODE) {
 
@@ -377,7 +416,7 @@ public class PaymentConfirmActivity extends AppCompatActivity {
                     try {
                         //Getting the payment details
                         String paymentDetails = confirm.toJSONObject().toString(4);
-                        String amount = mAmountTextView.getText().toString();
+                        String amount = mAmountTextView1.getText().toString();
                         Log.i("paymentExample", paymentDetails);
 
                         //Starting a new activity for the payment details and also putting the payment details with intent
@@ -457,7 +496,7 @@ public class PaymentConfirmActivity extends AppCompatActivity {
         return out.toString();
     }
 
-    public void sendPayUmoneylData(){
+    public void sendPayUmoneylData(final String transactionId){
         mRequestQueue = MyVolley.getInstance().getRequestQueue();
 
         StringRequest request = new StringRequest(Request.Method.POST, ServerConstants.PAY_UMONEY, new Response.Listener<String>() {
@@ -521,13 +560,13 @@ public class PaymentConfirmActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-
+                orderId = "SQRFAC" + com.hackerkernel.user.sqrfactor.Utils.Utils.generateRandomStr(8);
                 params.put("txnid", transactionId +"");
                 params.put("udf1", orderId +"");
                 params.put("udf3", mCompetitionId +"");
                 params.put("udf2",  "Competition");
                 params.put("firstname", mUserName +"");
-                params.put("email", mUserName +"");
+                params.put("email", mUserEmail +"");
                 params.put("phone", mUserPhone +"");
                 params.put("amount", amount +"");
                 params.put("status", "success");
@@ -539,5 +578,25 @@ public class PaymentConfirmActivity extends AppCompatActivity {
         request.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 0,
                 DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         mRequestQueue.add(request);
+    }
+
+    @Override
+    public void onPaymentSuccess(String razorpayPaymentID) {
+        try {
+            sendPayUmoneylData(razorpayPaymentID);
+            Toast.makeText(this, "Payment Successful: " + razorpayPaymentID, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e(TAG, "Exception in onPaymentSuccess", e);
+
+        }
+    }
+
+    @Override
+    public void onPaymentError(int code, String response) {
+        try {
+            Toast.makeText(this, "Payment failed: " + code + " " + response, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e(TAG, "Exception in onPaymentError", e);
+        }
     }
 }
