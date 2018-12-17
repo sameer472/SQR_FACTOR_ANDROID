@@ -1,6 +1,5 @@
 package com.hackerkernel.user.sqrfactor;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,6 +21,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.hackerkernel.user.sqrfactor.Pojo.TokenClass;
+import com.hackerkernel.user.sqrfactor.Pojo.UserData;
 
 import org.json.JSONException;
 import org.json.JSONObject;

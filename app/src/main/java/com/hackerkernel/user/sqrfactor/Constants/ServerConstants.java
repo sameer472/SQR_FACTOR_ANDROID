@@ -46,6 +46,7 @@ public class ServerConstants {
     public static final String SUBMISSIONS_SORT = BASE_URL_COMPETITION + "competitionsort";
 
     public static final String PAYMENT_CONFIRM = BASE_URL_COMPETITION + "userParticipate/";
+    public static final String VERIFY_REFRAL_CODE = BASE_URL_COMPETITION + "search/code";
 
     public static final String PAY_PAL = BASE_URL_COMPETITION + "status/";
 

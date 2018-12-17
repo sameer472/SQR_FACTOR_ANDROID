@@ -2,7 +2,6 @@ package com.hackerkernel.user.sqrfactor;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -16,21 +15,16 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.MultiAutoCompleteTextView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -44,22 +38,20 @@ import com.github.irshulx.Editor;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
+import com.hackerkernel.user.sqrfactor.Pojo.FullPost;
+import com.hackerkernel.user.sqrfactor.Pojo.NewsFeedStatus;
+import com.hackerkernel.user.sqrfactor.Pojo.TokenClass;
+import com.hackerkernel.user.sqrfactor.Pojo.from_user;
+import com.hackerkernel.user.sqrfactor.Pojo.post;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class FullPostActivity extends AppCompatActivity {
@@ -453,7 +445,7 @@ public class FullPostActivity extends AppCompatActivity {
                     if(userClass.getUserId()!=fullPost.getUser_id())
                     {
                         from_user fromUser;
-                        post post1=new post(fullPost.getShort_description(),fullPost.getSlug(),fullPost.getTitle(),fullPost.getType(),fullPost.getId());
+                        com.hackerkernel.user.sqrfactor.Pojo.post post1=new post(fullPost.getShort_description(),fullPost.getSlug(),fullPost.getTitle(),fullPost.getType(),fullPost.getId());
                         PushNotificationClass pushNotificationClass;
                         if(userClass.getName()!="null")
                         {

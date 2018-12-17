@@ -26,6 +26,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 import com.hackerkernel.user.sqrfactor.Activities.CompetitionDetailActivity;
 import com.hackerkernel.user.sqrfactor.Activities.CompetitionEditActivity;
 import com.hackerkernel.user.sqrfactor.Constants.BundleConstants;
@@ -39,7 +40,7 @@ import com.hackerkernel.user.sqrfactor.R;
 import com.hackerkernel.user.sqrfactor.Storage.MySharedPreferences;
 import com.hackerkernel.user.sqrfactor.Utils.MyMethods;
 import com.hackerkernel.user.sqrfactor.Utils.NetworkUtil;
-import com.squareup.picasso.Picasso;
+import com.hackerkernel.user.sqrfactor.UtilsClass;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -240,8 +241,9 @@ public class CompetitionsAdapter extends RecyclerView.Adapter<CompetitionsAdapte
             holder.competitionTypeTV.setText("Type: " + competition.getCompetitionType());
             Log.d(TAG, "onBindViewHolder: image url = " + ServerConstants.BASE_URL_COMPETITION + competition.getImageUrl());
 
-            Picasso.get().load(ServerConstants.IMAGE_BASE_URL + competition.getImageUrl()).into(holder.competitionImageView);
-
+           // Picasso.get().load(ServerConstants.IMAGE_BASE_URL + competition.getImageUrl()).into(holder.competitionImageView);
+            Glide.with(mContext).load(UtilsClass.getParsedImageUrl(competition.getImageUrl()))
+                    .into(holder.competitionImageView);
             String compUserId = competition.getUserId();
             Log.d(TAG, "onBindViewHolder: competition user id = " + compUserId);
 

@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
@@ -25,7 +24,6 @@ import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
@@ -33,6 +31,7 @@ import com.hackerkernel.user.sqrfactor.Constants.BundleConstants;
 import com.hackerkernel.user.sqrfactor.Constants.Constants;
 import com.hackerkernel.user.sqrfactor.Constants.SPConstants;
 import com.hackerkernel.user.sqrfactor.Constants.ServerConstants;
+import com.hackerkernel.user.sqrfactor.Fragments.FillAllDetailsBeforeParticipatingInCompetitinDialog;
 import com.hackerkernel.user.sqrfactor.Fragments.InfoFragment;
 import com.hackerkernel.user.sqrfactor.Fragments.OwnCompetitionDialog;
 import com.hackerkernel.user.sqrfactor.Fragments.ParticipateFirstDialog;
@@ -47,7 +46,6 @@ import com.hackerkernel.user.sqrfactor.R;
 import com.hackerkernel.user.sqrfactor.Storage.MySharedPreferences;
 import com.hackerkernel.user.sqrfactor.Utils.NetworkUtil;
 import com.hackerkernel.user.sqrfactor.UtilsClass;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -187,7 +185,6 @@ public class CompetitionDetailActivity extends AppCompatActivity {
                 Log.d(TAG, "onResponse: called");
 
                 Log.d("participate_check",  response);
-                Toast.makeText(getApplicationContext(),"code5",Toast.LENGTH_LONG).show();
                 //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
                 if (mIsParticipateBtnSelected) {
                     try {
@@ -218,6 +215,11 @@ public class CompetitionDetailActivity extends AppCompatActivity {
                         {
 //                            Toast.makeText(getApplicationContext(),"code2",Toast.LENGTH_LONG).show();
                             alreadyParticipatedDialog();
+                        }
+                        else if(response1.getInt("code")==1)
+                        {
+//                            Toast.makeText(getApplicationContext(),"code2",Toast.LENGTH_LONG).show();
+                            fillDetailsBeforeParticipatingDialog();
                         }
 
 ///
@@ -329,6 +331,10 @@ public class CompetitionDetailActivity extends AppCompatActivity {
         new RegistrationDialog().show(getSupportFragmentManager(), "");
 
     }
+    private void fillDetailsBeforeParticipatingDialog() {
+        new FillAllDetailsBeforeParticipatingInCompetitinDialog().show(getSupportFragmentManager(), "");
+
+    }
 
     private void submitDesignDialog() {
         new SubmitDesignDialog().show(getSupportFragmentManager(), "");
@@ -415,6 +421,8 @@ public class CompetitionDetailActivity extends AppCompatActivity {
                        // Toast.makeText(getApplicationContext(),"payment"+paymentstatus,Toast.LENGTH_LONG).show();
 
                     }
+                    int wallcount = responseObject.getInt("wall_question_no");
+                    mTabLayout.getTabAt(1).setText("Wall"+"("+wallcount+")");
 
 
                     Log.d(TAG, "onResponse: paymentStatus id = " + paymentstatus);

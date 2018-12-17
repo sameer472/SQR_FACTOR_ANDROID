@@ -3,7 +3,6 @@ package com.hackerkernel.user.sqrfactor;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -42,6 +41,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
+import com.hackerkernel.user.sqrfactor.Pojo.IsOnline;
+import com.hackerkernel.user.sqrfactor.Pojo.LastMessage;
+import com.hackerkernel.user.sqrfactor.Pojo.MessageClass;
+import com.hackerkernel.user.sqrfactor.Pojo.TokenClass;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -84,7 +87,7 @@ public class ChatWithAFriendActivity extends AppCompatActivity {
 
 
 
-    //private EndlessRecyclerOnScrollListener scrollListener;
+
 
 
     @Override

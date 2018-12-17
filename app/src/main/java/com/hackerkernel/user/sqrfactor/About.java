@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -22,8 +21,11 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.gson.Gson;
+import com.hackerkernel.user.sqrfactor.Pojo.TokenClass;
+import com.hackerkernel.user.sqrfactor.Pojo.UserData;
+import com.hackerkernel.user.sqrfactor.Pojo.Work_Individuals_User_Details_Class;
+import com.hackerkernel.user.sqrfactor.Pojo.firmDetails;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 

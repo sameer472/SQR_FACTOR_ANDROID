@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.hackerkernel.user.sqrfactor.Pojo.ArchitectureFirmClass;
 
 import java.util.ArrayList;
 

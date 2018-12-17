@@ -23,6 +23,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
+import com.hackerkernel.user.sqrfactor.Pojo.PortfolioClass;
+import com.hackerkernel.user.sqrfactor.Pojo.TokenClass;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -191,7 +191,7 @@ public class UserClass implements Serializable{
             this.portfolioCount=jsonObject.getString("portfolioCount");
             this.blueprintCount=jsonObject.getString("blueprintCount");
             this.userId = jsonObject.getInt("user_id");
-            this.name=jsonObject.getString("user_name");
+            //this.name=jsonObject.getString("user_name");
             this.user_name = jsonObject.getString("user_username");
             this.first_name=jsonObject.getString("user_firstname");
             this.last_name=jsonObject.getString("user_lastname");

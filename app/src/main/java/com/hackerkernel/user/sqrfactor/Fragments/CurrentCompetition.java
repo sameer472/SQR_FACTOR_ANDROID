@@ -221,7 +221,7 @@ return view;
                             String createdAt = singleObject.getString("created_at");
                             String competitionType = singleObject.getString("competition_type");
 
-                            String prize = "";
+                            String prize = singleObject.getString("total_prizemoney");
 
                             CompetitionClass competition = new CompetitionClass(id, userId, slug, name, createdAt, imageUrl, lastSubmissionDate, lastRegDate, prize, competitionType);
                             mCompetitions.add(competition);

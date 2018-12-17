@@ -24,7 +24,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
-import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,12 +41,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
-import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -55,6 +51,7 @@ import com.bumptech.glide.Glide;
 import com.github.irshulx.Editor;
 import com.github.irshulx.EditorListener;
 import com.google.gson.Gson;
+import com.hackerkernel.user.sqrfactor.Pojo.TokenClass;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,7 +69,6 @@ import static android.Manifest.permission.CAMERA;
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
-import static org.jsoup.nodes.Document.OutputSettings.Syntax.html;
 
 
 /**
@@ -357,14 +353,6 @@ public class ArticleFragment extends Fragment {
         return encode;
     }
 
-//    public void GetImageFromGallery(){
-//
-//        GalIntent = new Intent(Intent.ACTION_PICK,
-//                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-//
-//        startActivityForResult(Intent.createChooser(GalIntent, "Select Image From Gallery"), 2);
-//
-//    }
 
 
     private void selectImage() {

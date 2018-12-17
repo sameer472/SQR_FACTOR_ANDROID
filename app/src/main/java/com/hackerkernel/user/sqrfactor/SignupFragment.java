@@ -7,18 +7,13 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +25,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -61,8 +57,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.hackerkernel.user.sqrfactor.Constants.SPConstants;
+import com.hackerkernel.user.sqrfactor.Pojo.CountryClass;
+import com.hackerkernel.user.sqrfactor.Pojo.IsOnline;
+import com.hackerkernel.user.sqrfactor.Pojo.TokenClass;
 import com.hackerkernel.user.sqrfactor.Storage.MySharedPreferences;
 
 import org.json.JSONArray;
@@ -90,6 +88,8 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
     private ArrayList<CountryClass> countryClassArrayList=new ArrayList<>();
     private ArrayList<String> countryName=new ArrayList<>();
     private int countryId=1;
+    String firstNameText="";
+    String lastNameText="";
     private EditText firstName, lastName, companyName_text, organizationName_text, collegeName_text, userName, userEmail, userPassword, confirmPassword, userMobileNumber;
     private TextInputLayout first_name, last_name, company_name, organization_name, college_name;
     private Button completeRegistration;
@@ -98,6 +98,8 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
     private SharedPreferences.Editor editor;
     private SharedPreferences mPrefs;
     private FirebaseDatabase database;
+    private SharedPreferences sp;
+    private MySharedPreferences mSp;
     private DatabaseReference ref;
     private boolean isVisible = true;
     private LoginButton facebookSignup;
@@ -110,7 +112,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
     private GoogleSignInClient mGoogleSignInClient;
     private Button fb_signup,google_signup;
     private Context context;
-    private MySharedPreferences mSp;
+
 
 
     @Override
@@ -118,6 +120,16 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
         FacebookSdk.sdkInitialize(getActivity());
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         callbackManager = CallbackManager.Factory.create();
+
+
+        SharedPreferences sharedPref = getActivity().getSharedPreferences("PREF_NAME", getActivity().MODE_PRIVATE);
+        editor = sharedPref.edit();
+
+        mPrefs = getActivity().getSharedPreferences("User", MODE_PRIVATE);
+        database= FirebaseDatabase.getInstance();
+        mSp = MySharedPreferences.getInstance(getActivity());
+        ref = database.getReference();
+        sp = getActivity().getSharedPreferences("login",MODE_PRIVATE);
 
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_signup, container, false);
         mSp = MySharedPreferences.getInstance(getActivity());
@@ -206,7 +218,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
             }
         });
         facebookSignup = rootView.findViewById(R.id.facebook_signup);
-        facebookSignup.setLoginBehavior(LoginBehavior.WEB_ONLY);
+        facebookSignup.setLoginBehavior(LoginBehavior.WEB_VIEW_ONLY);
         facebookSignup.setReadPermissions(Arrays.asList(new String[]{"public_profile", "email", "user_birthday"}));
         facebookSignup.setFragment(this);
         facebookSignup.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -274,7 +286,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
         // String text = spinner.getSelectedItem().toString();
 
 
-        SharedPreferences sharedPref = getActivity().getSharedPreferences("PREF_NAME", getActivity().MODE_PRIVATE);
+//        SharedPreferences sharedPref = getActivity().getSharedPreferences("PREF_NAME", getActivity().MODE_PRIVATE);
         editor = sharedPref.edit();
         mPrefs = getActivity().getSharedPreferences("User", MODE_PRIVATE);
         database = FirebaseDatabase.getInstance();
@@ -476,23 +488,25 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
     {
 
         RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+        //RequestQueue requestQueue = MyVolley.getInstance().getRequestQueue();
         StringRequest myReq = new StringRequest(Request.Method.POST, UtilsClass.baseurl+"register",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.v("Reponse", response);
-                        Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
+                        //Log.v("Reponse", response);
+                       // Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             if(jsonObject.has("message"))
                             {
                                 MDToast.makeText(getApplicationContext(), "Check Your Registeration Form", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                            }else {
+                            }
+                            else {
 
                                 UserClass userClass = new UserClass(jsonObject);
                                 // notification listner for like and comment
                                 FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications" + userClass.getUserId());
-                                //FirebaseMessaging.getInstance().subscribeToTopic("chats" + userClass.getUserId());
+                                FirebaseMessaging.getInstance().subscribeToTopic("chats" + userClass.getUserId());
                                 //code for user status
                                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                                 Date date = new Date();
@@ -521,6 +535,8 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                                 prefsEditor.putString("MyObject", json);
                                 prefsEditor.commit();
                                 editor.commit();
+
+
                                 Intent i = new Intent(getActivity(), OTP_Verify.class);
                                 i.putExtra("mobile",userMobileNumber.getText().toString());
                                 getActivity().startActivity(i);
@@ -578,25 +594,26 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
 //                +confirmPassword.getText().toString());
 
                 params.put("user_type", userType);
-                    params.put("first_name", firstName.getText().toString());
-                    params.put("last_name", lastName.getText().toString());
-                   // params.put("name", "null");
-
-                if(companyName_text.getText().toString()!=null)
+                if(userType.equals("work_individual")&&!TextUtils.isEmpty(firstName.getText().toString()))
                 {
-                    params.put("name", companyName_text.getText().toString());
+                    params.put("first_name", firstName.getText().toString());
                 }
-                else if(organizationName_text.getText().toString()!=null)
+                if(userType.equals("work_individual") && !TextUtils.isEmpty(lastName.getText().toString()))
+                {
+                    params.put("last_name", lastName.getText().toString());
+                }
+
+                if(!TextUtils.isEmpty(organizationName_text.getText().toString()))
                 {
                     params.put("name", organizationName_text.getText().toString());
                 }
-                else if(collegeName_text.getText().toString()!=null)
+                if(!TextUtils.isEmpty(companyName_text.getText().toString()))
+                {
+                    params.put("name", companyName_text.getText().toString());
+                }
+                if(!TextUtils.isEmpty(collegeName_text.getText().toString()))
                 {
                     params.put("name", collegeName_text.getText().toString());
-                }
-                else
-                {
-                    params.put("name", null+"");
                 }
 
                 params.put("username", userName.getText().toString());
@@ -610,7 +627,8 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
 
 
         };
-
+        myReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         requestQueue.add(myReq);
 
     }
@@ -693,80 +711,165 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                                 JSONObject object,
                                 GraphResponse response) {
                             Log.d(TAG, "Graph Object :" + object);
+                            sp.edit().clear();
+                            sp.edit().putBoolean("logged",true).commit();
                             try {
-                                final String name = object.getString("name");
+                                String name = object.getString("name");
+                               // Toast.makeText(getApplicationContext(),name,Toast.LENGTH_LONG).show();
+
+                                String[] nameArray=name.split(" ");
+                                if(nameArray.length>1)
+                                {
+                                    firstNameText=nameArray[0];
+                                    for(int i=1;i<nameArray.length;i++)
+                                    {
+                                        if(!nameArray[i].equals("null")||nameArray[i]!=null)
+                                        lastNameText+=nameArray[i];
+                                    }
+                                    Log.v("data",firstNameText);
+                                }
+                                else {
+                                    firstNameText=nameArray[0];
+                                    lastNameText="";
+                                }
+
+
                                 final String email = object.getString("email");
                                 final String profileID = object.getString("id");
                                 JSONObject picture = object.getJSONObject("picture");
                                 JSONObject data = picture.getJSONObject("data");
-                                String url = data.getString("url");
+                                final String url = data.getString("url");
 
-                                RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
-                                StringRequest myReq = new StringRequest(Request.Method.POST, UtilsClass.baseurl+"social_registration",
+                                RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+                                StringRequest myReq = new StringRequest(Request.Method.POST, UtilsClass.baseurl+"sociallogin",
                                         new Response.Listener<String>() {
                                             @Override
                                             public void onResponse(String response) {
                                                 Log.v("Reponse", response);
                                                 try {
                                                     JSONObject jsonObject = new JSONObject(response);
-                                                    JSONObject user = jsonObject.getJSONObject("user");
-                                                    JSONObject activationToken = user.getJSONObject("activation_token");
+                                                    String msg = jsonObject.getString("status");
+                                                    if(msg.equals("Already registered")) {
+                                                        UserClass userClass = new UserClass(jsonObject);
+                                                        // notification listner for like and comment
+                                                        FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications" + userClass.getUserId());
+                                                        FirebaseMessaging.getInstance().subscribeToTopic("chats"+userClass.getUserId());
+                                                        //code for user status
+                                                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                                        Date date = new Date();
+
+                                                        IsOnline isOnline = new IsOnline("True", formatter.format(date));
+                                                        ref.child("Status").child(userClass.getUserId() + "").child("android").setValue(isOnline);
+                                                        IsOnline isOnline1 = new IsOnline("False", formatter.format(date));
+
+                                                        ref.child("Status").child(userClass.getUserId() + "").child("web").setValue(isOnline1);
+                                                        JSONObject TokenObject = jsonObject.getJSONObject("success");
+                                                        String Token = TokenObject.getString("token");
+                                                        editor.putString("TOKEN", Token);
+                                                        TokenClass.Token = Token;
+                                                        editor.commit();
 
 
-                                                    JSONObject userDeatil = activationToken.getJSONObject("user");
+                                                        mSp.setKey(SPConstants.API_KEY, Token);
+                                                        mSp.setKey(SPConstants.USER_ID, String.valueOf(userClass.getUserId()));
+                                                        mSp.setKey(SPConstants.PROFILE_URL, userClass.getProfile());
+                                                        mSp.setKey(SPConstants.EMAIL, userClass.getEmail());
+                                                        mSp.setKey(SPConstants.USER_TYPE,userClass.getUserType());
+                                                        mSp.setKey(SPConstants.NAME,UtilsClass.getName(userClass.getFirst_name(),userClass.getLast_name(),userClass.getName(),userClass.getUser_name()));
 
-                                                    UserClass userClass = new UserClass("0","0","0","0",userDeatil.getString("user_name"),userDeatil.getString("first_name"),userDeatil.getString("last_name"),userDeatil.getString("profile"),
-                                                            userDeatil.getInt("id"),userDeatil.getString("email"),userDeatil.getString("mobile_number"),userDeatil.getString("user_type"));
-                                                    // notification listner for like and comment
-                                                    FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications" + userClass.getUserId());
-                                                    //FirebaseMessaging.getInstance().subscribeToTopic("chats" + userClass.getUserId());
-                                                    //code for user status
-                                                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                                                    Date date = new Date();
-
-                                                    IsOnline isOnline = new IsOnline("True", formatter.format(date));
-                                                    ref.child("Status").child(userClass.getUserId() + "").child("android").setValue(isOnline);
-                                                    IsOnline isOnline1 = new IsOnline("False", formatter.format(date));
-
-                                                    ref.child("Status").child(userClass.getUserId() + "").child("web").setValue(isOnline1);
-
-                                                    JSONObject TokenObject = jsonObject.getJSONObject("success");
-                                                    String Token = TokenObject.getString("token");
+                                                        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                                                        Gson gson = new Gson();
+                                                        String json = gson.toJson(userClass);
+                                                        prefsEditor.putString("MyObject", json);
+                                                        prefsEditor.commit();
 
 
-                                                    mSp.setKey(SPConstants.API_KEY, Token);
-                                                    mSp.setKey(SPConstants.USER_ID, String.valueOf(userClass.getUserId()));
-                                                    mSp.setKey(SPConstants.PROFILE_URL, userClass.getProfile());
-                                                    mSp.setKey(SPConstants.EMAIL, userClass.getEmail());
-                                                    mSp.setKey(SPConstants.USER_TYPE,userClass.getUserType());
-                                                    mSp.setKey(SPConstants.NAME,UtilsClass.getName(userClass.getFirst_name(),userClass.getLast_name(),userClass.getName(),userClass.getUser_name()));
-
-                                                    editor.putString("TOKEN", Token);
-                                                    TokenClass.Token=Token;
-
-                                                    SharedPreferences.Editor prefsEditor = mPrefs.edit();
-                                                    Gson gson = new Gson();
-                                                    String json = gson.toJson(userClass);
-                                                    prefsEditor.putString("MyObject", json);
-                                                    prefsEditor.commit();
-                                                    editor.commit();
+                                                        Intent i = new Intent(getActivity(), HomeScreen.class);
+                                                        i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                                        getActivity().startActivity(i);
+                                                        getActivity().finish();
+                                                    }else {
+                                                        JSONObject user = jsonObject.getJSONObject("user");
+                                                        JSONObject activationToken = user.getJSONObject("activation_token");
 
 
-                                                    Intent i = new Intent(getActivity(), SocialFormActivity.class);
-                                                    getActivity().startActivity(i);
-                                                    getActivity().finish();
+                                                        JSONObject userDeatil = activationToken.getJSONObject("user");
+
+                                                        UserClass userClass = new UserClass("0","0","0","0",userDeatil.getString("user_name"),userDeatil.getString("first_name"),userDeatil.getString("last_name"),userDeatil.getString("profile"),
+                                                                userDeatil.getInt("id"),userDeatil.getString("email"),userDeatil.getString("mobile_number"),userDeatil.getString("user_type"));
+                                                        // notification listner for like and comment
+                                                        FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications" + userClass.getUserId());
+                                                        FirebaseMessaging.getInstance().subscribeToTopic("chats" + userClass.getUserId());
+                                                        //code for user status
+                                                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                                        Date date = new Date();
+
+                                                        IsOnline isOnline = new IsOnline("True", formatter.format(date));
+                                                        ref.child("Status").child(userClass.getUserId() + "").child("android").setValue(isOnline);
+
+                                                        //ref.child("Status").onDisconnect().setValue(new IsOnline("False",formatter.format(new Date())));
+                                                        IsOnline isOnline1 = new IsOnline("False", formatter.format(date));
+
+
+
+                                                        ref.child("Status").child(userClass.getUserId() + "").child("web").setValue(isOnline1);
+
+                                                        JSONObject TokenObject = jsonObject.getJSONObject("success");
+                                                        String Token = TokenObject.getString("token");
+
+                                                        editor.putString("TOKEN", Token);
+                                                        TokenClass.Token=Token;
+
+                                                        mSp.setKey(SPConstants.API_KEY, Token);
+                                                        mSp.setKey(SPConstants.USER_ID, String.valueOf(userClass.getUserId()));
+                                                        mSp.setKey(SPConstants.PROFILE_URL, userClass.getProfile());
+                                                        mSp.setKey(SPConstants.EMAIL, userClass.getEmail());
+                                                        mSp.setKey(SPConstants.USER_TYPE,userClass.getUserType());
+                                                        mSp.setKey(SPConstants.NAME,UtilsClass.getName(userClass.getFirst_name(),userClass.getLast_name(),userClass.getName(),userClass.getUser_name()));
+
+                                                        SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                                                        Gson gson = new Gson();
+                                                        String json = gson.toJson(userClass);
+                                                        prefsEditor.putString("MyObject", json);
+                                                        prefsEditor.commit();
+                                                        editor.commit();
+                                                        Intent i = new Intent(getActivity(), SocialFormActivity.class);
+                                                        //i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                                        getActivity().startActivity(i);
+                                                        getActivity().finish();
+                                                    }
                                                 } catch (JSONException e) {
                                                     e.printStackTrace();
                                                 }
                                             }
-                                        },
-                                        new Response.ErrorListener() {
+                                        }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        NetworkResponse response = error.networkResponse;
+                                        if (error instanceof ServerError && response != null) {
+                                            try {
 
-                                            @Override
-                                            public void onErrorResponse(VolleyError error) {
 
+                                                String res = new String(response.data,
+                                                        HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                                                Log.v("login 1",res);
+                                                Toast.makeText(getApplicationContext(),res,Toast.LENGTH_LONG).show();
+                                                // Now you can use any deserializer to make sense of data
+                                                JSONObject obj = new JSONObject(res);
+                                            } catch (UnsupportedEncodingException e1) {
+                                                Toast.makeText(getApplicationContext(),e1.toString(),Toast.LENGTH_LONG).show();
+                                                // Couldn't properly decode data to string
+                                                e1.printStackTrace();
+                                            } catch (JSONException e2) {
+                                                Toast.makeText(getApplicationContext(),e2.toString(),Toast.LENGTH_LONG).show();
+                                                // returned data is not JSONObject?
+                                                e2.printStackTrace();
                                             }
-                                        }) {
+                                        }
+                                    }
+
+                                })
+                                {
 
                                     @Override
                                     public Map<String, String> getHeaders() throws AuthFailureError {
@@ -774,20 +877,32 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                                         params.put("Accept", "application/json");
                                         return params;
                                     }
-
                                     @Override
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
                                         params.put("social_id",profileID);
+                                        params.put("first_name",firstNameText);
+                                        params.put("last_name",lastNameText);
                                         params.put("email", email);
-                                        params.put("fullname",name);
-                                        params.put("profile_pic","");
+                                        if(url.equals("null")||url==null)
+                                        {
+                                            params.put("profile_pic","");
+                                        }
+                                        else {
+                                            params.put("profile_pic",url);
+                                        }
                                         params.put("service", "facebook");
                                         return params;
                                     }
 
                                 };
                                 requestQueue.add(myReq);
+
+////                                info.setText("Welcome ," + name);
+//
+//                                Log.d(TAG, "Name :" + name);
+//                                Log.d(TAG,"Email"+email);
+//                                Log.d(TAG,"ProfileID"+profileID);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -832,60 +947,123 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
         if (result.isSuccess()) {
             GoogleSignInAccount account = result.getSignInAccount();
             final String name = account.getDisplayName();
+            String[] nameArray=name.split(" ");
+            if(nameArray.length>1)
+            {
+                firstNameText=nameArray[0];
+                for(int i=1;i<nameArray.length;i++)
+                {
+                    if(!nameArray[i].equals("null")||nameArray[i]!=null)
+                      lastNameText+=nameArray[i];
+                }
+                Log.v("data",firstNameText);
+            }
+            else {
+                firstNameText=nameArray[0];
+                lastNameText="";
+            }
+
             final String gmail_email = account.getEmail();
             final String id = account.getId();
             final String profile = String.valueOf(account.getPhotoUrl());
+            sp.edit().clear();
+            sp.edit().putBoolean("logged",true).commit();
 
-
-            RequestQueue requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
-            StringRequest myReq = new StringRequest(Request.Method.POST, UtilsClass.baseurl+"social_registration",
+            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+            StringRequest myReq = new StringRequest(Request.Method.POST, UtilsClass.baseurl+"sociallogin",
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Log.v("Reponse", response);
+                            Log.v("ReponseGoogle", response);
+                            //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
                             try {
+
+
                                 JSONObject jsonObject = new JSONObject(response);
-                                JSONObject user = jsonObject.getJSONObject("user");
-                                JSONObject activationToken = user.getJSONObject("activation_token");
-                                JSONObject userDeatil = activationToken.getJSONObject("user");
-                                UserClass userClass = new UserClass("0","0","0","0",userDeatil.getString("user_name"),userDeatil.getString("first_name"),userDeatil.getString("last_name"),userDeatil.getString("profile"),
-                                        userDeatil.getInt("id"),userDeatil.getString("email"),userDeatil.getString("mobile_number"),userDeatil.getString("user_type"));
-                                // notification listner for like and comment
-                                FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications" + userClass.getUserId());
-                                //FirebaseMessaging.getInstance().subscribeToTopic("chats" + userClass.getUserId());
-                                //code for user status
-                                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                                Date date = new Date();
+                                String msg = jsonObject.getString("status");
+                                if(msg.equals("Already registered")){
+                                    // TokenClass.Token=jsonObject.getJSONObject("success").getString("token");
+                                    UserClass userClass = new UserClass(jsonObject);
 
-                                IsOnline isOnline = new IsOnline("True", formatter.format(date));
-                                ref.child("Status").child(userClass.getUserId() + "").child("android").setValue(isOnline);
-                                IsOnline isOnline1 = new IsOnline("False", formatter.format(date));
+                                    FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications" + userClass.getUserId());
+                                    FirebaseMessaging.getInstance().subscribeToTopic("chats"+userClass.getUserId());
+                                    //code for user status
+                                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                    Date date = new Date();
 
-                                ref.child("Status").child(userClass.getUserId() + "").child("web").setValue(isOnline1);
+                                    IsOnline isOnline=new IsOnline("True",formatter.format(date));
+                                    ref.child("Status").child(userClass.getUserId()+"").child("android").setValue(isOnline);
+                                    IsOnline isOnline1=new IsOnline("False",formatter.format(date));
 
-                                JSONObject TokenObject = jsonObject.getJSONObject("success");
-                                String Token = TokenObject.getString("token");
+                                    ref.child("Status").child(userClass.getUserId()+"").child("web").setValue(isOnline1);
 
+                                    JSONObject TokenObject = jsonObject.getJSONObject("success");
+                                    String Token = TokenObject.getString("token");
+                                    editor.putString("TOKEN", Token);
+                                    TokenClass.Token=Token;
 
-                                mSp.setKey(SPConstants.API_KEY, Token);
-                                mSp.setKey(SPConstants.USER_ID, String.valueOf(userClass.getUserId()));
-                                mSp.setKey(SPConstants.PROFILE_URL, userClass.getProfile());
-                                mSp.setKey(SPConstants.EMAIL, userClass.getEmail());
-                                mSp.setKey(SPConstants.USER_TYPE,userClass.getUserType());
-                                mSp.setKey(SPConstants.NAME,UtilsClass.getName(userClass.getFirst_name(),userClass.getLast_name(),userClass.getName(),userClass.getUser_name()));
+                                    mSp.setKey(SPConstants.API_KEY, Token);
+                                    mSp.setKey(SPConstants.USER_ID, String.valueOf(userClass.getUserId()));
+                                    mSp.setKey(SPConstants.PROFILE_URL, userClass.getProfile());
+                                    mSp.setKey(SPConstants.EMAIL, userClass.getEmail());
+                                    mSp.setKey(SPConstants.USER_TYPE,userClass.getUserType());
+                                    mSp.setKey(SPConstants.NAME,UtilsClass.getName(userClass.getFirst_name(),userClass.getLast_name(),userClass.getName(),userClass.getUser_name()));
 
-                                editor.putString("TOKEN", Token);
-                                SharedPreferences.Editor prefsEditor = mPrefs.edit();
-                                TokenClass.Token=Token;
+                                    SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                                    Gson gson = new Gson();
 
-                                Gson gson = new Gson();
-                                String json = gson.toJson(userClass);
-                                prefsEditor.putString("MyObject", json);
-                                prefsEditor.commit();
-                                editor.commit();
-                                Intent i = new Intent(getActivity(), SocialFormActivity.class);
-                                getActivity().startActivity(i);
-                                getActivity().finish();
+                                    String json = gson.toJson(userClass);
+                                    prefsEditor.putString("MyObject", json);
+                                    prefsEditor.commit();
+                                    editor.commit();
+                                    Intent i = new Intent(getActivity(), HomeScreen.class);
+                                    //i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                    getActivity().startActivity(i);
+                                    getActivity().finish();
+                                }
+                                else {
+                                    JSONObject user = jsonObject.getJSONObject("user");
+                                    JSONObject activationToken = user.getJSONObject("activation_token");
+                                    JSONObject userDeatil = activationToken.getJSONObject("user");
+                                    UserClass userClass = new UserClass("0","0","0","0",userDeatil.getString("user_name"),userDeatil.getString("first_name"),userDeatil.getString("last_name"),userDeatil.getString("profile"),
+                                            userDeatil.getInt("id"),userDeatil.getString("email"),userDeatil.getString("mobile_number"),userDeatil.getString("user_type"));
+                                    // notification listner for like and comment
+                                    FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications" + userClass.getUserId());
+                                    FirebaseMessaging.getInstance().subscribeToTopic("chats" + userClass.getUserId());
+                                    //code for user status
+                                    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                    Date date = new Date();
+
+                                    IsOnline isOnline = new IsOnline("True", formatter.format(date));
+                                    ref.child("Status").child(userClass.getUserId() + "").child("android").setValue(isOnline);
+                                    IsOnline isOnline1 = new IsOnline("False", formatter.format(date));
+
+                                    ref.child("Status").child(userClass.getUserId() + "").child("web").setValue(isOnline1);
+
+                                    JSONObject TokenObject = jsonObject.getJSONObject("success");
+                                    String Token = TokenObject.getString("token");
+
+                                    editor.putString("TOKEN", Token);
+                                    SharedPreferences.Editor prefsEditor = mPrefs.edit();
+                                    TokenClass.Token=Token;
+
+                                    mSp.setKey(SPConstants.API_KEY, Token);
+                                    mSp.setKey(SPConstants.USER_ID, String.valueOf(userClass.getUserId()));
+                                    mSp.setKey(SPConstants.PROFILE_URL, userClass.getProfile());
+                                    mSp.setKey(SPConstants.EMAIL, userClass.getEmail());
+                                    mSp.setKey(SPConstants.USER_TYPE,userClass.getUserType());
+                                    mSp.setKey(SPConstants.NAME,UtilsClass.getName(userClass.getFirst_name(),userClass.getLast_name(),userClass.getName(),userClass.getUser_name()));
+
+                                    Gson gson = new Gson();
+                                    String json = gson.toJson(userClass);
+                                    prefsEditor.putString("MyObject", json);
+                                    prefsEditor.commit();
+                                    editor.commit();
+                                    Intent i = new Intent(getActivity(), SocialFormActivity.class);
+                                    //i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                                    getActivity().startActivity(i);
+                                    getActivity().finish();
+                                }
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -905,14 +1083,21 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                     params.put("Accept", "application/json");
                     return params;
                 }
-
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
+                   // Log.v("request data1",id+" "+name+" "+gmail_email+" "+profile);
                     params.put("social_id",id);
-                    params.put("fullname",name);
+                    params.put("first_name",firstNameText);
+                    params.put("last_name",lastNameText);
                     params.put("email", gmail_email);
-                    params.put("profile_pic",profile);
+                    if(profile.equals("null")||profile==null)
+                    {
+                        params.put("profile_pic","");
+                    }
+                    else {
+                        params.put("profile_pic",profile);
+                    }
                     params.put("service", "google");
                     return params;
                 }
@@ -920,6 +1105,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
             };
             requestQueue.add(myReq);
         }
+
     }
 
     @Override

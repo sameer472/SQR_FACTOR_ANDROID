@@ -1,10 +1,7 @@
 package com.hackerkernel.user.sqrfactor;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -39,8 +36,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-import com.google.zxing.client.result.EmailAddressParsedResult;
+import com.hackerkernel.user.sqrfactor.Pojo.CitiesClass;
+import com.hackerkernel.user.sqrfactor.Pojo.CountryClass;
+import com.hackerkernel.user.sqrfactor.Pojo.StateClass;
+import com.hackerkernel.user.sqrfactor.Pojo.TokenClass;
+import com.hackerkernel.user.sqrfactor.Pojo.UserData;
 
 import org.json.JSONArray;
 import org.json.JSONException;

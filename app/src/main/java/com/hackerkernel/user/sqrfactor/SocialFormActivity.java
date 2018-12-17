@@ -1,22 +1,17 @@
 package com.hackerkernel.user.sqrfactor;
 
-import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.StrictMode;
 import android.provider.MediaStore;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -39,6 +34,8 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
+import com.hackerkernel.user.sqrfactor.Pojo.CountryClass;
+import com.hackerkernel.user.sqrfactor.Pojo.TokenClass;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +48,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SocialFormActivity extends AppCompatActivity {
-    private EditText userName,mobileNo;
+    private EditText userName,mobileNo,firstName,lastName;
     private Button submit,skip;
     private Spinner country;
     private String country_val=null;
@@ -88,6 +85,8 @@ public class SocialFormActivity extends AppCompatActivity {
         TokenClass tokenClass = new TokenClass(token);
         userName = findViewById(R.id.userName_text);
         mobileNo = findViewById(R.id.user_mobile_number_text);
+        firstName=findViewById(R.id.userFirstName_text);
+        lastName=findViewById(R.id.userLastName_text);
 
         country = findViewById(R.id.social_country_spinner);
         submit = findViewById(R.id.social_submit);
@@ -229,7 +228,9 @@ public void submitDetails(){
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
+                   // Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
                     Log.v("Reponse", response);
+
                     try {
                         JSONObject jsonObject = new JSONObject(response);
                         JSONObject profile_data=jsonObject.getJSONObject("profile_data");
@@ -247,6 +248,8 @@ public void submitDetails(){
                         userClass.setFirst_name(profile_data.getString("first_name"));
                         userClass.setLast_name(profile_data.getString("last_name"));
                         userClass.setUserType("work_individual");
+                        firstName.setText(profile_data.getString("first_name"));
+                        lastName.setText(profile_data.getString("last_name"));
 
                         SharedPreferences.Editor prefsEditor = mPrefs.edit();
                         json = gson.toJson(userClass);
@@ -256,6 +259,8 @@ public void submitDetails(){
 
                         userName.setText("");
                         mobileNo.setText("");
+                        firstName.setText("");
+                        lastName.setText("");
                         Intent i = new Intent(SocialFormActivity.this, HomeScreen.class);
                         startActivity(i);
                         finish();
@@ -286,6 +291,9 @@ public void submitDetails(){
             params.put("mobile_number",mobileNo.getText().toString());
             params.put("country_id",country_val+"");
             params.put("username",userName.getText().toString());
+            params.put("first_name",firstName.getText().toString());
+            params.put("last_name",lastName.getText().toString());
+
             return params;
         }
 

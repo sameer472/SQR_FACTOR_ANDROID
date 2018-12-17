@@ -13,18 +13,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
+import com.hackerkernel.user.sqrfactor.Pojo.MessageClass;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
-import java.util.concurrent.TimeUnit;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -36,7 +30,7 @@ public class ChatWithAFriendActivityAdapter extends RecyclerView.Adapter<ChatWit
     private String friendProfileUrl,friendName;
     int count=0;
 
-    public ChatWithAFriendActivityAdapter(ArrayList<MessageClass> messageClassArrayList, Context context,int friendId,String friendProfileUrl,String friendName) {
+    public ChatWithAFriendActivityAdapter(ArrayList<MessageClass> messageClassArrayList, Context context, int friendId, String friendProfileUrl, String friendName) {
         this.messageClassArrayList = messageClassArrayList;
         this.context = context;
         this.friendId=friendId;

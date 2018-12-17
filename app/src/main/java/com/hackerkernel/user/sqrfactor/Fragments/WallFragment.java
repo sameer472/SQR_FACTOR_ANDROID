@@ -23,6 +23,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.bumptech.glide.Glide;
 import com.hackerkernel.user.sqrfactor.Adapters.WallQuestionsAdapter;
 import com.hackerkernel.user.sqrfactor.Constants.BundleConstants;
 import com.hackerkernel.user.sqrfactor.Constants.Constants;
@@ -33,7 +34,7 @@ import com.hackerkernel.user.sqrfactor.Pojo.WallQuestionClass;
 import com.hackerkernel.user.sqrfactor.R;
 import com.hackerkernel.user.sqrfactor.Storage.MySharedPreferences;
 import com.hackerkernel.user.sqrfactor.Utils.NetworkUtil;
-import com.squareup.picasso.Picasso;
+import com.hackerkernel.user.sqrfactor.UtilsClass;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -93,7 +94,9 @@ public class WallFragment extends Fragment {
         mProfileImageView = view.findViewById(R.id.wall_profile);
 
         Log.d(TAG, "onCreateView: profile image path = " + ServerConstants.IMAGE_BASE_URL + mSp.getKey(SPConstants.PROFILE_URL));
-        Picasso.get().load(ServerConstants.IMAGE_BASE_URL + mSp.getKey(SPConstants.PROFILE_URL)).into(mProfileImageView);
+       // Picasso.get().load(ServerConstants.IMAGE_BASE_URL + mSp.getKey(SPConstants.PROFILE_URL)).into(mProfileImageView);
+        //Picasso.get().load("https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=1695593067204488&height=50&width=50&ext=1547099319&hash=AeSs1zwKtYnji21p").into(mProfileImageView);
+        Glide.with(getContext()).load(UtilsClass.getParsedImageUrl(mSp.getKey(SPConstants.PROFILE_URL))).into(mProfileImageView);
 
         Intent i = getActivity().getIntent();
         mSlug = i.getStringExtra(BundleConstants.SLUG);

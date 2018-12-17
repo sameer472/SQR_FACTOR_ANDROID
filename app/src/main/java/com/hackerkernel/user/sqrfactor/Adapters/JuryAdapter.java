@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.bumptech.glide.Glide;
@@ -18,7 +17,6 @@ import com.hackerkernel.user.sqrfactor.R;
 import com.hackerkernel.user.sqrfactor.Storage.MySharedPreferences;
 import com.hackerkernel.user.sqrfactor.UserProfileActivity;
 import com.hackerkernel.user.sqrfactor.UtilsClass;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 

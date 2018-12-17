@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -62,14 +63,15 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
 
     private Toolbar mToolbar;
 
-    private TextView mCompTitleTV;
+    private TextView mCompTitleTV,referal_error_message,coupon_applied_message_india,coupon_applied_message_foreign;
+    private EditText competition_referal_id;
     private TextView mAmountTextView,mAmountTextView1;
     private TextView mOrganizerTV;
     private TextView mParticipantsTV;
     private TextView mentorText,mMentorTV;
     private ImageView Organizer_image;
 
-    private Button mProceedButton;
+    private Button mProceedButton,competition_referal_submit;
 
     private ProgressBar mPb;
     private LinearLayout mContentLayout;
@@ -81,6 +83,7 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
     private String mUserPhone;
 
     private Button editTeam;
+    private LinearLayout refferal_code_layout;
     private RadioGroup payment_method;
     private RadioButton payPal,payUmoney;
     public static final int PAYPAL_REQUEST_CODE = 123;
@@ -95,6 +98,13 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
 
         mToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
+        competition_referal_submit=findViewById(R.id.competition_referal_submit);
+        competition_referal_id=findViewById(R.id.competition_referal_id);
+        referal_error_message=findViewById(R.id.referal_error_message);
+        coupon_applied_message_india=findViewById(R.id.coupon_applied_message_india);
+        coupon_applied_message_foreign=findViewById(R.id.coupon_applied_message_foreign);
+        refferal_code_layout=findViewById(R.id.refferal_code_layout);
+
 
 //        mToolbar.setNavigationIcon(R.drawable.back_arrow);
 //        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -140,6 +150,13 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
 
         paymentConfirmApi();
 
+        competition_referal_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                VerifyReferalCodeOnServer(competition_referal_id.getText().toString());
+            }
+        });
+
         mProceedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -160,31 +177,7 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
                     } else {
                         Map<String, String> params = new HashMap<>();
                         startPayment();
-//                        transactionId = "SQRFAC" + com.hackerkernel.user.sqrfactor.Utils.Utils.generateRandomStr(8);
-//
-//                        orderId = "SQRFAC" + com.hackerkernel.user.sqrfactor.Utils.Utils.generateRandomStr(8);
-//                        params.put(PayUMoney_Constants.KEY, "xrrZdj");
-////        params.put(PayUMoney_Constants.KEY,"lESQjlQk"); //dev
-//                        params.put(PayUMoney_Constants.UDF1,orderId);
-//                        params.put(PayUMoney_Constants.TXN_ID, transactionId);
-//                        params.put(PayUMoney_Constants.AMOUNT, amount);
-//                        params.put(PayUMoney_Constants.PRODUCT_INFO, "Competition Participation");
-//                        params.put(PayUMoney_Constants.FIRST_NAME, mUserName);
-//                        params.put(PayUMoney_Constants.EMAIL, mUserEmail);
-//                        params.put(PayUMoney_Constants.PHONE, mUserPhone);
-//                        params.put(PayUMoney_Constants.SURL, "https://www.payumoney.com/mobileapp/payumoney/success.php");
-//                        params.put(PayUMoney_Constants.FURL, "https://www.payumoney.com/mobileapp/payumoney/failure.php");
-//
-//                        String hash = Utils.generateHash((HashMap<String, String>) params, "FlVk5hXQ");
-//
-//                        params.put(PayUMoney_Constants.HASH, hash);
-//                        params.put(PayUMoney_Constants.SERVICE_PROVIDER, "payu_paisa");
-//
-//                        Intent intent = new Intent(PaymentConfirmActivity.this, MakePaymentActivity.class);
-//                        intent.putExtra(PayUMoney_Constants.ENVIRONMENT, PayUMoney_Constants.ENV_PRODUCTION);
-//                        intent.putExtra(PayUMoney_Constants.PARAMS, (HashMap) params);
-//
-//                        startActivityForResult(intent, PayUMoney_Constants.PAYMENT_REQUEST);
+
                     }
 
 
@@ -195,6 +188,115 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
             }
         });
     }
+
+    private void VerifyReferalCodeOnServer(final String refferalCode) {
+        mRequestQueue = MyVolley.getInstance().getRequestQueue();
+//ServerConstants.VERIFY_REFRAL_CODE
+        StringRequest request = new StringRequest(Request.Method.POST,"https://archsqr.in/api/competition/search/code", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+//                Toast.makeText(PaymentConfirmActivity.this, "referal code"+response, Toast.LENGTH_SHORT).show();
+
+                try {
+
+                    JSONObject responseObject = new JSONObject(response);
+
+                    boolean ret=responseObject.getBoolean("return");
+                    if(ret)
+                    {
+
+                        int Amount=responseObject.getInt("Amount");
+                        String CountryType=responseObject.getString("CountryType");
+                        if(CountryType.equals("Foreign"))
+                        {
+
+                            //mAmountTextView1 = findViewById(R.id.pay_confirm_amount1);
+                            float discountedAmount=Float.parseFloat(mAmountTextView1.getText().toString())-Amount;
+                            mAmountTextView1.setText(discountedAmount+"");
+                            coupon_applied_message_foreign.setVisibility(View.VISIBLE);
+
+
+
+                        }
+                        else {
+
+                            int discountedAmount=Integer.parseInt(mAmountTextView.getText().toString())-Amount;
+                            mAmountTextView.setText(discountedAmount+"");
+                            coupon_applied_message_india.setVisibility(View.VISIBLE);
+
+                        }
+                        refferal_code_layout.setVisibility(View.GONE);
+                        MDToast.makeText(PaymentConfirmActivity.this, "Coupon Code Applied", MDToast.LENGTH_LONG, MDToast.TYPE_SUCCESS).show();
+
+                    }
+                    else {
+                        referal_error_message.setVisibility(View.VISIBLE);
+
+                        }
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //mPb.setVisibility(View.GONE);
+                //mContentLayout.setVisibility(View.VISIBLE);
+                NetworkResponse response = error.networkResponse;
+                if (error instanceof ServerError && response != null) {
+                    try {
+
+
+                        String res = new String(response.data,
+                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                        Log.v("payUmoney",res);
+                        Toast.makeText(getApplicationContext(),res,Toast.LENGTH_LONG).show();
+                        // Now you can use any deserializer to make sense of data
+                        JSONObject obj = new JSONObject(res);
+                    } catch (UnsupportedEncodingException e1) {
+                        Toast.makeText(getApplicationContext(),e1.toString(),Toast.LENGTH_LONG).show();
+                        // Couldn't properly decode data to string
+                        e1.printStackTrace();
+                    } catch (JSONException e2) {
+                        Toast.makeText(getApplicationContext(),e2.toString(),Toast.LENGTH_LONG).show();
+                        // returned data is not JSONObject?
+                        e2.printStackTrace();
+                    }
+                }
+                NetworkUtil.handleSimpleVolleyRequestError(error, PaymentConfirmActivity.this);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                final Map<String, String> headers = new HashMap<>();
+                headers.put(getString(R.string.accept), getString(R.string.application_json));
+               // headers.put(getString(R.string.authorization), Constants.AUTHORIZATION_HEADER + mSp.getKey(SPConstants.API_KEY));
+                headers.put(getString(R.string.authorization), Constants.AUTHORIZATION_HEADER +"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjM0Y2YzYmI5MzBlZTQwNzZiOGI0NzI3ZWRhYmMwZDA4ZjhiZGI5Yjg1N2YzNzliZWU4MDEyZWJmODUwMDQ3MmJlZTk2ZmRkZjY5MmY3OWJhIn0.eyJhdWQiOiIzIiwianRpIjoiMzRjZjNiYjkzMGVlNDA3NmI4YjQ3MjdlZGFiYzBkMDhmOGJkYjliODU3ZjM3OWJlZTgwMTJlYmY4NTAwNDcyYmVlOTZmZGRmNjkyZjc5YmEiLCJpYXQiOjE1NDQ2MDE5MTYsIm5iZiI6MTU0NDYwMTkxNiwiZXhwIjoxNTc2MTM3OTE2LCJzdWIiOiIxMDYiLCJzY29wZXMiOltdfQ.ACcMBn4UGznAYiWlFjrJ8cJem-LazCGJwo_lF8CBEf3Iz2Owa7gzwrVzyr2CWM-Ms7H0omi_UEc2Pf15GjEP1TMeroF6VfJqxsFjhuF2s_f5VQNIMEs8-ckRvoLum0H3_GZ9VFwrWYYK3RaiZ_8dXOkAzg49LeB5UvWwjjukWRKfQfY7NYuRzVmqLZ2cVXT4WpCLehm2ZgoN2570wadIx4qVS8vOXa-d1wlVBYazFT8DwaxvzJYlysF-8u4PYl-QB6f5B3bCWF-qYVG_QvhwZ-0NMhJCkoEg-Ft--8tvWFqcRFyJl0P4RkgogrXFA7cjeEDJH3esfH93b-Skh0VQc1oVQ4sm7z4bXRKLYYRiSNj0pZt1bpd22K1f4Q5KquFT6Q-LmoIjQkcDjRiCmF1J5wFVJbb-LVOUWNeAXd7mIkfDvo7N7T-xpJR2w6706x3nqVtXJIP3MX3P9xqoeywsE_sYLyfn1ITffjSG44cVVCVj0lDIuZIJHhpW1qqwhIZkmvJpq_JhM-GcPmv7fVAbf2oZclnTfFDPECl_AVbJGJcKbWfyaMbAg3sdUt4-C7E5Ndr7gYe18o1iGJOQDHE4cMTMD_ehFErUg1R5gTPDyyXIldB_EfzCwOXoDlzZZiDHuFCGM3zD-wL0PrUMcFU6bbpt3d6M7R-Md2Ir81ZMOpA");
+                Log.d(TAG, "getHeaders: api key = " + mSp.getKey(SPConstants.API_KEY));
+
+                return headers;
+            }
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+
+                params.put("CompId",mCompetitionId);
+                params.put("r_code",refferalCode);
+                return params;
+            }
+
+        };
+        request.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        mRequestQueue.add(request);
+
+    }
+
     @Override
     public void onDestroy() {
         stopService(new Intent(this, PayPalService.class));
@@ -212,7 +314,7 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
         try {
             JSONObject options = new JSONObject();
             options.put("name", "SqrFactor India Pvt. Ltd.");
-            options.put("description", "Demoing Charges");
+            options.put("description", "Travel Unravel");
             //You can omit the image option to fetch the image from dashboard
             options.put("image", R.drawable.logofinal);
             options.put("currency", "INR");
@@ -276,7 +378,6 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
         mRequestQueue = MyVolley.getInstance().getRequestQueue();
 
         StringRequest request = new StringRequest(Request.Method.GET, ServerConstants.PAYMENT_CONFIRM + mCompetitionId, new Response.Listener<String>() {
-            @SuppressLint("ResourceType")
             @Override
             public void onResponse(String response) {
 
@@ -385,24 +486,7 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//
-//        if (resultCode == RESULT_OK && requestCode == PayUMoney_Constants.PAYMENT_REQUEST) {
-//            Toast.makeText(this, "Payment Success,", Toast.LENGTH_SHORT).show();
-//            Log.d(TAG, "payuResult" + data.toString());
-//
-//            // Log.d(TAG, "onActivityResult: payu response = " + data.getStringExtra("payu_response"));
-//            String result = data.getStringExtra("result");
-//            Log.d(TAG, "onActivityResult: payu result = " + data.getStringExtra("result")+" "+data.getStringExtra("paymentId") );
-//
-//            long orderId = Long.parseLong(result);
-////            sendPayUmoneylData();
-//
-//
-//        }
-//        else if (resultCode == RESULT_CANCELED) {
-//            Log.i(TAG, "failure");
-//            Toast.makeText(this, "Payment Failed | Cancelled.", Toast.LENGTH_SHORT).show();
-//        }
+
 
         if (requestCode == PAYPAL_REQUEST_CODE) {
 
@@ -599,4 +683,54 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
             Log.e(TAG, "Exception in onPaymentError", e);
         }
     }
+
+
+
 }
+
+
+
+//
+//        if (resultCode == RESULT_OK && requestCode == PayUMoney_Constants.PAYMENT_REQUEST) {
+//            Toast.makeText(this, "Payment Success,", Toast.LENGTH_SHORT).show();
+//            Log.d(TAG, "payuResult" + data.toString());
+//
+//            // Log.d(TAG, "onActivityResult: payu response = " + data.getStringExtra("payu_response"));
+//            String result = data.getStringExtra("result");
+//            Log.d(TAG, "onActivityResult: payu result = " + data.getStringExtra("result")+" "+data.getStringExtra("paymentId") );
+//
+//            long orderId = Long.parseLong(result);
+////            sendPayUmoneylData();
+//
+//
+//        }
+//        else if (resultCode == RESULT_CANCELED) {
+//            Log.i(TAG, "failure");
+//            Toast.makeText(this, "Payment Failed | Cancelled.", Toast.LENGTH_SHORT).show();
+//        }
+
+//                        transactionId = "SQRFAC" + com.hackerkernel.user.sqrfactor.Utils.Utils.generateRandomStr(8);
+//
+//                        orderId = "SQRFAC" + com.hackerkernel.user.sqrfactor.Utils.Utils.generateRandomStr(8);
+//                        params.put(PayUMoney_Constants.KEY, "xrrZdj");
+////        params.put(PayUMoney_Constants.KEY,"lESQjlQk"); //dev
+//                        params.put(PayUMoney_Constants.UDF1,orderId);
+//                        params.put(PayUMoney_Constants.TXN_ID, transactionId);
+//                        params.put(PayUMoney_Constants.AMOUNT, amount);
+//                        params.put(PayUMoney_Constants.PRODUCT_INFO, "Competition Participation");
+//                        params.put(PayUMoney_Constants.FIRST_NAME, mUserName);
+//                        params.put(PayUMoney_Constants.EMAIL, mUserEmail);
+//                        params.put(PayUMoney_Constants.PHONE, mUserPhone);
+//                        params.put(PayUMoney_Constants.SURL, "https://www.payumoney.com/mobileapp/payumoney/success.php");
+//                        params.put(PayUMoney_Constants.FURL, "https://www.payumoney.com/mobileapp/payumoney/failure.php");
+//
+//                        String hash = Utils.generateHash((HashMap<String, String>) params, "FlVk5hXQ");
+//
+//                        params.put(PayUMoney_Constants.HASH, hash);
+//                        params.put(PayUMoney_Constants.SERVICE_PROVIDER, "payu_paisa");
+//
+//                        Intent intent = new Intent(PaymentConfirmActivity.this, MakePaymentActivity.class);
+//                        intent.putExtra(PayUMoney_Constants.ENVIRONMENT, PayUMoney_Constants.ENV_PRODUCTION);
+//                        intent.putExtra(PayUMoney_Constants.PARAMS, (HashMap) params);
+//
+//                        startActivityForResult(intent, PayUMoney_Constants.PAYMENT_REQUEST);

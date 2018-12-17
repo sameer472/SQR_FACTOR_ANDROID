@@ -1,6 +1,5 @@
 package com.hackerkernel.user.sqrfactor;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +25,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.hackerkernel.user.sqrfactor.Pojo.CitiesClass;
+import com.hackerkernel.user.sqrfactor.Pojo.CountryClass;
+import com.hackerkernel.user.sqrfactor.Pojo.StateClass;
+import com.hackerkernel.user.sqrfactor.Pojo.TokenClass;
 
 import org.json.JSONArray;
 import org.json.JSONException;

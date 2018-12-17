@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.hackerkernel.user.sqrfactor.Pojo.CreditsClass;
+
 import java.util.ArrayList;
 
 public class CreditsAdapter extends RecyclerView.Adapter<CreditsAdapter.MyViewHolder> {

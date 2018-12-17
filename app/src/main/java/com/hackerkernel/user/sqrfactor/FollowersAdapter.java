@@ -13,6 +13,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.hackerkernel.user.sqrfactor.Pojo.FollowerClass;
 
 import java.util.ArrayList;
 

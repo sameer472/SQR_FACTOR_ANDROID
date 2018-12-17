@@ -70,7 +70,7 @@ public class UtilsClass {
         }
 
 
-        if(parsedUrl!=null && parsedUrl.length>=2 && (parsedUrl[2].equals("graph.facebook.com")||parsedUrl[2].contains("googleusercontent.com")))
+        if(parsedUrl!=null && parsedUrl.length>=2 && (parsedUrl[2].equals("graph.facebook.com")||parsedUrl[2].contains("googleusercontent.com")||parsedUrl[2].equals("platform-lookaside.fbsbx.com")))
         {
             return url;
         }

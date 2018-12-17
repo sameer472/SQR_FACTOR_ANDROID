@@ -1,5 +1,8 @@
 package com.hackerkernel.user.sqrfactor;
 
+import com.hackerkernel.user.sqrfactor.Pojo.from_user;
+import com.hackerkernel.user.sqrfactor.Pojo.post;
+
 import java.io.Serializable;
 
 public class PushNotificationClass implements Serializable {
@@ -25,19 +28,19 @@ public class PushNotificationClass implements Serializable {
 
     }
 
-    public com.hackerkernel.user.sqrfactor.post getPost() {
+    public com.hackerkernel.user.sqrfactor.Pojo.post getPost() {
         return post;
     }
 
-    public void setPost(com.hackerkernel.user.sqrfactor.post post) {
+    public void setPost(com.hackerkernel.user.sqrfactor.Pojo.post post) {
         this.post = post;
     }
 
-    public com.hackerkernel.user.sqrfactor.from_user getFrom_user() {
+    public com.hackerkernel.user.sqrfactor.Pojo.from_user getFrom_user() {
         return from_user;
     }
 
-    public void setFrom_user(com.hackerkernel.user.sqrfactor.from_user from_user) {
+    public void setFrom_user(com.hackerkernel.user.sqrfactor.Pojo.from_user from_user) {
         this.from_user = from_user;
     }
 

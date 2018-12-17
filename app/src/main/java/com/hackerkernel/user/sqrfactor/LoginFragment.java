@@ -8,14 +8,8 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.FragmentActivity;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -23,7 +17,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -31,12 +24,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.ServerError;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.facebook.AccessToken;
@@ -46,33 +41,26 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.appevents.AppEventsLogger;
 import com.facebook.login.LoginBehavior;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInApi;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.hackerkernel.user.sqrfactor.Constants.SPConstants;
-import com.hackerkernel.user.sqrfactor.HomeScreen;
+import com.hackerkernel.user.sqrfactor.Network.MyVolley;
+import com.hackerkernel.user.sqrfactor.Pojo.IsOnline;
+import com.hackerkernel.user.sqrfactor.Pojo.TokenClass;
 import com.hackerkernel.user.sqrfactor.Storage.MySharedPreferences;
-import com.hackerkernel.user.sqrfactor.UserClass;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -84,11 +72,9 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static android.content.Context.MODE_PRIVATE;
-import static android.content.Context.RECEIVER_VISIBLE_TO_INSTANT_APPS;
 import static com.android.volley.VolleyLog.TAG;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -98,6 +84,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
     private SharedPreferences.Editor loginPrefsEditor;
     private Boolean saveLogin;
     private String username, password;
+    private String firstNameText="",lastNameText="";
     private Button login;
     private TextView forgot,info;
     private EditText loginEmail, loginPassword;
@@ -322,18 +309,40 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
         if(result.isSuccess()){
             GoogleSignInAccount account = result.getSignInAccount();
             final String name = account.getDisplayName();
+            final String givenName = account.getGivenName()+"   "+account.getFamilyName();
             final String gmail_email = account.getEmail();
             final String id = account.getId();
             final String profile = String.valueOf(account.getPhotoUrl());
+            String[] nameArray=name.split(" ");
+
+            if(nameArray.length>1)
+            {
+                firstNameText=nameArray[0];
+                for(int i=1;i<nameArray.length;i++)
+                {
+                    if(!nameArray[i].equals("null")||nameArray[i]!=null)
+                    lastNameText+=nameArray[i];
+                }
+               // Log.v("data",firstNameText);
+            }
+            else {
+                firstNameText=nameArray[0];
+                lastNameText="";
+            }
+
+            //Toast.makeText(getApplicationContext(),id+" "+name+" "+gmail_email+" "+profile,Toast.LENGTH_LONG).show();
             sp.edit().clear();
             sp.edit().putBoolean("logged",true).commit();
 
-            RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
+            RequestQueue requestQueue = MyVolley.getInstance().getRequestQueue();
+            //RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
             StringRequest myReq = new StringRequest(Request.Method.POST, UtilsClass.baseurl+"sociallogin",
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Log.v("ReponseGoogle", response);
+//                            Log.v("ReponseGoogle", response);
+//                            Toast.makeText(context, response, Toast.LENGTH_SHORT).show();
+                            // TokenClass.Token=jsonObject.getJSONObject("success").getString("token");
                             try {
 
 
@@ -431,7 +440,27 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
 
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            NetworkResponse response = error.networkResponse;
+                            if (error instanceof ServerError && response != null) {
+                                try {
 
+
+                                    String res = new String(response.data,
+                                            HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                                    Log.v("login 1",res);
+                                    Toast.makeText(getApplicationContext(),res,Toast.LENGTH_LONG).show();
+                                    // Now you can use any deserializer to make sense of data
+                                    JSONObject obj = new JSONObject(res);
+                                } catch (UnsupportedEncodingException e1) {
+                                    Toast.makeText(getApplicationContext(),e1.toString(),Toast.LENGTH_LONG).show();
+                                    // Couldn't properly decode data to string
+                                    e1.printStackTrace();
+                                } catch (JSONException e2) {
+                                    Toast.makeText(getApplicationContext(),e2.toString(),Toast.LENGTH_LONG).show();
+                                    // returned data is not JSONObject?
+                                    e2.printStackTrace();
+                                }
+                            }
                         }
                     }) {
 
@@ -445,14 +474,24 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("social_id",id);
-                    params.put("fullname",name);
+                    params.put("first_name",firstNameText);
+                    params.put("last_name",lastNameText);
                     params.put("email", gmail_email);
-                    params.put("profile_pic",profile);
+                    if(profile.equals("null")||profile==null)
+                    {
+                        params.put("profile_pic","");
+                    }
+                    else {
+                        params.put("profile_pic",profile);
+                    }
                     params.put("service", "google");
                     return params;
                 }
 
             };
+           // requestQueue.add(myReq);
+            myReq.setRetryPolicy(new DefaultRetryPolicy(20 * 1000, 0,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
             requestQueue.add(myReq);
         }
 
@@ -473,11 +512,28 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
                             sp.edit().putBoolean("logged",true).commit();
                             try {
                                 String name = object.getString("name");
+                                String[] nameArray=name.split(" ");
+                                if(nameArray.length>1)
+                                {
+                                    firstNameText=nameArray[0];
+                                    for(int i=1;i<nameArray.length;i++)
+                                    {
+                                        if(!nameArray[i].equals("null")||nameArray[i]!=null)
+                                        lastNameText+=nameArray[i];
+                                    }
+                                    Log.v("data",firstNameText);
+                                }
+                                else {
+                                    firstNameText=nameArray[0];
+                                    lastNameText="";
+                                }
+
+
                                 final String email = object.getString("email");
-                                String profileID = object.getString("id");
+                                final String profileID = object.getString("id");
                                 JSONObject picture = object.getJSONObject("picture");
                                 JSONObject data = picture.getJSONObject("data");
-                                String url = data.getString("url");
+                                final String url = data.getString("url");
 
                                 RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
                                 StringRequest myReq = new StringRequest(Request.Method.POST, UtilsClass.baseurl+"sociallogin",
@@ -492,7 +548,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
                                                         UserClass userClass = new UserClass(jsonObject);
                                                         // notification listner for like and comment
                                                         FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications" + userClass.getUserId());
-                                                       FirebaseMessaging.getInstance().subscribeToTopic("chats"+userClass.getUserId());
+                                                        FirebaseMessaging.getInstance().subscribeToTopic("chats"+userClass.getUserId());
                                                         //code for user status
                                                         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                                                         Date date = new Date();
@@ -581,14 +637,34 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
                                                     e.printStackTrace();
                                                 }
                                             }
-                                        },
-                                        new Response.ErrorListener() {
-
+                                        }, new Response.ErrorListener() {
                                             @Override
                                             public void onErrorResponse(VolleyError error) {
+                                                NetworkResponse response = error.networkResponse;
+                                                if (error instanceof ServerError && response != null) {
+                                                    try {
 
+
+                                                        String res = new String(response.data,
+                                                                HttpHeaderParser.parseCharset(response.headers, "utf-8"));
+                                                        Log.v("login 1",res);
+                                                        Toast.makeText(getApplicationContext(),res,Toast.LENGTH_LONG).show();
+                                                        // Now you can use any deserializer to make sense of data
+                                                        JSONObject obj = new JSONObject(res);
+                                                    } catch (UnsupportedEncodingException e1) {
+                                                        Toast.makeText(getApplicationContext(),e1.toString(),Toast.LENGTH_LONG).show();
+                                                        // Couldn't properly decode data to string
+                                                        e1.printStackTrace();
+                                                    } catch (JSONException e2) {
+                                                        Toast.makeText(getApplicationContext(),e2.toString(),Toast.LENGTH_LONG).show();
+                                                        // returned data is not JSONObject?
+                                                        e2.printStackTrace();
+                                                    }
+                                                }
                                             }
-                                        }) {
+
+                            })
+                                {
 
                                     @Override
                                     public Map<String, String> getHeaders() throws AuthFailureError {
@@ -599,7 +675,17 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
                                     @Override
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
+                                        params.put("social_id",profileID);
+                                        params.put("first_name",firstNameText);
+                                        params.put("last_name",lastNameText);
                                         params.put("email", email);
+                                        if(url.equals("null")||url==null)
+                                        {
+                                            params.put("profile_pic","");
+                                        }
+                                        else {
+                                            params.put("profile_pic",url);
+                                        }
                                         params.put("service", "facebook");
                                         return params;
                                     }
@@ -640,9 +726,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener,Goog
                             JSONObject jsonObject = new JSONObject(response);
 
                             if(jsonObject.has("message"))
-                            {
-                                MDToast.makeText(getApplicationContext(), "Check Your UserName or password field", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                            }
+                               {
+                                  MDToast.makeText(getApplicationContext(), "Check Your UserName or password field", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
+                               }
                             else {
                                 UserClass userClass = new UserClass(jsonObject);
                                 // notification listner for like and comment
