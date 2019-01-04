@@ -59,20 +59,15 @@ private EditText oldPassword,newPassword,confirmPassword;
             });
         }
 
-        public void ValidateData()
-        {
-            if (!TextUtils.isEmpty(oldPassword.getText().toString())&&!TextUtils.isEmpty(newPassword.getText().toString())&&!TextUtils.isEmpty(confirmPassword.getText().toString()))
-            {
+        public void ValidateData() {
+            if (!TextUtils.isEmpty(oldPassword.getText().toString())&&!TextUtils.isEmpty(newPassword.getText().toString())&&!TextUtils.isEmpty(confirmPassword.getText().toString())) {
                 saveDataToServer();
-            }
-            else {
+            } else {
                 MDToast.makeText(this, "Your password field in empty", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
                 return;
             }
         }
-        public void saveDataToServer()
-        {
-
+        public void saveDataToServer() {
             RequestQueue requestQueue1 = Volley.newRequestQueue(getApplicationContext());
             StringRequest stringRequest = new StringRequest(Request.Method.POST, UtilsClass.baseurl+"parse/changepassword",
                     new Response.Listener<String>() {
@@ -85,7 +80,6 @@ private EditText oldPassword,newPassword,confirmPassword;
                                 oldPassword.setText("");
                                 newPassword.setText("");
                                 confirmPassword.setText("");
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -95,9 +89,6 @@ private EditText oldPassword,newPassword,confirmPassword;
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError volleyError) {
-
-                            //Showing toast
-//                        Toast.makeText(getActivity(), volleyError.getMessage().toString(), Toast.LENGTH_LONG).show();
                         }
                     }){
                 @Override
@@ -105,7 +96,6 @@ private EditText oldPassword,newPassword,confirmPassword;
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("Accept", "application/json");
                     params.put("Authorization", "Bearer "+TokenClass.Token);
-
                     return params;
                 }
                 @Override
@@ -120,10 +110,6 @@ private EditText oldPassword,newPassword,confirmPassword;
 
             //Adding request to the queue
             requestQueue1.add(stringRequest);
-
-
-
-
         }
 
         @Override

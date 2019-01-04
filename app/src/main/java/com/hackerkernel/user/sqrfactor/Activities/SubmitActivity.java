@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -59,6 +60,8 @@ public class SubmitActivity extends AppCompatActivity {
     private RelativeLayout mDesignPdfButton;
     private TextView mPdfPathTV;
     private Button mSubmitButton;
+    private Button sqrfactor_editor_btn;
+    private Button submit_pdf_btn;
 
     private ProgressBar mPb;
     private MySharedPreferences mSp;
@@ -66,6 +69,7 @@ public class SubmitActivity extends AppCompatActivity {
     private RequestQueue mRequestQueue;
     private String mSelectedFilePath;
     private String mSelectedCoverImagePath;
+    private LinearLayout Pdf_Upload_layout,sqrfactor_editor;
 
     String slug;
     String title;
@@ -99,11 +103,31 @@ public class SubmitActivity extends AppCompatActivity {
         mCoverImagePathTV = findViewById(R.id.submit_design_cover_image_path);
         mDesignPdfButton = findViewById(R.id.submit_design_pdf);
         mPdfPathTV = findViewById(R.id.submit_design_pdf_path);
+        Pdf_Upload_layout=findViewById(R.id.Pdf_Upload_layout);
+        sqrfactor_editor=findViewById(R.id.sqrfactor_editor);
+        sqrfactor_editor_btn=findViewById(R.id.sqrfactor_editor_btn);
+        submit_pdf_btn=findViewById(R.id.pdf_button);
         mSubmitButton = findViewById(R.id.submit_design);
+
 
          slug = getIntent().getStringExtra(BundleConstants.SLUG);
 
         getIdDetails();
+
+        submit_pdf_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sqrfactor_editor.setVisibility(View.GONE);
+                Pdf_Upload_layout.setVisibility(View.VISIBLE);
+            }
+        });
+        sqrfactor_editor_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Pdf_Upload_layout.setVisibility(View.GONE);
+                sqrfactor_editor.setVisibility(View.VISIBLE);
+            }
+        });
 
         mCoverImageButton.setOnClickListener(new View.OnClickListener() {
             @Override

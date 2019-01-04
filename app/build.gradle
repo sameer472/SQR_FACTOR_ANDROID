@@ -7,7 +7,7 @@ android {
         applicationId "com.hackerkernel.user.sqrfactor"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 10
+        versionCode 12
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true

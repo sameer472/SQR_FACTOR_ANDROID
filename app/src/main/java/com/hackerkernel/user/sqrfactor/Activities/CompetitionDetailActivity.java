@@ -112,12 +112,10 @@ public class CompetitionDetailActivity extends AppCompatActivity {
 
         mTabLayout.setupWithViewPager(mPager);
 
-        if(getIntent()!=null && getIntent().hasExtra(BundleConstants.SLUG))
-        {
+        if(getIntent()!=null && getIntent().hasExtra(BundleConstants.SLUG)) {
             slug = getIntent().getStringExtra(BundleConstants.SLUG);
             UtilsClass.slug = slug;
-        }
-        else {
+        } else {
            slug=UtilsClass.slug;
         }
 
@@ -190,63 +188,45 @@ public class CompetitionDetailActivity extends AppCompatActivity {
                     try {
                         JSONObject response1 = new JSONObject(response);
                         //JSONObject responseObject=response1.getJSONObject("response");
-
                         if (response1.getInt("code")==4) { // user hasn't participated yet
 //                            Toast.makeText(getApplicationContext(),"code4",Toast.LENGTH_LONG).show();
                             ownCompDialog();
 
-                        }
-
-                       else if(response1.getInt("code")==3) { // user hasn't participated yet
+                        } else if(response1.getInt("code")==3) { // user hasn't participated yet
 //                            Toast.makeText(getApplicationContext(),"code3",Toast.LENGTH_LONG).show();
                             Intent i = new Intent(CompetitionDetailActivity.this, ParticipateActivity.class);
                             i.putExtra(BundleConstants.COMPETITION_ID, mCompetitionId);
                             startActivity(i);
 
-                        }
-                        else if(response1.getInt("code")==5)
-                        {
-
+                        } else if(response1.getInt("code")==5) {
                             Intent i = new Intent(getApplicationContext(), PaymentConfirmActivity.class);
                             i.putExtra(BundleConstants.COMPETITION_ID, mCompetitionId);
                             startActivity(i);
-                        }
-                        else if(response1.getInt("code")==2)
-                        {
+                        } else if(response1.getInt("code")==2) {
 //                            Toast.makeText(getApplicationContext(),"code2",Toast.LENGTH_LONG).show();
                             alreadyParticipatedDialog();
-                        }
-                        else if(response1.getInt("code")==1)
-                        {
+                        } else if(response1.getInt("code")==1) {
 //                            Toast.makeText(getApplicationContext(),"code2",Toast.LENGTH_LONG).show();
                             fillDetailsBeforeParticipatingDialog();
                         }
-
-///
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
                 } else {
                     try {
                         JSONObject responseObject = new JSONObject(response);
 
                         if (!responseObject.isNull("Message")) { // user hasn't participated yet
 
-//                            participateFirstDialog();
-
+                            //participateFirstDialog();
                         } else {
                             JSONArray participantDataArray = responseObject.getJSONArray("Participant Data");
                             JSONObject participantDataObj = participantDataArray.getJSONObject(0);
-
                             String paymentStatus = participantDataObj.getString("Payment_Status");
-
                             if (paymentStatus.equals("0")) { // user hasn't paid yet
                                 payFirstDialog();
 
                             } else if (paymentStatus.equals("success") || paymentStatus.equals("VERIFIED")) { // user has paid
-
                                 Intent i = new Intent(CompetitionDetailActivity.this, SubmitActivity.class);
                                 final String slug = getIntent().getStringExtra(BundleConstants.SLUG);
                                 i.putExtra(BundleConstants.SLUG,slug);
@@ -268,8 +248,6 @@ public class CompetitionDetailActivity extends AppCompatActivity {
                 NetworkResponse response = error.networkResponse;
                 if (error instanceof ServerError && response != null) {
                     try {
-
-
                         String res = new String(response.data,
                                 HttpHeaderParser.parseCharset(response.headers, "utf-8"));
                         Log.v("chat",res);
@@ -350,16 +328,12 @@ public class CompetitionDetailActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position){
-
                 case 0:
                     return new InfoFragment();
-
                 case 1:
                     return new WallFragment();
-
                 case 2:
                     return new SubmissionsFragment();
-
                 case 3:
                     return new ResultsFragment();
             }
@@ -370,24 +344,18 @@ public class CompetitionDetailActivity extends AppCompatActivity {
         public int getCount() {
             return 4;
         }
-
         @Nullable
         @Override
         public CharSequence getPageTitle(int position) {
             switch (position){
-
                 case 0:
                     return "Info";
-
                 case 1:
                     return "Wall";
-
                 case 2:
                     return "Submissions";
-
                 case 3:
                     return "Results";
-
             }
             return null;
         }

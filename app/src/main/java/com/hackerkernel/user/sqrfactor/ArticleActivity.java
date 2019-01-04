@@ -157,15 +157,12 @@ public class ArticleActivity extends ToolbarActivity{
         saveArticleButton = findViewById(R.id.saveArticle);
 
         Intent intent1=getIntent();
-        if(intent1!=null && intent1.hasExtra("Post_Slug_ID"))
-        {
+        if(intent1!=null && intent1.hasExtra("Post_Slug_ID")) {
             Toast.makeText(this,intent1.getStringExtra("Post_Slug_ID"),Toast.LENGTH_LONG).show();
             isEdit=true;
             Slug=intent1.getStringExtra("Post_Slug_ID");
             postId=intent1.getIntExtra("Post_ID",0);
             FetchDataFromServerAndBindToViews(intent1.getStringExtra("Post_Slug_ID"));
-
-
         }
         frameLayout = findViewById(R.id.article_rl);
 //        frameLayout.setVisibility(View.GONE);
@@ -192,33 +189,18 @@ public class ArticleActivity extends ToolbarActivity{
         UserClass userClass = gson.fromJson(json, UserClass.class);
         profileImage=findViewById(R.id.article_profile);
         articleUserName=findViewById(R.id.article_userName);
-
-
         Glide.with(this).load("https://archsqr.in/"+userClass.getProfile())
                 .into(profileImage);
-
-
-        if(userClass.getFirst_name().equals("null"))
-        {
+        if(userClass.getFirst_name().equals("null")) {
             articleUserName.setText(userClass.getUser_name());
-        }
-
-        else {
+        } else {
             articleUserName.setText(userClass.getFirst_name()+"" +userClass.getLast_name());
         }
-
-
-
-
         cropFinalImage = findViewById(R.id.cropFinalImage);
         cropImageView = findViewById(R.id.cropImageView);
 
 //        cropFinalImage.setVisibility(View.GONE);
-
-
-
         GetTagFromServer();
-
         articleSelectBannerImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -235,8 +217,7 @@ public class ArticleActivity extends ToolbarActivity{
                 }
 
                 if (ActivityCompat.shouldShowRequestPermissionRationale(ArticleActivity.this,
-                        android.Manifest.permission.CAMERA))
-                {
+                        android.Manifest.permission.CAMERA)) {
 
 //                    Toast.makeText(ProfileActivity.this,"CAMERA permission allows us to Access CAMERA app", Toast.LENGTH_LONG).show();
 
@@ -280,38 +261,24 @@ public class ArticleActivity extends ToolbarActivity{
                 Log.v("dataTosend",editor.getContentAsHTML());
                 String image;
 
-                if(isEdit)
-                {
+                if(isEdit) {
                      BitmapDrawable drawable = (BitmapDrawable)cropFinalImage.getDrawable();
                      Bitmap bitmap = drawable.getBitmap();
                      image=getStringImage(bitmap);
                      SendArticleDataToServer1(image,UtilsClass.baseurl+"article-edit");
-                }
-                else {
+                } else {
                     cropImageView.invalidate();
                     image=getStringImage(cropImageView.getCroppedImage());
                     Log.v("cropedImage",image);
                     SendArticleDataToServer(image,UtilsClass.baseurl+"article-parse-post");
                 }
-
-
-
-
-
             }
         });
-
-
         editor = (Editor) findViewById(R.id.editor);
-
-
-
-//
         editor.setFocusable(false);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             editor.setFocusable(View.NOT_FOCUSABLE);
         }
-
         findViewById(R.id.article_insert_image).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -340,20 +307,11 @@ public class ArticleActivity extends ToolbarActivity{
             public void onUpload(Bitmap image, String uuid) {
                 Toast.makeText(ArticleActivity.this, uuid, Toast.LENGTH_LONG).show();
                 uploadEditorImageToServer(uuid);
-
-
-                // editor.onImageUploadFailed(uuid);
-            }
+                }
         });
         editor.render();
 
     }
-
-
-
-
-
-
     private void GetTagFromServer() {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -365,8 +323,7 @@ public class ArticleActivity extends ToolbarActivity{
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray tags=jsonObject.getJSONArray("searched_tags");
                             final ArrayList<String> tagName=new ArrayList<>();
-                            for(int i=0;i<tags.length();i++)
-                            {
+                            for(int i=0;i<tags.length();i++) {
                                 tagName.add(tags.getJSONObject(i).getString("name"));
                             }
 
@@ -500,23 +457,13 @@ public class ArticleActivity extends ToolbarActivity{
 
         if (resultCode == RESULT_OK && requestCode == 3) {
 
-
-        }
-
-
-        else if (resultCode == RESULT_OK && requestCode == 2) {
-
-
-            if(data!=null)
-            {
-
+        } else if (resultCode == RESULT_OK && requestCode == 2) {
+            if(data!=null) {
                 uri = data.getData();
                 String[] filePathColumn = { MediaStore.Images.Media.DATA };
-
                 Cursor cursor = getContentResolver().query(uri,
                         filePathColumn, null, null, null);
                 cursor.moveToFirst();
-
                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                 String picturePath = cursor.getString(columnIndex);
                 //uri=picturePath;
@@ -526,32 +473,16 @@ public class ArticleActivity extends ToolbarActivity{
                 //ImageView imageView = (ImageView) findViewById(R.id.imgView);
                 //profileImage.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             }
-
-
-
-        }
-        else if(resultCode == RESULT_OK && requestCode == 6)
-        {
-
-            if(data!=null)
-            {
+        } else if(resultCode == RESULT_OK && requestCode == 6) {
+            if(data!=null) {
                 Bundle extras = data.getExtras();
                 bitmap  = extras.getParcelable("data");
                 cropFinalImage.setImageBitmap(bitmap);
-
             }
-
         }
     }
 
-
-
-
-
-
-
-    public void SendArticleDataToServer(final String image,final String url)
-    {
+    public void SendArticleDataToServer(final String image,final String url) {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest myReq = new StringRequest(Request.Method.POST,url,
                 new Response.Listener<String>() {
@@ -560,7 +491,6 @@ public class ArticleActivity extends ToolbarActivity{
                         Log.v("Reponse", response);
                         MDToast.makeText(ArticleActivity.this, "Article posted successfully", MDToast.LENGTH_SHORT, MDToast.TYPE_SUCCESS).show();
                         editor.clearAllContents();
-
                         multiAutoCompleteTextView.setText("");
                         articleTitle.setText("");
                         articleShortDescription.setText("");
@@ -596,14 +526,14 @@ public class ArticleActivity extends ToolbarActivity{
                 params.put("tags",multiAutoCompleteTextView.getText().toString());
                 params.put("description_short",articleShortDescription.getText().toString());
                 params.put("banner_image","data:image/jpeg;base64,"+image);
-                if(finalHtml!=null)
+                if(finalHtml!=null){
                     params.put("description",finalHtml);
-                else
+                } else{
                     params.put("description",editor.getContentAsHTML());
+                }
                 return params;
             }
         };
-
         requestQueue.add(myReq);
     }
 
@@ -629,9 +559,6 @@ public class ArticleActivity extends ToolbarActivity{
                         Intent intent=new Intent(ArticleActivity.this,HomeScreen.class);
                         startActivity(intent);
                         finish();
-
-
-
                     }
                 },
                 new Response.ErrorListener() {
@@ -677,22 +604,13 @@ public class ArticleActivity extends ToolbarActivity{
 
 
 
-        if(requestCode== RequestPermissionCode)
-
-        {
+        if(requestCode== RequestPermissionCode) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-//                Toast.makeText(ArticleActivity.this,"Permission Granted, Now your application can access CAMERA.", Toast.LENGTH_LONG).show();
-
+                Toast.makeText(ArticleActivity.this,"Permission Granted, Now your application can access CAMERA.", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(ArticleActivity.this,"Permission Canceled, Now your application cannot access CAMERA.", Toast.LENGTH_LONG).show();
             }
-            else {
-
-//                Toast.makeText(ArticleActivity.this,"Permission Canceled, Now your application cannot access CAMERA.", Toast.LENGTH_LONG).show();
-
-            }
-        }
-
-        else if (requestCode == MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE) {
+        } else if (requestCode == MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 ContinueAfterPermission();
             } else {
@@ -701,8 +619,6 @@ public class ArticleActivity extends ToolbarActivity{
             }
             return;
         }
-
-
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
@@ -763,16 +679,10 @@ public class ArticleActivity extends ToolbarActivity{
         String id=stringId[stringId.length-1];
         Log.v("id",id);
         String src="src="+'"'+"https://www.youtube.com/embed/"+id+'"';
-
-
-
-
         html="<iframe width=\"100%\" height=\"250\" "+src+"frameborder=\"0\" allowfullscreen=\"\"></iframe>";
         //String html1 = "<iframe width=\"100%\" height=\"600\" src=\"www.youtube.com/embed/cffcUX_aHe0\" frameborder=\"0\" allowfullscreen=\"\"></iframe>";
-
         myWebView.loadDataWithBaseURL("https://www.youtube.com/embed/"+id+'"', html, "text/html","UTF-8",null);
         //myWebView.loadUrl(videoLink);
-
         finalHtml="   <html>\n" +
                 "  <head>\n" +
                 "    <title>Combined</title>\n" +
@@ -814,10 +724,7 @@ public class ArticleActivity extends ToolbarActivity{
                             final ArticleEditClass articleEditClass = new ArticleEditClass(jsonObjectFullPost);
                             articleTitle.setText(articleEditClass.getTitle());
                             articleShortDescription.setText(articleEditClass.getShort_description());
-                            if(articleEditClass.getBanner_image()!=null)
-                            {
-
-
+                            if(articleEditClass.getBanner_image()!=null) {
                                 Glide.with(getApplicationContext()).load(UtilsClass.baseurl1+articleEditClass.getBanner_image())
                                         .into(cropFinalImage);
                                 cropFinalImage.setVisibility(View.VISIBLE);
@@ -826,12 +733,7 @@ public class ArticleActivity extends ToolbarActivity{
 
                                 mRemoveButton.setVisibility(View.VISIBLE);
                             }
-
                             setContentToView(articleEditClass.getDescription());
-
-
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -866,72 +768,50 @@ public class ArticleActivity extends ToolbarActivity{
 
         for(Element element :elements){
             Tag tag = element.tag();
-
             if(tag.getName().equalsIgnoreCase("a")){
                 String name  = element.html();
                 //String heading = element.select(tag.getName().toString()).text();
                 Log.v("des1",name);
-                if(name.contains("span")||name.contains("<i>")||name.contains("<b>"))
-                {
+                if(name.contains("span")||name.contains("<i>")||name.contains("<b>")) {
                     continue;
-                }
-                else {
+                } else {
                     editor.getInputExtensions().insertEditText(pos,"",name);
                     pos++;
                 }
-
-            }
-
-            else if(tag.getName().equalsIgnoreCase("b")){
+            } else if(tag.getName().equalsIgnoreCase("b")){
                 String title  = element.html();
                 //String heading = element.select(tag.getName().toString()).text();
                 Log.v("des2",title);
-                if(title.contains("&nbsp")||title.contains("href")||title.equals("<br>"))
-                {
+                if(title.contains("&nbsp")||title.contains("href")||title.equals("<br>")) {
                     continue;
-                }
-
-                else {
+                } else {
                     editor.getInputExtensions().insertEditText(pos,"",title);
                     pos++;
                     continue;
                 }
-
-            }
-
-            else if(tag.getName().equalsIgnoreCase("p")){
-
+            } else if(tag.getName().equalsIgnoreCase("p")){
                 element.select("img").remove();
                 String body= element.html();
-
                 String[] parsedBody=body.split("\\.");
                 StringBuilder builder = new StringBuilder();
                 for(String s : parsedBody) {
                     Log.v("des3",s);
-                    if(s.contains("&nbsp")||s.contains("<span")||s.contains("</span>")||s.contains("<br>"))
-                    {
+                    if(s.contains("&nbsp")||s.contains("<span")||s.contains("</span>")||s.contains("<br>")) {
                         continue;
-                    }
-                    else
+                    } else
                         builder.append(s+".");
                 }
                 String str = builder.toString();
-                if(body.contains("href")||body.equals("<br>")||body.contains("<b>"))
-                {
+                if(body.contains("href")||body.equals("<br>")||body.contains("<b>")) {
                     continue;
-                }
-                else {
+                } else {
                     editor.getInputExtensions().insertEditText(pos,"",str);
                     pos++;
                     continue;
                 }
-
-
-            }
-            else if (tag.getName().equalsIgnoreCase("img")){
+            } else if (tag.getName().equalsIgnoreCase("img")){
                 String url  = element.select("img").attr("src");
                 Log.v("des4",url);
-
                 Glide.with(this)
                         .asBitmap()
                         .load(url)
@@ -945,13 +825,9 @@ public class ArticleActivity extends ToolbarActivity{
                             }
                         });
                 continue;
-            }
-
-            else if (tag.getName().equalsIgnoreCase("iframe")){
+            } else if (tag.getName().equalsIgnoreCase("iframe")){
                 String url  = element.select("iframe").attr("src");
                 Log.v("des5",url);
-
-
                 final WebView myWebView = (WebView) findViewById(R.id.articleVideoView);
                 myWebView.setWebViewClient(new WebViewClient());
                 myWebView.getSettings().setJavaScriptEnabled(true);

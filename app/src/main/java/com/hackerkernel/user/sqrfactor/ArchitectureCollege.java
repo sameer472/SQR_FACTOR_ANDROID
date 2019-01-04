@@ -65,9 +65,6 @@ public class ArchitectureCollege extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         architectureCollegeAdapter=new ArchitectureCollegeAdapter(architectureCollegeClassArrayList,getContext());
         recyclerView1.setAdapter(architectureCollegeAdapter);
-
-
-
         return view;
     }
 
@@ -151,8 +148,7 @@ public class ArchitectureCollege extends Fragment {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if(architectureCollegeClassArrayList.size()==0)
-                {
+                if(architectureCollegeClassArrayList.size()==0) {
                     progress_bar.setVisibility(View.GONE);
                 }
             }

@@ -156,7 +156,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 userType = parent.getItemAtPosition(position).toString(); //this is your selected item
                 if (userType.equals("Individual")) {
-
                     userType = "work_individual";
                     company_name.setVisibility(View.GONE);
                     college_name.setVisibility(View.GONE);
@@ -164,35 +163,27 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                     first_name.setVisibility(View.VISIBLE);
                     last_name.setVisibility(View.VISIBLE);
                     Log.v("userType2", userType);
-
-
                 } else if (userType.equals("Firm/Companies (Design Service Providers)")) {
-                    Toast.makeText(getActivity(), userType, Toast.LENGTH_SHORT).show();
                     userType = "work_architecture_firm_companies";
                     company_name.setVisibility(View.VISIBLE);
                     first_name.setVisibility(View.GONE);
                     last_name.setVisibility(View.GONE);
                     college_name.setVisibility(View.GONE);
                     organization_name.setVisibility(View.GONE);
-                    Log.v("userType3", userType);
                 } else if (userType.equals("Organisations, Companies, NGOs, Media")) {
-                    Toast.makeText(getActivity(), userType, Toast.LENGTH_SHORT).show();
                     userType = "work_architecture_firm_organization";
                     organization_name.setVisibility(View.VISIBLE);
                     first_name.setVisibility(View.GONE);
                     last_name.setVisibility(View.GONE);
                     company_name.setVisibility(View.GONE);
                     college_name.setVisibility(View.GONE);
-                    Log.v("userType4", userType);
                 } else if (userType.equals("College/University")) {
-                    Toast.makeText(getActivity(), userType, Toast.LENGTH_SHORT).show();
                     userType = "work_architecture_firm_college";
                     college_name.setVisibility(View.VISIBLE);
                     first_name.setVisibility(View.GONE);
                     last_name.setVisibility(View.GONE);
                     company_name.setVisibility(View.GONE);
                     organization_name.setVisibility(View.GONE);
-                    Log.v("userType5", userType);
                 }
             }
 
@@ -206,11 +197,9 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
             @Override
             public void onClick(View v) {
                 if(v == fb_signup){
-                    if(UtilsClass.IsConnected(context))
-                    {
+                    if(UtilsClass.IsConnected(getApplicationContext())) {
                         facebookSignup.performClick();
-                    }
-                    else {
+                    } else {
                         MDToast.makeText(getActivity(), "Check Your Internet Connection", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
                     }
 
@@ -240,9 +229,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
             }
         });
         try {
-            PackageInfo info = getActivity().getPackageManager().getPackageInfo(
-                    "com.hackerkernel.user.sqrfactor",
-                    PackageManager.GET_SIGNATURES);
+            PackageInfo info = getActivity().getPackageManager().getPackageInfo("com.hackerkernel.user.sqrfactor", PackageManager.GET_SIGNATURES);
             for (Signature signature : info.signatures) {
                 MessageDigest md = MessageDigest.getInstance("SHA");
                 md.update(signature.toByteArray());
@@ -254,21 +241,16 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
         } catch (NoSuchAlgorithmException e) {
 
         }
-
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
-
         mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext()).enableAutoManage((FragmentActivity) getActivity(),0 ,this).addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-
-
         googleSignup = rootView.findViewById(R.id.google_signup);
         googleSignup.setSize(SignInButton.SIZE_STANDARD);
         googleSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 signIn();
 //                if(UtilsClass.IsConnected(context))
 //                {
@@ -281,195 +263,109 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
             }
 
         });
-
-        //Spinner spinner = (Spinner)rootView.findViewById(R.id.userType);
-        // String text = spinner.getSelectedItem().toString();
-
-
-//        SharedPreferences sharedPref = getActivity().getSharedPreferences("PREF_NAME", getActivity().MODE_PRIVATE);
         editor = sharedPref.edit();
         mPrefs = getActivity().getSharedPreferences("User", MODE_PRIVATE);
         database = FirebaseDatabase.getInstance();
         ref = database.getReference();
 
         userCountrySpinner = (Spinner) rootView.findViewById(R.id.registerUserCountry);
+
         LoadCountryFromServer();
+
         userCountrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-
-                                       int position, long id) {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
 
                 if (countryName.size() > 0) {
                     country_val = position+1+"";
                     countryId = countryClassArrayList.get(position).getId();
                 }
-
-
             }
-
             @Override
-
             public void onNothingSelected(AdapterView<?> arg0) {
 
             }
 
         });
-
-
-
         completeRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 //                if(UtilsClass.IsConnected(context))
 //                {
-                    if (userType.equals("work_individual"))
-                    {
-                        if(TextUtils.isEmpty(firstName.getText().toString()))
-                        {
+                    if (userType.equals("work_individual")) {
+                        if(TextUtils.isEmpty(firstName.getText().toString())) {
                             MDToast.makeText(getActivity(), "First name is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(TextUtils.isEmpty(lastName.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(lastName.getText().toString())) {
                             MDToast.makeText(getActivity(), "Last name is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-
-                        else if(TextUtils.isEmpty(userName.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userName.getText().toString())) {
                             MDToast.makeText(getActivity(), " user name field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(TextUtils.isEmpty(userEmail.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userEmail.getText().toString())) {
                             MDToast.makeText(getActivity(), "The email field is required", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(country_val==null)
-                        {
+                        } else if(country_val==null) {
                             MDToast.makeText(getActivity(), "Country field is required", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-
-                        }
-                        else if(TextUtils.isEmpty(userMobileNumber.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userMobileNumber.getText().toString())) {
                             MDToast.makeText(getActivity(), "The mobile number field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(TextUtils.isEmpty(userPassword.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userPassword.getText().toString())) {
                             MDToast.makeText(getActivity(), "The password field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(TextUtils.isEmpty(confirmPassword.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(confirmPassword.getText().toString())) {
                             MDToast.makeText(getActivity(), "The password confirmation field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-
-                        else {
+                        } else {
                             SendSignUpDataToServer();
                         }
-                    }
-                    else if(userType.equals("work_architecture_firm_companies"))
-                    {
-
-                        if(TextUtils.isEmpty(companyName_text.getText().toString()))
-                        {
+                    } else if(userType.equals("work_architecture_firm_companies")) {
+                        if(TextUtils.isEmpty(companyName_text.getText().toString())) {
                             MDToast.makeText(getActivity(), "Company name is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-
-                        else if(TextUtils.isEmpty(userName.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userName.getText().toString())) {
                             MDToast.makeText(getActivity(), " user name field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(TextUtils.isEmpty(userEmail.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userEmail.getText().toString())) {
                             MDToast.makeText(getActivity(), "The email field is required", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(country_val==null)
-                        {
+                        } else if(country_val==null) {
                             MDToast.makeText(getActivity(), "Country field is required", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-
-                        }
-                        else if(TextUtils.isEmpty(userMobileNumber.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userMobileNumber.getText().toString())) {
                             MDToast.makeText(getActivity(), "The mobile number field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(TextUtils.isEmpty(userPassword.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userPassword.getText().toString())) {
                             MDToast.makeText(getActivity(), "The password field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(TextUtils.isEmpty(confirmPassword.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(confirmPassword.getText().toString())) {
                             MDToast.makeText(getActivity(), "The password confirmation field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else {
+                        } else {
                             SendSignUpDataToServer();
                         }
-                    }
-                    else if (userType.equals("work_architecture_firm_organization")){
-                        if(TextUtils.isEmpty(organizationName_text.getText().toString()))
-                        {
+                    } else if (userType.equals("work_architecture_firm_organization")){
+                        if(TextUtils.isEmpty(organizationName_text.getText().toString())) {
                             MDToast.makeText(getActivity(), "Organization name is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-
-                        else if(TextUtils.isEmpty(userName.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userName.getText().toString())) {
                             MDToast.makeText(getActivity(), " user name field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(TextUtils.isEmpty(userEmail.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userEmail.getText().toString())) {
                             MDToast.makeText(getActivity(), "The email field is required", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(country_val==null)
-                        {
+                        } else if(country_val==null) {
                             MDToast.makeText(getActivity(), "Country field is required", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-
-                        }
-                        else if(TextUtils.isEmpty(userMobileNumber.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userMobileNumber.getText().toString())) {
                             MDToast.makeText(getActivity(), "The mobile number field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(TextUtils.isEmpty(userPassword.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userPassword.getText().toString())) {
                             MDToast.makeText(getActivity(), "The password field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(TextUtils.isEmpty(confirmPassword.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(confirmPassword.getText().toString())) {
                             MDToast.makeText(getActivity(), "The password confirmation field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else {
+                        } else {
                             SendSignUpDataToServer();
                         }
 
                     }else if (userType.equals("work_architecture_firm_college")){
-                        if(TextUtils.isEmpty(collegeName_text.getText().toString()))
-                        {
+                        if(TextUtils.isEmpty(collegeName_text.getText().toString())) {
                             MDToast.makeText(getActivity(), "Organization name is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-
-                        else if(TextUtils.isEmpty(userName.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userName.getText().toString())) {
                             MDToast.makeText(getActivity(), " user name field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(TextUtils.isEmpty(userEmail.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userEmail.getText().toString())) {
                             MDToast.makeText(getActivity(), "The email field is required", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(country_val==null)
-                        {
+                        } else if(country_val==null) {
                             MDToast.makeText(getActivity(), "Country field is required", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-
-                        }
-                        else if(TextUtils.isEmpty(userMobileNumber.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userMobileNumber.getText().toString())) {
                             MDToast.makeText(getActivity(), "The mobile number field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(TextUtils.isEmpty(userPassword.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(userPassword.getText().toString())) {
                             MDToast.makeText(getActivity(), "The password field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else if(TextUtils.isEmpty(confirmPassword.getText().toString()))
-                        {
+                        } else if(TextUtils.isEmpty(confirmPassword.getText().toString())) {
                             MDToast.makeText(getActivity(), "The password confirmation field is required.", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                        }
-                        else {
+                        } else {
                             SendSignUpDataToServer();
                         }
                     }
@@ -493,15 +389,11 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //Log.v("Reponse", response);
-                       // Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            if(jsonObject.has("message"))
-                            {
+                            if(jsonObject.has("message")) {
                                 MDToast.makeText(getApplicationContext(), "Check Your Registeration Form", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                            }
-                            else {
+                            } else {
 
                                 UserClass userClass = new UserClass(jsonObject);
                                 // notification listner for like and comment
@@ -554,8 +446,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                         NetworkResponse response = error.networkResponse;
                         if (error instanceof ServerError && response != null) {
                             try {
-
-
                                 String res = new String(response.data,
                                         HttpHeaderParser.parseCharset(response.headers, "utf-8"));
                                 Log.v("chat",res);
@@ -584,38 +474,28 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
 
             @Override
             protected Map<String, String> getParams() {
-
-
                 Map<String, String> params = new HashMap<String, String>();
 
 //                Log.v("signupdataToSend",userType+" "+firstName.getText().toString()+lastName.getText().toString()+companyName_text.getText().toString()+
 //                        organizationName_text.getText().toString()+collegeName_text.getText().toString()+userName.getText().toString()
 //                +userEmail.getText().toString()+country_val+userMobileNumber.getText().toString()+userPassword.getText().toString()
 //                +confirmPassword.getText().toString());
-
-                params.put("user_type", userType);
-                if(userType.equals("work_individual")&&!TextUtils.isEmpty(firstName.getText().toString()))
-                {
+                if(userType.equals("work_individual")&&!TextUtils.isEmpty(firstName.getText().toString())) {
                     params.put("first_name", firstName.getText().toString());
                 }
-                if(userType.equals("work_individual") && !TextUtils.isEmpty(lastName.getText().toString()))
-                {
+                if(userType.equals("work_individual") && !TextUtils.isEmpty(lastName.getText().toString())) {
                     params.put("last_name", lastName.getText().toString());
                 }
-
-                if(!TextUtils.isEmpty(organizationName_text.getText().toString()))
-                {
+                if(!TextUtils.isEmpty(organizationName_text.getText().toString())) {
                     params.put("name", organizationName_text.getText().toString());
                 }
-                if(!TextUtils.isEmpty(companyName_text.getText().toString()))
-                {
+                if(!TextUtils.isEmpty(companyName_text.getText().toString())) {
                     params.put("name", companyName_text.getText().toString());
                 }
-                if(!TextUtils.isEmpty(collegeName_text.getText().toString()))
-                {
+                if(!TextUtils.isEmpty(collegeName_text.getText().toString())) {
                     params.put("name", collegeName_text.getText().toString());
                 }
-
+                params.put("user_type", userType);
                 params.put("username", userName.getText().toString());
                 params.put("email", userEmail.getText().toString());
                 params.put("country_code", country_val);
@@ -636,15 +516,10 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if(context!=null)
-        {
+        if(context!=null) {
             this.context=context;
-            Log.v("ResponseLike1", context+"");
-        }
-        else if(getActivity()!=null)
-        {
+        } else if(getActivity()!=null) {
             this.context=getApplicationContext();
-            Log.v("ResponseLike2", getActivity()+" "+getApplicationContext());
         }
 
     }
@@ -655,8 +530,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
-                        Log.v("ResponseLike", s);
-//                        Toast.makeText(getApplicationContext(), "res" + s, Toast.LENGTH_LONG).show();
                         try {
                             JSONObject jsonObject = new JSONObject(s);
                             JSONArray countries = jsonObject.getJSONArray("countries");
@@ -666,12 +539,9 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                                 CountryClass countryClass = new CountryClass(countries.getJSONObject(i));
                                 countryClassArrayList.add(countryClass);
                                 countryName.add(countryClass.getName());
-
                             }
-
                             ArrayAdapter<String> spin_adapter1 = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, countryName);
                             userCountrySpinner.setAdapter(spin_adapter1);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -688,16 +558,12 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Accept", "application/json");
-
-
                 return params;
             }
 
         };
-
         //Adding request to the queue
         requestQueue1.add(stringRequest);
-
     }
 
     public void socialRegisteration() {
@@ -718,28 +584,21 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                                // Toast.makeText(getApplicationContext(),name,Toast.LENGTH_LONG).show();
 
                                 String[] nameArray=name.split(" ");
-                                if(nameArray.length>1)
-                                {
+                                if(nameArray.length>1) {
                                     firstNameText=nameArray[0];
-                                    for(int i=1;i<nameArray.length;i++)
-                                    {
+                                    for(int i=1;i<nameArray.length;i++) {
                                         if(!nameArray[i].equals("null")||nameArray[i]!=null)
                                         lastNameText+=nameArray[i];
                                     }
-                                    Log.v("data",firstNameText);
-                                }
-                                else {
+                                } else {
                                     firstNameText=nameArray[0];
                                     lastNameText="";
                                 }
-
-
                                 final String email = object.getString("email");
                                 final String profileID = object.getString("id");
                                 JSONObject picture = object.getJSONObject("picture");
                                 JSONObject data = picture.getJSONObject("data");
                                 final String url = data.getString("url");
-
                                 RequestQueue requestQueue = Volley.newRequestQueue(getActivity());
                                 StringRequest myReq = new StringRequest(Request.Method.POST, UtilsClass.baseurl+"sociallogin",
                                         new Response.Listener<String>() {
@@ -848,8 +707,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                                         NetworkResponse response = error.networkResponse;
                                         if (error instanceof ServerError && response != null) {
                                             try {
-
-
                                                 String res = new String(response.data,
                                                         HttpHeaderParser.parseCharset(response.headers, "utf-8"));
                                                 Log.v("login 1",res);
@@ -870,7 +727,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
 
                                 })
                                 {
-
                                     @Override
                                     public Map<String, String> getHeaders() throws AuthFailureError {
                                         Map<String, String> params = new HashMap<String, String>();
@@ -880,29 +736,21 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                                     @Override
                                     protected Map<String, String> getParams() {
                                         Map<String, String> params = new HashMap<String, String>();
+                                        if(url.equals("null")||url==null) {
+                                            params.put("profile_pic","");
+                                        } else {
+                                            params.put("profile_pic",url);
+                                        }
                                         params.put("social_id",profileID);
                                         params.put("first_name",firstNameText);
                                         params.put("last_name",lastNameText);
                                         params.put("email", email);
-                                        if(url.equals("null")||url==null)
-                                        {
-                                            params.put("profile_pic","");
-                                        }
-                                        else {
-                                            params.put("profile_pic",url);
-                                        }
                                         params.put("service", "facebook");
                                         return params;
                                     }
 
                                 };
                                 requestQueue.add(myReq);
-
-////                                info.setText("Welcome ," + name);
-//
-//                                Log.d(TAG, "Name :" + name);
-//                                Log.d(TAG,"Email"+email);
-//                                Log.d(TAG,"ProfileID"+profileID);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -928,8 +776,6 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
         callbackManager.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
         }
@@ -948,21 +794,17 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
             GoogleSignInAccount account = result.getSignInAccount();
             final String name = account.getDisplayName();
             String[] nameArray=name.split(" ");
-            if(nameArray.length>1)
-            {
+            if(nameArray.length>1) {
                 firstNameText=nameArray[0];
-                for(int i=1;i<nameArray.length;i++)
-                {
-                    if(!nameArray[i].equals("null")||nameArray[i]!=null)
-                      lastNameText+=nameArray[i];
+                for(int i=1;i<nameArray.length;i++) {
+                    if(!nameArray[i].equals("null")||nameArray[i]!=null){
+                        lastNameText+=nameArray[i];
+                    }
                 }
-                Log.v("data",firstNameText);
-            }
-            else {
+            } else {
                 firstNameText=nameArray[0];
                 lastNameText="";
             }
-
             final String gmail_email = account.getEmail();
             final String id = account.getId();
             final String profile = String.valueOf(account.getPhotoUrl());
@@ -974,17 +816,12 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Log.v("ReponseGoogle", response);
-                            //Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
                             try {
-
-
                                 JSONObject jsonObject = new JSONObject(response);
                                 String msg = jsonObject.getString("status");
                                 if(msg.equals("Already registered")){
                                     // TokenClass.Token=jsonObject.getJSONObject("success").getString("token");
                                     UserClass userClass = new UserClass(jsonObject);
-
                                     FirebaseMessaging.getInstance().subscribeToTopic("pushNotifications" + userClass.getUserId());
                                     FirebaseMessaging.getInstance().subscribeToTopic("chats"+userClass.getUserId());
                                     //code for user status
@@ -1020,8 +857,7 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                                     //i.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                     getActivity().startActivity(i);
                                     getActivity().finish();
-                                }
-                                else {
+                                } else {
                                     JSONObject user = jsonObject.getJSONObject("user");
                                     JSONObject activationToken = user.getJSONObject("activation_token");
                                     JSONObject userDeatil = activationToken.getJSONObject("user");
@@ -1086,18 +922,15 @@ public class SignupFragment extends Fragment implements View.OnClickListener,Goo
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                   // Log.v("request data1",id+" "+name+" "+gmail_email+" "+profile);
+                    if(profile.equals("null")||profile==null) {
+                        params.put("profile_pic","");
+                    } else {
+                        params.put("profile_pic",profile);
+                    }
                     params.put("social_id",id);
                     params.put("first_name",firstNameText);
                     params.put("last_name",lastNameText);
                     params.put("email", gmail_email);
-                    if(profile.equals("null")||profile==null)
-                    {
-                        params.put("profile_pic","");
-                    }
-                    else {
-                        params.put("profile_pic",profile);
-                    }
                     params.put("service", "google");
                     return params;
                 }

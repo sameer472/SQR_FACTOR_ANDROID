@@ -137,7 +137,7 @@ public class Credits extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 PopupMenu pop = new PopupMenu(getApplicationContext(), v);
-                pop.getMenu().add(1,1,0,"About "+userClass.getName());
+                pop.getMenu().add(1,1,0,"About "+UtilsClass.getName(userClass.getFirst_name(),userClass.getLast_name(),userClass.getName(),userClass.getUser_name()));
                 pop.getMenuInflater().inflate(R.menu.more_menu, pop.getMenu());
                 pop.show();
 
@@ -149,6 +149,8 @@ public class Credits extends AppCompatActivity {
 
                             case 1:
                                 Intent i = new Intent(getApplicationContext(), About.class);
+                                i.putExtra("UserID",userClass.getUserId());
+                                i.putExtra("userType",userClass.getUserType());
                                 startActivity(i);
                                 return true;
 

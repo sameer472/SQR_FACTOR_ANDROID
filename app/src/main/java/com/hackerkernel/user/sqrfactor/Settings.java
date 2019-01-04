@@ -130,6 +130,7 @@ public class Settings extends AppCompatActivity {
                             case 1:
                                 Intent i = new Intent(getApplicationContext(), About.class);
                                 i.putExtra("UserID",userClass.getUserId());
+                                i.putExtra("userType",userClass.getUserType());
                                 startActivity(i);
                                 return true;
 

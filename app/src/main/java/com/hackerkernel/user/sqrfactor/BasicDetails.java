@@ -99,14 +99,10 @@ public class BasicDetails extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.back_arrow);
 
-
         SharedPreferences mPrefs = getApplicationContext().getSharedPreferences("User", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = mPrefs.getString("MyObject", "");
         UserClass userClass = gson.fromJson(json, UserClass.class);
-
-
-
 
         emailText1=findViewById(R.id.email1);
         emailText2=findViewById(R.id.email2);
@@ -132,40 +128,26 @@ public class BasicDetails extends AppCompatActivity {
         SaveandNext=(Button)findViewById(R.id.SaveandNext);
         AddOccupation=(Button)findViewById(R.id.AddOccupation);
 
-
-
         addEmail = (Button) findViewById(R.id.AddEmail);
         linearLayout2 =(LinearLayout) findViewById(R.id.linearLayout2);
         linearLayout2.setVisibility(View.GONE);
-
         addEmail.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View arg0) {
-
                 AddEmailPopup();
             }
         });
-
-
-
         final String[] gender = { "Male", "Female" };
         spin = (Spinner) findViewById(R.id.gender);
         spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-
-                                       int  position, long id) {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int  position, long id) {
                 gender_val = gender[position];
-
             }
-
             @Override
-
             public void onNothingSelected(AdapterView<?> arg0) {
 
             }
-
         });
         ArrayAdapter<String> spin_adapter = new ArrayAdapter<String>(BasicDetails.this, android.R.layout.simple_list_item_1, gender);
         spin.setAdapter(spin_adapter);
@@ -174,94 +156,50 @@ public class BasicDetails extends AppCompatActivity {
         countrySpinner = (Spinner) findViewById(R.id.Country);
         stateSpinner = (Spinner) findViewById(R.id.State);
         citySpinner = (Spinner) findViewById(R.id.City);
-
-
-
-
-
-
         countrySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-
-                                       int  position, long id) {
-
-
-
-                if(countryName.size()>0)
-                {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int  position, long id) {
+                if(countryName.size()>0) {
                     country_name = countryName.get(position);
                     country_val=position+1+"";
                     LoadStateFromServer();
-
                 }
-
-
-
             }
-
             @Override
-
             public void onNothingSelected(AdapterView<?> arg0) {
 
             }
-
         });
         stateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
-
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-
-                                       int  position, long id) {
-                if(statesName.size()>0)
-                {
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int  position, long id) {
+                if(statesName.size()>0) {
                     state_name = statesName.get(position);
                     country_val=statesClassArrayList.get(position).getCountryId()+"";
-
-
-                    if(firstTimeState)
-                    {
+                    if(firstTimeState) {
                         state_val=actualStateID+position+"";
                         firstTimeState=false;
-                       // Toast.makeText(getApplicationContext(),"first",Toast.LENGTH_LONG).show();
-                    }
-                    else {
+                    } else {
                         state_val=actualStateID+position+"";
-                       // Toast.makeText(getApplicationContext(),"second",Toast.LENGTH_LONG).show();
-                        Log.v("statepostion",state_val+"");
                     }
-
                     LoadCitiesFromServer();
                 }
-
-
-
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> arg0) {
 
             }
 
         });
-
         citySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1,
-
-                                       int  position, long id) {
-                if (citiesName.size()>0)
-                {
-
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int  position, long id) {
+                if (citiesName.size()>0) {
                     city_name = citiesName.get(position);
                     state_val=citiesClassArrayList.get(position).getStateId()+"";
                     country_val=citiesClassArrayList.get(position).getCountryId()+"";
                     city_val=actualCityID+position+"";
-
-
                 }
 
             }
@@ -271,16 +209,7 @@ public class BasicDetails extends AppCompatActivity {
             }
 
         });
-
-
-
-
-
-
-
         final Calendar myCalendar = Calendar.getInstance();
-
-
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
             @Override
@@ -301,12 +230,9 @@ public class BasicDetails extends AppCompatActivity {
                 DatePickerDialog datePickerDialog= new DatePickerDialog(BasicDetails.this, date, myCalendar
                         .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH));
-                if(hasFocus)
-                {
-
+                if(hasFocus) {
                     datePickerDialog.show();
-                }
-                else {
+                } else {
                     datePickerDialog.hide();
                 }
 
@@ -324,12 +250,9 @@ public class BasicDetails extends AppCompatActivity {
         checkBox6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked)
-                {
+                if(isChecked) {
                     linearLayout2.setVisibility(View.VISIBLE);
-                }
-                else
-                {
+                } else {
                     linearLayout2.setVisibility(View.GONE);
                 }
             }
@@ -338,54 +261,30 @@ public class BasicDetails extends AppCompatActivity {
         SaveandNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 //Replace all toast with Mdtoast
                 if(UtilsClass.IsConnected(BasicDetails.this))
                 {
-                    if(TextUtils.isEmpty(fNametext.getText().toString()))
-                    {
+                    if(TextUtils.isEmpty(fNametext.getText().toString())) {
                         MDToast.makeText(BasicDetails.this, "First name is required", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                    }
-                    else if(TextUtils.isEmpty(lNametext.getText().toString()))
-                    {
+                    } else if(TextUtils.isEmpty(lNametext.getText().toString())) {
                         MDToast.makeText(BasicDetails.this, "Last name is required", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                    }
-                    else if(country_val==null)
-                    {
+                    } else if(country_val==null) {
                         MDToast.makeText(BasicDetails.this, "Country field is required", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-
-                    }
-                    else if(state_val==null)
-                    {
-
+                    } else if(state_val==null) {
                         MDToast.makeText(BasicDetails.this, "State field is required", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                    }
-                    else if(city_val==null)
-                    {
+                    } else if(city_val==null) {
                         MDToast.makeText(BasicDetails.this, "City field is required", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                    }
-                    else if(gender_val==null)
-                    {
+                    } else if(gender_val==null) {
                         MDToast.makeText(BasicDetails.this, "Gender field is required", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
-                    }
-                    else {
+                    } else {
                         saveDataToServer();
                     }
-//
-
-                }
-                else {
+                } else {
                     MDToast.makeText(BasicDetails.this, "Check Your Internet Connection", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
                 }
-
-
-
             }
         });
         BindDataTOviews();
-
-
     }
 
     public void LoadCountryFromServer()
@@ -396,44 +295,28 @@ public class BasicDetails extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
-                        //Log.v("ResponseLike",s);
-                        //Toast.makeText(BasicDetails.this,"res"+s,Toast.LENGTH_LONG).show();
                         try {
                             JSONObject jsonObject = new JSONObject(s);
                             JSONArray countries=jsonObject.getJSONArray("countries");
                             countryName.clear();
                             countryClassArrayList.clear();
-                            for (int i=0;i<countries.length();i++)
-                            {
+                            for (int i=0;i<countries.length();i++) {
                                 CountryClass countryClass=new CountryClass(countries.getJSONObject(i));
                                 countryClassArrayList.add(countryClass);
                                 countryName.add(countryClass.getName());
-
                             }
-
-                           // System.arraycopy(countryClassArrayList, 0, countryClassArrayList, 1, countryClassArrayList.size());
-                            //System.arraycopy(countryName, 0, countryName, 1, countryName.size());
-
-                            Log.v("base country",countryClassArrayList.get(0).getId()+" ");
                             ArrayAdapter<String> spin_adapter1 = new ArrayAdapter<String>(BasicDetails.this, android.R.layout.simple_list_item_1,countryName);
                             countrySpinner.setAdapter(spin_adapter1);
                             countrySpinner.setSelection(CountryID);
-
-
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
 
-                        //Showing toast
-//                        Toast.makeText(getActivity(), volleyError.getMessage().toString(), Toast.LENGTH_LONG).show();
                     }
                 }){
             @Override
@@ -441,7 +324,6 @@ public class BasicDetails extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Accept", "application/json");
                 params.put("Authorization", "Bearer "+TokenClass.Token);
-
                 return params;
             }
 
@@ -461,39 +343,26 @@ public class BasicDetails extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
-
                         try {
                             JSONObject jsonObject = new JSONObject(s);
                             JSONArray states=jsonObject.getJSONArray("states");
                             statesName.clear();
                             statesClassArrayList.clear();
-                            for (int i=0;i< states.length();i++)
-                            {
+                            for (int i=0;i< states.length();i++) {
                                 StateClass stateClass=new StateClass(states.getJSONObject(i));
                                 statesClassArrayList.add(stateClass);
                                 statesName.add(stateClass.getName());
                             }
-
-
                             ArrayAdapter<String> spin_adapter2 = new ArrayAdapter<String>(BasicDetails.this, android.R.layout.simple_list_item_1,statesName);
                             stateSpinner.setAdapter(spin_adapter2);
-                            if(statesClassArrayList!=null && statesClassArrayList.size()>0)
-                            {
-
+                            if(statesClassArrayList!=null && statesClassArrayList.size()>0) {
                                 actualStateID=statesClassArrayList.get(0).getId();
                                 StateID=StateID-statesClassArrayList.get(0).getId();
                                 Log.v("statecoe",StateID+" ");
-
                             }
-                            if(firstTimeState)
-                            {
-                                //Toast.makeText(getApplicationContext(),"firststate",Toast.LENGTH_LONG).show();
+                            if(firstTimeState) {
                                 stateSpinner.setSelection(StateID);
-
                             }
-
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -511,7 +380,6 @@ public class BasicDetails extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Accept", "application/json");
                 params.put("Authorization", "Bearer "+TokenClass.Token);
-
                 return params;
             }
 
@@ -531,8 +399,6 @@ public class BasicDetails extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-
-
     }
 
     public void LoadCitiesFromServer()
@@ -543,39 +409,26 @@ public class BasicDetails extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
-//                        Log.v("ResponseLike",s);
-
                         try {
                             JSONObject jsonObject = new JSONObject(s);
                             JSONArray cities=jsonObject.getJSONArray("cities");
                             citiesName.clear();
                             citiesClassArrayList.clear();
-                            for (int i=0;i< cities.length();i++)
-                            {
+                            for (int i=0;i< cities.length();i++) {
                                 CitiesClass citiesClass=new CitiesClass(cities.getJSONObject(i));
                                 citiesClassArrayList.add(citiesClass);
                                 citiesName.add(citiesClass.getName());
                             }
-
                             ArrayAdapter<String> spin_adapter3 = new ArrayAdapter<String>(BasicDetails.this, android.R.layout.simple_list_item_1,citiesName);
                             citySpinner.setAdapter(spin_adapter3);
-
-                            if(citiesClassArrayList!=null&& citiesClassArrayList.size()>0)
-                            {
-
-                                 actualCityID=citiesClassArrayList.get(0).getId();
-                                 CityID=CityID-citiesClassArrayList.get(0).getId();
-
-                            if(firstTimeCity)
-                            {
-                               // Toast.makeText(getApplicationContext(),"firstcity",Toast.LENGTH_LONG).show();
-                                citySpinner.setSelection(CityID);
-                                 firstTimeCity=false;
+                            if(citiesClassArrayList!=null&& citiesClassArrayList.size()>0) {
+                                actualCityID=citiesClassArrayList.get(0).getId();
+                                CityID=CityID-citiesClassArrayList.get(0).getId();
+                                if(firstTimeCity) {
+                                    citySpinner.setSelection(CityID);
+                                    firstTimeCity=false;
+                                }
                             }
-                            }
-
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -586,8 +439,6 @@ public class BasicDetails extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
 
-                        //Showing toast
-//                        Toast.makeText(getActivity(), volleyError.getMessage().toString(), Toast.LENGTH_LONG).show();
                     }
                 }){
             @Override
@@ -595,7 +446,6 @@ public class BasicDetails extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Accept", "application/json");
                 params.put("Authorization", "Bearer "+TokenClass.Token);
-
                 return params;
             }
             @Override
@@ -618,52 +468,39 @@ public class BasicDetails extends AppCompatActivity {
         // get prompts.xml view
         LayoutInflater li = LayoutInflater.from(BasicDetails.this);
         final View promptsView = li.inflate(R.layout.addemailprompt, null);
-
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 BasicDetails.this);
-
         // set prompts.xml to alertdialog builder
         alertDialogBuilder.setView(promptsView);
-
         nextEmail1 = (EditText) promptsView
                 .findViewById(R.id.nextEmailText1);
         nextEmail2 = (EditText) promptsView
                 .findViewById(R.id.nextEmailText2);
         nextEmail3 = (EditText) promptsView
                 .findViewById(R.id.nextEmailText3);
-
-        final Button addPromptButton= (Button) promptsView
-                .findViewById(R.id.AddPromptButton);
-
-        final LinearLayout linearLayoutPrompt1=(LinearLayout) promptsView.findViewById(R.id.linearLayoutprompt1);
+        final Button addPromptButton= (Button) promptsView.
+                findViewById(R.id.AddPromptButton);
+        final LinearLayout linearLayoutPrompt1=(LinearLayout) promptsView.
+                findViewById(R.id.linearLayoutprompt1);
         linearLayoutPrompt1.setVisibility(View.GONE);
+        final LinearLayout linearLayoutPrompt2=(LinearLayout) promptsView.
+                findViewById(R.id.linearLayoutprompt2);
 
-        final LinearLayout linearLayoutPrompt2=(LinearLayout) promptsView.findViewById(R.id.linearLayoutprompt2);
         linearLayoutPrompt2.setVisibility(View.GONE);
-
         final Button removePromptButton1= (Button) promptsView
                 .findViewById(R.id.removeEmailButton1);
-
         final Button removePromptButton2= (Button) promptsView
                 .findViewById(R.id.removeEmailButton2);
-
-
-
-
-
-
         addPromptButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 count++;
-                if(!email2 && count==1)
-                {
+                if(!email2 && count==1) {
                     linearLayoutPrompt1.setVisibility(View.VISIBLE);
                     email2=true;
                 }
-                if(!email3 && count==2)
-                {
+                if(!email3 && count==2) {
                     linearLayoutPrompt2.setVisibility(View.VISIBLE);
                     email3=true;
                 }
@@ -674,20 +511,17 @@ public class BasicDetails extends AppCompatActivity {
         removePromptButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(email2)
-                {
+                if(email2) {
                     linearLayoutPrompt1.setVisibility(View.GONE);
                     email2=false;
                     count--;
-
                 }
             }
         });
         removePromptButton2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(email3)
-                {
+                if(email3) {
                     linearLayoutPrompt2.setVisibility(View.GONE);
                     email3=false;
                     count--;
@@ -698,38 +532,28 @@ public class BasicDetails extends AppCompatActivity {
 
 
         final AlertDialog alertDialog = alertDialogBuilder.create();
-
         // show it
         alertDialog.show();
-
         final Button saveButton= (Button) promptsView
                 .findViewById(R.id.SaveButton);
-
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Toast.makeText(BasicDetails.this,"saved",Toast.LENGTH_LONG).show();
-
-                if(count==0 && !TextUtils.isEmpty(nextEmail1.getText().toString()))
-                {
+                if(count==0 && !TextUtils.isEmpty(nextEmail1.getText().toString())) {
                     emailText1.setVisibility(View.VISIBLE);
                     emaileidttext1.setText(nextEmail1.getText().toString());
                     emaileidttext1.setEnabled(false);
                 }
-
-                if(count==1 && email2 &&!TextUtils.isEmpty(nextEmail2.getText().toString()))
-                {
+                if(count==1 && email2 &&!TextUtils.isEmpty(nextEmail2.getText().toString())) {
                     emailText2.setVisibility(View.VISIBLE);
                     emaileidttext2.setText(nextEmail2.getText().toString());
                     emaileidttext2.setEnabled(false);
                 }
-                if(count==2 && email3 && !TextUtils.isEmpty(nextEmail3.getText().toString()))
-                {
+                if(count==2 && email3 && !TextUtils.isEmpty(nextEmail3.getText().toString())) {
                     emailText3.setVisibility(View.VISIBLE);
                     emaileidttext3.setText(nextEmail3.getText().toString());
                     emaileidttext3.setEnabled(false);
                 }
-
                 alertDialog.dismiss();
 
             }
@@ -744,13 +568,7 @@ public class BasicDetails extends AppCompatActivity {
                 alertDialog.dismiss();
             }
         });
-
-
-
-
     }
-
-
     public void saveDataToServer()
     {
 
@@ -759,49 +577,34 @@ public class BasicDetails extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String s) {
-//                        Log.v("ResponseLike",s);
                         MDToast.makeText(BasicDetails.this, "Profile updated successfully"+s, MDToast.LENGTH_SHORT, MDToast.TYPE_SUCCESS).show();
-//
-
                         SharedPreferences mPrefs = getApplicationContext().getSharedPreferences("User", MODE_PRIVATE);
                         Gson gson = new Gson();
                         String json = mPrefs.getString("MyObject", "");
                         UserClass userClass = gson.fromJson(json, UserClass.class);
-
-
                         userClass.setFirst_name(fNametext.getText().toString());
                         userClass.setLast_name(lNametext.getText().toString());
                         userClass.setShort_bio(shortBioTecxt.getText().toString());
                         userClass.setUser_address(city_name+", "+state_name+", "+country_name);
-
-
-
                         SharedPreferences.Editor prefsEditor = mPrefs.edit();
                         json = gson.toJson(userClass);
-
                         prefsEditor.putString("MyObject", json);
                         prefsEditor.apply();
 
                         fNametext.setText("");
-                            lNametext.setText("");
-                            mobileText.setText("");
-                            dateOfBirthText.setText("");
-                            email.setText("");
-                            UIDtext.setText("");
-                            shortBioTecxt.setText("");
-                            facebookLinktext.setText("");
-                            LinkedinLinktext.setText("");
-                            TwitterLinktext.setText("");
-                            InstagramLinktext.setText("");
-                            Intent intent=new Intent(BasicDetails.this,ProfileActivity.class);
-                            startActivity(intent);
-                            finish();
-
-
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-
+                        lNametext.setText("");
+                        mobileText.setText("");
+                        dateOfBirthText.setText("");
+                        email.setText("");
+                        UIDtext.setText("");
+                        shortBioTecxt.setText("");
+                        facebookLinktext.setText("");
+                        LinkedinLinktext.setText("");
+                        TwitterLinktext.setText("");
+                        InstagramLinktext.setText("");
+                        Intent intent=new Intent(BasicDetails.this,ProfileActivity.class);
+                        startActivity(intent);
+                        finish();
                     }
                 },
                 new Response.ErrorListener() {
@@ -811,8 +614,6 @@ public class BasicDetails extends AppCompatActivity {
                         NetworkResponse response = volleyError.networkResponse;
                         if (volleyError instanceof ServerError && response != null) {
                             try {
-
-
                                 String res = new String(response.data,
                                         HttpHeaderParser.parseCharset(response.headers, "utf-8"));
 //                                Log.v("chat",res);
@@ -836,19 +637,29 @@ public class BasicDetails extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Accept", "application/json");
                 params.put("Authorization", "Bearer "+TokenClass.Token);
-
                 return params;
             }
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-
-//                Log.v("basicDetails",gender_val+fNametext.getText().toString()+lNametext.getText().toString()+
-//                        country_val+state_val+city_val+"       "+checkBox1.getText().toString()+checkBox2.getText().toString()+checkBox3.getText().toString()+
-//                        checkBox4.getText().toString());
-//
-                Log.v("basicDetailsCountry",country_val+state_val+city_val);
-
+                if(nextEmail1!=null)
+                    params.put("email[1]",nextEmail1.getText().toString());
+                if(nextEmail2!=null)
+                    params.put("email[2]",nextEmail2.getText().toString());
+                if(nextEmail3!=null)
+                    params.put("email[3]",nextEmail2.getText().toString());
+                if(checkBox1.isChecked())
+                    params.put("occupation[0]",checkBox1.getText().toString());
+                if(checkBox2.isChecked())
+                    params.put("occupation[1]",checkBox2.getText().toString());
+                if(checkBox3.isChecked())
+                    params.put("occupation[2]",checkBox3.getText().toString());
+                if(checkBox4.isChecked())
+                    params.put("occupation[3]",checkBox4.getText().toString());
+                if(checkBox5.isChecked())
+                    params.put("occupation[4]",checkBox5.getText().toString());
+                if(checkBox6.isChecked())
+                    params.put("occupation[5]",checkBox6.getText().toString());
                 params.put("first_name",fNametext.getText().toString());
                 params.put("last_name",lNametext.getText().toString());
                 params.put("country",country_val+"");
@@ -860,53 +671,23 @@ public class BasicDetails extends AppCompatActivity {
                 params.put("mobile_number",mobileText.getText().toString());
                 params.put("looking_for_an_architect","No");
                 params.put("email[0]",email.getText().toString());
-                if(nextEmail1!=null)
-                params.put("email[1]",nextEmail1.getText().toString());
-                if(nextEmail2!=null)
-                params.put("email[2]",nextEmail2.getText().toString());
-                if(nextEmail3!=null)
-                params.put("email[3]",nextEmail2.getText().toString());
-
-
-
-                if(checkBox1.isChecked())
-                params.put("occupation[0]",checkBox1.getText().toString());
-
-                if(checkBox2.isChecked())
-                    params.put("occupation[1]",checkBox2.getText().toString());
-
-                if(checkBox3.isChecked())
-                    params.put("occupation[2]",checkBox3.getText().toString());
-
-                if(checkBox4.isChecked())
-                    params.put("occupation[3]",checkBox4.getText().toString());
-
-                if(checkBox5.isChecked())
-                    params.put("occupation[4]",checkBox5.getText().toString());
-
-                if(checkBox6.isChecked())
-                    params.put("occupation[5]",checkBox6.getText().toString());
-
                 params.put("short_bio",shortBioTecxt.getText().toString());
-                //params.put("")
-
                 params.put("facebook_link",facebookLinktext.getText().toString());
                 params.put("twitter_link",TwitterLinktext.getText().toString());
                 params.put("linkedin_link",LinkedinLinktext.getText().toString());
                 params.put("instagram_link",InstagramLinktext.getText().toString());
                 params.put("date_of_birth",dateOfBirthText.getText().toString());
-
-
                 return params;
+
+
+//                Log.v("basicDetails",gender_val+fNametext.getText().toString()+lNametext.getText().toString()+
+//                        country_val+state_val+city_val+"       "+checkBox1.getText().toString()+checkBox2.getText().toString()+checkBox3.getText().toString()+
+//                        checkBox4.getText().toString());
             }
         };
 
         //Adding request to the queue
         requestQueue1.add(stringRequest);
-
-
-
-
     }
 
     private void updateLabe(Calendar myCalendar) {
@@ -933,8 +714,6 @@ public class BasicDetails extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-//                        Log.v("details123",response);
-//                        MDToast.makeText(BasicDetails.this, response, MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONArray jsonArray = jsonObject.getJSONArray("User Data");
@@ -944,45 +723,29 @@ public class BasicDetails extends AppCompatActivity {
                             userData.setUser_basic_detail(user_basic_detail);
                             JSONArray emailsObject=jsonObject.getJSONArray("emails");
 
-                            for(int i=0;i<emailsObject.length();i++)
-                            {
-
-                                if(i==0)
-                                {
+                            for(int i=0;i<emailsObject.length();i++) {
+                                if(i==0) {
                                     email.setText(emailsObject.getJSONObject(i).getString("email"));
-                                }
-                                if(i==1)
-                                {
+                                }if(i==1) {
                                     emailText1.setVisibility(View.VISIBLE);
                                     emaileidttext1.setText(emailsObject.getJSONObject(i).getString("email"));
                                     emaileidttext1.setEnabled(false);
-
-                                }
-                                if(i==2)
-                                {
+                                }if(i==2) {
                                     emailText2.setVisibility(View.VISIBLE);
                                     emaileidttext2.setText(emailsObject.getJSONObject(i).getString("email"));
                                     emaileidttext2.setEnabled(false);
-                                }
-                                if(i==3)
-                                {
+                                }if(i==3) {
                                     emailText3.setVisibility(View.VISIBLE);
                                     emaileidttext3.setText(emailsObject.getJSONObject(i).getString("email"));
                                     emaileidttext3.setEnabled(false);
                                 }
                             }
-
-
-                            if(!userData.getOccupation().equals("null"))
-                            {
+                            if(!userData.getOccupation().equals("null")) {
                                 String[] occupation=userData.getOccupation().split(",");
-                                if(occupation.length>0)
-                                {
-
-                                     MarkOccupationCheckBox(occupation);
+                                if(occupation.length>0) {
+                                    MarkOccupationCheckBox(occupation);
                                 }
                             }
-
                             if (!userData.getUser_basic_detail().getFirst_name().equals("null")) {
                                 fNametext.setText(userData.getUser_basic_detail().getFirst_name());
                             }
@@ -992,7 +755,6 @@ public class BasicDetails extends AppCompatActivity {
                             if (!userData.getShot_bio().equals("null")) {
                                 shortBioTecxt.setText(userData.getShot_bio());
                             }
-
                             if (!userData.getDate_of_birth().equals("null")) {
                                 dateOfBirthText.setText(userData.getDate_of_birth());
                             }
@@ -1014,40 +776,28 @@ public class BasicDetails extends AppCompatActivity {
                             if (!userData.getUser_basic_detail().getMobile_number().equals("null")) {
                                 mobileText.setText(userData.getUser_basic_detail().getMobile_number());
                             }
-
-                            if(!userData.getCountry_id().equals("null")&&!userData.getState_id().equals("null")&&!userData.getState_id().equals("null"))
-                            {
+                            if(!userData.getCountry_id().equals("null")&&!userData.getState_id().equals("null")&&!userData.getState_id().equals("null")) {
                                 CountryID=Integer.parseInt(userData.getCountry_id())-1;
                                 StateID=Integer.parseInt(userData.getState_id());
                                 CityID=Integer.parseInt(userData.getCity_id());
-
-                                Log.v("responsecode_from",CountryID+" "+StateID+" "+CityID);
                                 firstTimeCity=true;
                                 firstTimeState=true;
                                 firsTimeLoading=true;
                                 LoadCountryFromServer();
-
-                            }
-                            else {
+                            } else {
                                 LoadCountryFromServer();
                             }
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-
                         NetworkResponse response = volleyError.networkResponse;
                         if (volleyError instanceof ServerError && response != null) {
                             try {
-
-
                                 String res = new String(response.data,
                                         HttpHeaderParser.parseCharset(response.headers, "utf-8"));
 //                                Log.v("chat",res);
@@ -1071,12 +821,10 @@ public class BasicDetails extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("Accept", "application/json");
                 params.put("Authorization", "Bearer "+TokenClass.Token);
-
                 return params;
             }
 
         };
-
         //Adding request to the queue
         requestQueue1.add(stringRequest);
 
@@ -1084,25 +832,18 @@ public class BasicDetails extends AppCompatActivity {
 
 
     private void MarkOccupationCheckBox(String[] occupation) {
-
-        for(int i=0;i<occupation.length;i++)
-        {
-
-            if(occupation[i].equals("Architect")||occupation[i].equals(" Architect"))
-             checkBox1.setChecked(true);
-
-            else if(occupation[i].equals("Design Student")||occupation[i].equals(" Design Student") )
-            checkBox2.setChecked(true);
-
-            else if(occupation[i].equals("Academician")||occupation[i].equals(" Academician"))
+        for(int i=0;i<occupation.length;i++) {
+            if(occupation[i].equals("Architect")||occupation[i].equals(" Architect")){
+                checkBox1.setChecked(true);
+            } else if(occupation[i].equals("Design Student")||occupation[i].equals(" Design Student") ){
+                checkBox2.setChecked(true);
+            } else if(occupation[i].equals("Academician")||occupation[i].equals(" Academician")){
                 checkBox3.setChecked(true);
-
-            else if(occupation[i].equals("Interior Designer")||occupation[i].equals(" Interior Designer"))
+            } else if(occupation[i].equals("Interior Designer")||occupation[i].equals(" Interior Designer")){
                 checkBox4.setChecked(true);
-
-            else if(occupation[i].equals("Landscape Architect")||occupation[i].equals(" Landscape Architect"))
+            } else if(occupation[i].equals("Landscape Architect")||occupation[i].equals(" Landscape Architect")){
                 checkBox5.setChecked(true);
-
+            }
         }
     }
 }

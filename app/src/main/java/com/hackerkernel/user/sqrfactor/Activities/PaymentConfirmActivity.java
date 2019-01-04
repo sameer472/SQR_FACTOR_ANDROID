@@ -72,7 +72,7 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
     private ImageView Organizer_image;
 
     private Button mProceedButton,competition_referal_submit;
-
+    private String userEmail;
     private ProgressBar mPb;
     private LinearLayout mContentLayout;
     private MySharedPreferences mSp;
@@ -104,8 +104,6 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
         coupon_applied_message_india=findViewById(R.id.coupon_applied_message_india);
         coupon_applied_message_foreign=findViewById(R.id.coupon_applied_message_foreign);
         refferal_code_layout=findViewById(R.id.refferal_code_layout);
-
-
 //        mToolbar.setNavigationIcon(R.drawable.back_arrow);
 //        mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -126,15 +124,11 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
         mParticipantsTV = findViewById(R.id.pay_confirm_participants);
         mMentorTV = findViewById(R.id.pay_confirm_mentor);
         mentorText = findViewById(R.id.mentor_text);
-
         payment_method = findViewById(R.id.payment_method);
         payPal = findViewById(R.id.pay_pal);
         payUmoney = findViewById(R.id.payUmoney);
-
         editTeam = findViewById(R.id.edit_team);
-
         mProceedButton = findViewById(R.id.pay_confirm_proceed);
-
         mCompetitionId = getIntent().getStringExtra(BundleConstants.COMPETITION_ID);
 
         editTeam.setOnClickListener(new View.OnClickListener() {
@@ -160,29 +154,20 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
         mProceedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "onClick: called");
-
                 if(payPal.isChecked()){
                     getPayment();
                     Intent intent = new Intent(PaymentConfirmActivity.this, PayPalService.class);
                     intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
                     startService(intent);
-
                 }else if(payUmoney.isChecked()) {
                     amount = mAmountTextView.getText().toString();
-
                     if (amount.isEmpty()) {
                         Toast.makeText(PaymentConfirmActivity.this, "Amount not found.", Toast.LENGTH_SHORT).show();
-
                     } else {
                         Map<String, String> params = new HashMap<>();
                         startPayment();
-
                     }
-
-
-                }
-                else {
+                } else {
                     MDToast.makeText(PaymentConfirmActivity.this, "Select Payment Method", MDToast.LENGTH_SHORT, MDToast.TYPE_ERROR).show();
                 }
             }
@@ -191,56 +176,32 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
 
     private void VerifyReferalCodeOnServer(final String refferalCode) {
         mRequestQueue = MyVolley.getInstance().getRequestQueue();
-//ServerConstants.VERIFY_REFRAL_CODE
         StringRequest request = new StringRequest(Request.Method.POST,"https://archsqr.in/api/competition/search/code", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-//                Toast.makeText(PaymentConfirmActivity.this, "referal code"+response, Toast.LENGTH_SHORT).show();
-
                 try {
-
                     JSONObject responseObject = new JSONObject(response);
-
                     boolean ret=responseObject.getBoolean("return");
-                    if(ret)
-                    {
-
+                    if(ret) {
                         int Amount=responseObject.getInt("Amount");
                         String CountryType=responseObject.getString("CountryType");
-                        if(CountryType.equals("Foreign"))
-                        {
-
-                            //mAmountTextView1 = findViewById(R.id.pay_confirm_amount1);
+                        if(CountryType.equals("Foreign")) {
                             float discountedAmount=Float.parseFloat(mAmountTextView1.getText().toString())-Amount;
                             mAmountTextView1.setText(discountedAmount+"");
                             coupon_applied_message_foreign.setVisibility(View.VISIBLE);
-
-
-
-                        }
-                        else {
-
+                        } else {
                             int discountedAmount=Integer.parseInt(mAmountTextView.getText().toString())-Amount;
                             mAmountTextView.setText(discountedAmount+"");
                             coupon_applied_message_india.setVisibility(View.VISIBLE);
-
                         }
                         refferal_code_layout.setVisibility(View.GONE);
                         MDToast.makeText(PaymentConfirmActivity.this, "Coupon Code Applied", MDToast.LENGTH_LONG, MDToast.TYPE_SUCCESS).show();
-
-                    }
-                    else {
+                    } else {
                         referal_error_message.setVisibility(View.VISIBLE);
-
-                        }
-
-
-
-
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -250,8 +211,6 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
                 NetworkResponse response = error.networkResponse;
                 if (error instanceof ServerError && response != null) {
                     try {
-
-
                         String res = new String(response.data,
                                 HttpHeaderParser.parseCharset(response.headers, "utf-8"));
                         Log.v("payUmoney",res);
@@ -278,13 +237,11 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
                // headers.put(getString(R.string.authorization), Constants.AUTHORIZATION_HEADER + mSp.getKey(SPConstants.API_KEY));
                 headers.put(getString(R.string.authorization), Constants.AUTHORIZATION_HEADER +"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjM0Y2YzYmI5MzBlZTQwNzZiOGI0NzI3ZWRhYmMwZDA4ZjhiZGI5Yjg1N2YzNzliZWU4MDEyZWJmODUwMDQ3MmJlZTk2ZmRkZjY5MmY3OWJhIn0.eyJhdWQiOiIzIiwianRpIjoiMzRjZjNiYjkzMGVlNDA3NmI4YjQ3MjdlZGFiYzBkMDhmOGJkYjliODU3ZjM3OWJlZTgwMTJlYmY4NTAwNDcyYmVlOTZmZGRmNjkyZjc5YmEiLCJpYXQiOjE1NDQ2MDE5MTYsIm5iZiI6MTU0NDYwMTkxNiwiZXhwIjoxNTc2MTM3OTE2LCJzdWIiOiIxMDYiLCJzY29wZXMiOltdfQ.ACcMBn4UGznAYiWlFjrJ8cJem-LazCGJwo_lF8CBEf3Iz2Owa7gzwrVzyr2CWM-Ms7H0omi_UEc2Pf15GjEP1TMeroF6VfJqxsFjhuF2s_f5VQNIMEs8-ckRvoLum0H3_GZ9VFwrWYYK3RaiZ_8dXOkAzg49LeB5UvWwjjukWRKfQfY7NYuRzVmqLZ2cVXT4WpCLehm2ZgoN2570wadIx4qVS8vOXa-d1wlVBYazFT8DwaxvzJYlysF-8u4PYl-QB6f5B3bCWF-qYVG_QvhwZ-0NMhJCkoEg-Ft--8tvWFqcRFyJl0P4RkgogrXFA7cjeEDJH3esfH93b-Skh0VQc1oVQ4sm7z4bXRKLYYRiSNj0pZt1bpd22K1f4Q5KquFT6Q-LmoIjQkcDjRiCmF1J5wFVJbb-LVOUWNeAXd7mIkfDvo7N7T-xpJR2w6706x3nqVtXJIP3MX3P9xqoeywsE_sYLyfn1ITffjSG44cVVCVj0lDIuZIJHhpW1qqwhIZkmvJpq_JhM-GcPmv7fVAbf2oZclnTfFDPECl_AVbJGJcKbWfyaMbAg3sdUt4-C7E5Ndr7gYe18o1iGJOQDHE4cMTMD_ehFErUg1R5gTPDyyXIldB_EfzCwOXoDlzZZiDHuFCGM3zD-wL0PrUMcFU6bbpt3d6M7R-Md2Ir81ZMOpA");
                 Log.d(TAG, "getHeaders: api key = " + mSp.getKey(SPConstants.API_KEY));
-
                 return headers;
             }
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-
                 params.put("CompId",mCompetitionId);
                 params.put("r_code",refferalCode);
                 return params;
@@ -308,9 +265,7 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
           You need to pass current activity in order to let Razorpay create CheckoutActivity
          */
         final Activity activity = this;
-
         final Checkout co = new Checkout();
-
         try {
             JSONObject options = new JSONObject();
             options.put("name", "SqrFactor India Pvt. Ltd.");
@@ -322,8 +277,9 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
 //            options.put("amount", Integer.parseInt("1")*100);
 
             JSONObject preFill = new JSONObject();
-            preFill.put("email", mUserEmail);
-            preFill.put("contact", mUserPhone);
+            userEmail=mSp.getKey(SPConstants.EMAIL);
+            preFill.put("email",userEmail);
+            preFill.put("contact", "");
 
             options.put("prefill", preFill);
 
@@ -376,24 +332,17 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
         }
 
         mRequestQueue = MyVolley.getInstance().getRequestQueue();
-
         StringRequest request = new StringRequest(Request.Method.GET, ServerConstants.PAYMENT_CONFIRM + mCompetitionId, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 mPb.setVisibility(View.GONE);
                 mContentLayout.setVisibility(View.VISIBLE);
-
-                Log.d(TAG, "onResponse: payment confirm response = " + response);
-
                 try {
 //                    Toast.makeText(PaymentConfirmActivity.this, "Participation Successful", Toast.LENGTH_SHORT).show();
                     JSONObject responseObject = new JSONObject(response);
                     JSONObject compIdObject = responseObject.getJSONObject("CompetitionID");
                     JSONObject userObject = compIdObject.getJSONObject("user");
-
                     mUserName = userObject.getString("name");
-
                     if (mUserName.equals("null")) {
                         mUserName = userObject.getString("first_name") + " " + userObject.getString("last_name");
                     }
@@ -411,20 +360,13 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
 
                     JSONArray mentorArray = responseObject.getJSONArray("mentor");
                     String mentor = mentorArray.getString(0);
-
-
-
-                    if (!mentor.equals("null"))
-                    {
+                    if (!mentor.equals("null")) {
                         mentorText.setVisibility(View.VISIBLE);
                         mMentorTV.setText(mentor);
-
-                    }
-                    else {
+                    } else {
                         mentorText.setVisibility(View.GONE);
                         mMentorTV.setText("");
                     }
-
                     JSONArray amountArray = responseObject.getJSONArray("amount");
                     Log.d(TAG, "onResponse: amount array = " + amountArray.toString());
                     JSONArray amountarray1 = amountArray.getJSONArray(1);
@@ -442,10 +384,8 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
                     }
 
                     JSONArray participantsArray = responseObject.getJSONArray("users");
-
                     for (int i = 0; i < participantsArray.length(); i++) {
                         String participant = participantsArray.getString(i);
-
                         if (!participant.equals("null")) {
                             mParticipantsTV.append(participant + "\n");
                         }
@@ -473,7 +413,6 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
                 headers.put(getString(R.string.accept), getString(R.string.application_json));
                 headers.put(getString(R.string.authorization), Constants.AUTHORIZATION_HEADER + mSp.getKey(SPConstants.API_KEY));
                 Log.d(TAG, "getHeaders: api key = " + mSp.getKey(SPConstants.API_KEY));
-
                 return headers;
             }
 
@@ -494,7 +433,6 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
             if (resultCode == Activity.RESULT_OK) {
                 //Getting the payment confirmation
                 PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
-
                 //if confirmation is not null
                 if (confirm != null) {
                     try {
@@ -541,11 +479,8 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
                 if (!first) {
                     out.append(", ");
                 }
-
                 out.append(key).append('=');
-
                 Object value = bundle.get(key);
-
                 if (value instanceof int[]) {
                     out.append(Arrays.toString((int[]) value));
                 } else if (value instanceof byte[]) {
@@ -571,11 +506,9 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
                 } else {
                     out.append(value);
                 }
-
                 first = false;
             }
         }
-
         out.append("]");
         return out.toString();
     }
@@ -586,17 +519,11 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
         StringRequest request = new StringRequest(Request.Method.POST, ServerConstants.PAY_UMONEY, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
-//                Toast.makeText(PaymentConfirmActivity.this, response, Toast.LENGTH_SHORT).show();
-                Log.d(TAG, "onResponse: payUmoney confirm response = " + response);
-
                 try {
-//                    Toast.makeText(PaymentConfirmActivity.this, "Participation Successful", Toast.LENGTH_SHORT).show();
                     JSONObject responseObject = new JSONObject(response);
                     Intent intent= new Intent(PaymentConfirmActivity.this,CompetitionDetailActivity.class);
                     startActivity(intent);
                     finish();
-
                 } catch (Error e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
@@ -611,21 +538,12 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
                 NetworkResponse response = error.networkResponse;
                 if (error instanceof ServerError && response != null) {
                     try {
-
-
                         String res = new String(response.data,
                                 HttpHeaderParser.parseCharset(response.headers, "utf-8"));
-                        Log.v("payUmoney",res);
-//                        Toast.makeText(getApplicationContext(),res,Toast.LENGTH_LONG).show();
-                        // Now you can use any deserializer to make sense of data
                         JSONObject obj = new JSONObject(res);
                     } catch (UnsupportedEncodingException e1) {
-//                        Toast.makeText(getApplicationContext(),e1.toString(),Toast.LENGTH_LONG).show();
-                        // Couldn't properly decode data to string
                         e1.printStackTrace();
                     } catch (JSONException e2) {
-//                        Toast.makeText(getApplicationContext(),e2.toString(),Toast.LENGTH_LONG).show();
-                        // returned data is not JSONObject?
                         e2.printStackTrace();
                     }
                 }
@@ -637,7 +555,6 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
                 headers.put(getString(R.string.accept), getString(R.string.application_json));
                 headers.put(getString(R.string.authorization), Constants.AUTHORIZATION_HEADER + mSp.getKey(SPConstants.API_KEY));
                 Log.d(TAG, "getHeaders: api key = " + mSp.getKey(SPConstants.API_KEY));
-
                 return headers;
             }
 
@@ -654,7 +571,6 @@ public class PaymentConfirmActivity extends AppCompatActivity implements Payment
                 params.put("phone", mUserPhone +"");
                 params.put("amount", amount +"");
                 params.put("status", "success");
-
                 return params;
             }
 

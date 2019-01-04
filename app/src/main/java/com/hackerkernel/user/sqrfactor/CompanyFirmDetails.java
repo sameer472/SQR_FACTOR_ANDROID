@@ -73,29 +73,33 @@ public class CompanyFirmDetails extends AppCompatActivity {
         String json = sharedPreferences.getString("UserData","");
         UserData userData = gson.fromJson(json,UserData.class);
 
-        if (!userData.getYear_in_service().equals("null")){
-            yearInService.setText(userData.getYear_in_service());
-        }
-        if (!userData.getFirm_size().equals("null")){
-            firmSize.setText(userData.getFirm_size());
-        }
-        if (!userData.getServices_offered().equals("null")){
-            serviceOffered.setText(userData.getServices_offered());
-        }
+        if(userData!=null)
+        {
+            if (!userData.getYear_in_service().equals("null")){
+                yearInService.setText(userData.getYear_in_service());
+            }
+            if (!userData.getFirm_size().equals("null")){
+                firmSize.setText(userData.getFirm_size());
+            }
+            if (!userData.getServices_offered().equals("null")){
+                serviceOffered.setText(userData.getServices_offered());
+            }
 //        if (!userData.getName_of_the_company().equals("null")){
 //            serviceOffered.setText(userData.getServices_offered());
 //        }
-        if (!userData.getAsset_served().equals("null")){
-            assetsServed.setText(userData.getAsset_served());
-        }
-        if (!userData.getCity_served().equals("null")){
-            cityServed.setText(userData.getCity_served());
-        }
-        if (!userData.getAward_name().equals("null")){
-            awardName.setText(userData.getAward_name());
-        }
-        if (!userData.getProject_name().equals("null")){
-            projectName.setText(userData.getProject_name());
+            if (!userData.getAsset_served().equals("null")){
+                assetsServed.setText(userData.getAsset_served());
+            }
+            if (!userData.getCity_served().equals("null")){
+                cityServed.setText(userData.getCity_served());
+            }
+            if (!userData.getAward_name().equals("null")){
+                awardName.setText(userData.getAward_name());
+            }
+            if (!userData.getProject_name().equals("null")){
+                projectName.setText(userData.getProject_name());
+            }
+
         }
 
     }
